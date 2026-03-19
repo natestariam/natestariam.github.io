@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Kurakina — Design Director</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ─── Reset & Base ─── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            /* Apple variant — Phoebe Philo warm monochrome */
+            --apple-bg: #F8F7F4;
+            --apple-text: #111111;
+            --apple-muted: #777777;
+            --apple-accent: #111111;
+            --apple-border: #E0DEDA;
+            --apple-card: #FFFFFF;
+            --apple-highlight: #F0EFEB;
+
+            /* OpenAI variant — cool, technical */
+            --oai-bg: #0A0A0A;
+            --oai-text: #EEEEEE;
+            --oai-muted: #888888;
+            --oai-accent: #EEEEEE;
+            --oai-border: #222222;
+            --oai-card: #141414;
+            --oai-highlight: #1C1C1C;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* ─── Mode: Apple ─── */
+        body.apple {
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+        }
+
+        /* ─── Mode: OpenAI ─── */
+        body.openai {
+            background-color: var(--oai-bg);
+            color: var(--oai-text);
+        }
+
+        /* ─── No texture — clean Phoebe Philo aesthetic ─── */
+
+        /* ─── Layout ─── */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        /* ─── Navigation / Mode Switcher ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.8s, border-color 0.8s, backdrop-filter 0.3s;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        body.apple .nav {
+            background-color: rgba(248, 247, 244, 0.9);
+            border-bottom: none;
+        }
+
+        body.openai .nav {
+            background-color: rgba(10, 10, 10, 0.9);
+            border-bottom: none;
+        }
+
+        .nav-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.8s;
+        }
+
+        body.apple .nav-name { color: var(--apple-text); }
+        body.openai .nav-name { color: var(--oai-text); }
+
+        .mode-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mode-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.4s, opacity 0.4s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        body.apple .mode-label.label-apple { opacity: 1; }
+        body.apple .mode-label.label-openai { opacity: 0.35; }
+        body.openai .mode-label.label-apple { opacity: 0.35; }
+        body.openai .mode-label.label-openai { opacity: 1; }
+
+        body.apple .mode-label { color: var(--apple-text); }
+        body.openai .mode-label { color: var(--oai-text); }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+
+        body.apple .toggle-track { background-color: #111111; }
+        body.openai .toggle-track { background-color: #EEEEEE; }
+
+        .toggle-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+            top: 3px;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.apple .toggle-thumb { left: 3px; }
+        body.openai .toggle-thumb { left: 23px; }
+
+        /* ─── Hero ─── */
+        .hero {
+            padding-top: 14rem;
+            padding-bottom: 8rem;
+            position: relative;
+        }
+
+        .hero-overline {
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .hero-overline { color: var(--apple-muted); }
+        body.openai .hero-overline { color: var(--oai-muted); }
+
+        .hero h1 {
+            font-weight: 300;
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+            margin-bottom: 3rem;
+            transition: font-size 0.3s;
+        }
+
+        body.apple .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 6rem;
+            font-weight: 400;
+        }
+
+        body.openai .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 520px;
+            transition: color 0.8s;
+        }
+
+        body.apple .hero-subtitle {
+            color: var(--apple-muted);
+            font-weight: 300;
+        }
+
+        body.openai .hero-subtitle {
+            color: var(--oai-muted);
+            font-weight: 400;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 3.5rem;
+            margin-top: 5rem;
+            flex-wrap: wrap;
+            padding-top: 3rem;
+            border-top: 1px solid;
+            transition: border-color 0.8s;
+        }
+
+        body.apple .hero-meta { border-color: var(--apple-border); }
+        body.openai .hero-meta { border-color: var(--oai-border); }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .meta-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            transition: color 0.8s;
+        }
+
+        body.apple .meta-number { color: var(--apple-text); }
+        body.openai .meta-number { color: var(--oai-text); }
+
+        .meta-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.8s;
+        }
+
+        body.apple .meta-label { color: var(--apple-muted); }
+        body.openai .meta-label { color: var(--oai-muted); }
+
+        /* ─── Divider ─── */
+        .divider {
+            height: 1px;
+            margin: 5rem 0;
+            transition: background-color 0.8s;
+        }
+
+        body.apple .divider { background-color: var(--apple-border); }
+        body.openai .divider { background-color: var(--oai-border); }
+
+        /* ─── Section ─── */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .section-label { color: var(--apple-muted); }
+        body.openai .section-label { color: var(--oai-muted); }
+
+        /* ─── Content blocks ─── */
+        .content-apple, .content-openai {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.apple .content-openai,
+        body.openai .content-apple {
+            display: none;
+        }
+
+        /* ─── Experience Block ─── */
+        .exp-block {
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exp-company {
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.8s;
+        }
+
+        body.apple .exp-company { color: var(--apple-text); }
+        body.openai .exp-company { color: var(--oai-text); }
+
+        .exp-date {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: color 0.8s;
+        }
+
+        body.apple .exp-date { color: var(--apple-muted); }
+        body.openai .exp-date { color: var(--oai-muted); }
+
+        .exp-role {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .exp-role {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            color: var(--apple-text);
+        }
+
+        body.openai .exp-role {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--oai-text);
+        }
+
+        .exp-description {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            transition: color 0.8s;
+        }
+
+        body.apple .exp-description { color: var(--apple-muted); }
+        body.openai .exp-description { color: var(--oai-muted); }
+
+        /* ─── Platform Cards ─── */
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .platform-card {
+            padding: 1.75rem;
+            border-radius: 2px;
+            transition: background-color 0.8s, border-color 0.8s, transform 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-1px);
+        }
+
+        body.apple .platform-card {
+            background-color: var(--apple-card);
+            border-color: var(--apple-border);
+        }
+
+        body.openai .platform-card {
+            background-color: var(--oai-card);
+            border-color: var(--oai-border);
+        }
+
+        .platform-status {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            transition: background-color 0.8s, color 0.8s;
+        }
+
+        body.apple .platform-status {
+            background-color: var(--apple-highlight);
+            color: var(--apple-muted);
+        }
+
+        body.openai .platform-status {
+            background-color: var(--oai-highlight);
+            color: var(--oai-muted);
+        }
+
+        .platform-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .platform-name { color: var(--apple-text); }
+        body.openai .platform-name { color: var(--oai-text); }
+
+        .platform-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .platform-desc { color: var(--apple-muted); }
+        body.openai .platform-desc { color: var(--oai-muted); }
+
+        .platform-metric {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            transition: color 0.8s;
+        }
+
+        body.apple .platform-metric { color: var(--apple-muted); }
+        body.openai .platform-metric { color: var(--oai-muted); }
+
+        /* ─── Industry Tags ─── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 0.4rem 1rem;
+            border-radius: 0;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: background-color 0.8s, color 0.8s, border-color 0.8s;
+            border: 1px solid transparent;
+        }
+
+        body.apple .tag {
+            background-color: var(--apple-highlight);
+            color: var(--apple-text);
+            border-color: var(--apple-border);
+        }
+
+        body.openai .tag {
+            background-color: transparent;
+            color: var(--oai-muted);
+            border-color: var(--oai-border);
+        }
+
+        /* ─── Earlier Experience ─── */
+        .earlier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem 2rem;
+        }
+
+        .earlier-item {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .earlier-company {
+            font-weight: 600;
+            transition: color 0.8s;
+        }
+
+        body.apple .earlier-company { color: var(--apple-text); }
+        body.openai .earlier-company { color: var(--oai-text); }
+
+        .earlier-role {
+            transition: color 0.8s;
+        }
+
+        body.apple .earlier-role { color: var(--apple-muted); }
+        body.openai .earlier-role { color: var(--oai-muted); }
+
+        /* ─── Approach / Philosophy (Apple only) ─── */
+        .philosophy {
+            font-size: 1.8rem;
+            line-height: 1.45;
+            font-weight: 300;
+            max-width: 650px;
+            transition: color 0.8s;
+        }
+
+        body.apple .philosophy {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--apple-text);
+        }
+
+        body.openai .philosophy {
+            font-family: 'Inter', sans-serif;
+            color: var(--oai-text);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* ─── Skills Grid (OpenAI only) ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .skill-group-title {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .skill-group-title { color: var(--apple-text); }
+        body.openai .skill-group-title { color: var(--oai-text); }
+
+        .skill-item {
+            font-size: 0.85rem;
+            line-height: 2;
+            transition: color 0.8s;
+        }
+
+        body.apple .skill-item { color: var(--apple-muted); }
+        body.openai .skill-item { color: var(--oai-muted); }
+
+        /* ─── Education ─── */
+        .edu-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .edu-school {
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .edu-school { color: var(--apple-text); }
+        body.openai .edu-school { color: var(--oai-text); }
+
+        .edu-degree {
+            font-size: 0.85rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .edu-degree { color: var(--apple-muted); }
+        body.openai .edu-degree { color: var(--oai-muted); }
+
+        /* ─── Tools ─── */
+        .tools-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-badge {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.5rem 1.2rem;
+            border-radius: 0;
+            font-weight: 500;
+            transition: background-color 0.8s, color 0.8s;
+        }
+
+        body.apple .tool-badge {
+            background-color: var(--apple-highlight);
+            color: var(--apple-text);
+        }
+
+        body.openai .tool-badge {
+            background-color: var(--oai-card);
+            color: var(--oai-text);
+            border: 1px solid var(--oai-border);
+        }
+
+        /* ─── Featured Work / Case Studies ─── */
+        .featured-section {
+            margin-bottom: 4rem;
+        }
+
+        .case-study {
+            border-radius: 0;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            margin-left: -2.5rem;
+            margin-right: -2.5rem;
+            transition: background-color 0.8s, border-color 0.8s, transform 0.4s;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .case-study:hover {
+            transform: translateY(-1px);
+        }
+
+        body.apple .case-study {
+            background-color: var(--apple-card);
+            border-color: var(--apple-border);
+        }
+
+        body.openai .case-study {
+            background-color: var(--oai-card);
+            border-color: var(--oai-border);
+        }
+
+        .case-study-visual {
+            width: 100%;
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .case-study-visual::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+            pointer-events: none;
+        }
+
+        /* America's Cup visual */
+        .visual-americas-cup {
+            background-color: #0A1628;
+        }
+
+        /* Formula E visual */
+        .visual-formula-e {
+            background-color: #0D0D0D;
+        }
+
+        .visual-overlay-text {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 2.5rem;
+            right: 2.5rem;
+            z-index: 2;
+        }
+
+        .visual-category {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .visual-title {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        body.apple .visual-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 2.4rem;
+        }
+
+        /* Animated wave for Americas Cup */
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: -5px;
+            left: -10%;
+            width: 120%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120Z' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E") repeat-x;
+            animation: wave-drift 8s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            bottom: -2px;
+            height: 30px;
+            animation: wave-drift 12s linear infinite reverse;
+            opacity: 0.5;
+        }
+
+        @keyframes wave-drift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Animated circuit lines for Formula E */
+        .circuit-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .circuit-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(16,163,127,0.5), transparent);
+            animation: circuit-pulse 3s ease-in-out infinite;
+        }
+
+        .circuit-line:nth-child(1) { top: 25%; left: 10%; width: 30%; animation-delay: 0s; }
+        .circuit-line:nth-child(2) { top: 45%; left: 40%; width: 45%; animation-delay: 1s; }
+        .circuit-line:nth-child(3) { top: 65%; left: 5%; width: 25%; animation-delay: 2s; }
+        .circuit-line:nth-child(4) { top: 80%; left: 55%; width: 35%; animation-delay: 0.5s; }
+
+        @keyframes circuit-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Secondary image strip */
+        .case-study-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .case-study-images img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .case-study-images img:hover {
+            transform: scale(1.02);
+        }
+
+        .case-study-body {
+            padding: 2.5rem;
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .case-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .case-meta-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.8s;
+        }
+
+        body.apple .case-meta-label { color: var(--apple-muted); }
+        body.openai .case-meta-label { color: var(--oai-muted); }
+
+        .case-meta-value {
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.8s;
+        }
+
+        body.apple .case-meta-value { color: var(--apple-text); }
+        body.openai .case-meta-value { color: var(--oai-text); }
+
+        .case-study-description {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .case-study-description { color: var(--apple-muted); }
+        body.openai .case-study-description { color: var(--oai-muted); }
+
+        .case-study-outcome {
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: background-color 0.8s, color 0.8s;
+        }
+
+        body.apple .case-study-outcome {
+            background-color: var(--apple-highlight);
+            color: var(--apple-text);
+        }
+
+        body.openai .case-study-outcome {
+            background-color: var(--oai-highlight);
+            color: var(--oai-text);
+        }
+
+        .case-study-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.4s;
+        }
+
+        body.apple .case-study-link { color: var(--apple-text); }
+        body.apple .case-study-link:hover { color: var(--apple-muted); }
+        body.openai .case-study-link { color: var(--oai-text); }
+        body.openai .case-study-link:hover { color: var(--oai-muted); }
+
+        .case-study-link .arrow {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .case-study-link:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Press badge */
+        .press-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            margin-left: 0.75rem;
+            transition: background-color 0.8s, color 0.8s;
+        }
+
+        body.apple .press-badge {
+            background-color: var(--apple-highlight);
+            color: var(--apple-muted);
+        }
+
+        body.openai .press-badge {
+            background-color: var(--oai-card);
+            color: var(--oai-muted);
+            border: 1px solid var(--oai-border);
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .footer-cta {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 3rem;
+            transition: color 0.8s;
+        }
+
+        body.apple .footer-cta { color: var(--apple-muted); }
+        body.openai .footer-cta { color: var(--oai-muted); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-link {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+            padding-bottom: 2px;
+            transition: color 0.4s, border-color 0.4s;
+            border-bottom: 1px solid transparent;
+        }
+
+        body.apple .footer-link {
+            color: var(--apple-text);
+        }
+
+        body.apple .footer-link:hover {
+            color: var(--apple-muted);
+            border-color: var(--apple-text);
+        }
+
+        body.openai .footer-link {
+            color: var(--oai-text);
+        }
+
+        body.openai .footer-link:hover {
+            color: var(--oai-muted);
+            border-color: var(--oai-text);
+        }
+
+        /* ─── Scroll animations ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Dot accent on hero (Apple mode) ─── */
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 4px;
+            transition: background-color 0.8s;
+        }
+
+        body.apple .hero-dot { background-color: #111111; }
+        body.openai .hero-dot { background-color: #EEEEEE; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            body.apple .hero h1 { font-size: 3.5rem; }
+            body.openai .hero h1 { font-size: 3rem; }
+            .platforms-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .earlier-grid { grid-template-columns: 1fr; }
+            .hero-meta { gap: 2rem; }
+            .container { padding: 0 1.5rem; }
+            .nav { padding: 1rem 1.5rem; }
+            .case-study-visual { height: 280px; }
+            .case-study { margin-left: -1.5rem; margin-right: -1.5rem; }
+            .case-study-meta { gap: 1rem; }
+            .case-study-body { padding: 1.5rem; }
+            .visual-overlay-text { left: 1.5rem; right: 1.5rem; bottom: 1.5rem; }
+            body.apple .exp-role { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            body.apple .hero h1 { font-size: 2.8rem; }
+            body.openai .hero h1 { font-size: 2.4rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .philosophy { font-size: 1.4rem; }
+            body.apple .philosophy { font-size: 1.5rem; }
+            .case-study-images img { height: 160px; }
+        }
+    </style>
+</head>
+<body class="apple">
+
+    <!-- ─── Navigation ─── -->
+    <nav class="nav">
+        <div class="nav-name">Natalia Kurakina</div>
+        <div class="mode-switcher">
+            <span class="mode-label label-apple" onclick="setMode('apple')">Creative</span>
+            <div class="toggle-track" onclick="toggleMode()">
+                <div class="toggle-thumb"></div>
+            </div>
+            <span class="mode-label label-openai" onclick="setMode('openai')">Technical</span>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ─── Hero ─── -->
+        <section class="hero">
+            <div class="hero-overline">Design Director · London</div>
+
+            <!-- Apple hero -->
+            <div class="content-apple">
+                <h1>Natalia<br>Kurakina<span class="hero-dot"></span></h1>
+                <p class="hero-subtitle">
+                    I lead design for AI platforms at QuantumBlack (McKinsey AI) — agent runtimes, orchestration systems, ML tooling. My work turns complex technical capabilities into products that actually get deployed.
+                </p>
+            </div>
+
+            <!-- OpenAI hero -->
+            <div class="content-openai">
+                <h1>Design Director<br>AI Systems &<br>Product Strategy</h1>
+                <p class="hero-subtitle">
+                    Design Director at QuantumBlack (McKinsey AI). Leading design and product development across agent-based systems, ML platforms, and workflow orchestration tools deployed in enterprise environments globally.
+                </p>
+            </div>
+
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-number">7</span>
+                    <span class="meta-label">Products</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-number">4</span>
+                    <span class="meta-label">Continents</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-number">10+</span>
+                    <span class="meta-label">Years</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-number">8</span>
+                    <span class="meta-label">Team</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Experience ─── -->
+        <section class="section reveal">
+            <div class="section-label">Experience</div>
+
+            <!-- Current Role -->
+            <div class="exp-block">
+                <div class="exp-header">
+                    <span class="exp-company">QuantumBlack, AI by McKinsey</span>
+                    <span class="exp-date">2023 — Present</span>
+                </div>
+                <div class="exp-role">Design Director</div>
+
+                <!-- Apple description -->
+                <div class="content-apple">
+                    <div class="exp-description">
+                        <p>Leading design across a portfolio of seven AI and agentic platforms within QB Labs, focused on new-edge product development for the practice.</p>
+                        <br>
+                        <p>I collaborate directly with McKinsey partners, senior partners, and client teams to define how these systems evolve, get deployed, and create value. I lead the adoption of a shared design system across the practice, bringing consistency to a growing ecosystem.</p>
+                        <br>
+                        <p>Day to day, I define product direction alongside senior leadership, lead a team of eight across design, and own the end-to-end experience — from early problem framing through to production-ready platform interfaces. I use AI tooling as part of my daily workflow — not as a novelty, but as infrastructure for faster thinking and making.</p>
+                    </div>
+                </div>
+
+                <!-- OpenAI description -->
+                <div class="content-openai">
+                    <div class="exp-description">
+                        <p>Leading design across seven AI platforms within QB Labs, focused on new-edge product development. Working closely with McKinsey partners, senior partners, and client teams to define product vision, align with enterprise use cases, and drive deployment.</p>
+                        <br>
+                        <p>Own design direction end-to-end: problem framing, platform architecture, interaction models, and production-ready interfaces. Lead adoption of a shared design system across QB Labs. Contribute to product strategy and roadmap decisions at partner level. Lead a team of eight.</p>
+                    </div>
+                </div>
+
+                <!-- Platform Cards -->
+                <div class="platforms-grid">
+                    <div class="platform-card">
+                        <span class="platform-status">Current</span>
+                        <div class="platform-name">Ark</div>
+                        <div class="platform-desc">Proprietary agent runtime, released as open source, for hosting and orchestrating agents</div>
+                        <div class="platform-metric">355 stars · 58 contributors · 55 releases in 7 months</div>
+                    </div>
+                    <div class="platform-card">
+                        <span class="platform-status">Previous</span>
+                        <div class="platform-name">Agents at Scale</div>
+                        <div class="platform-desc">McKinsey's agentic platform for deploying and managing AI agents</div>
+                        <div class="platform-metric">Deployed globally — NA, SA, Europe, Asia</div>
+                    </div>
+                    <div class="platform-card">
+                        <span class="platform-status">Previous</span>
+                        <div class="platform-name">Brix</div>
+                        <div class="platform-desc">Inner source platform for reusable product components and shared capabilities</div>
+                        <div class="platform-metric">4 client deployments</div>
+                    </div>
+                    <div class="platform-card">
+                        <span class="platform-status">Previous</span>
+                        <div class="platform-name">Alloy</div>
+                        <div class="platform-desc">Platform for assembling and managing machine learning pipelines</div>
+                        <div class="platform-metric">ML pipeline assembly</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── McKinsey / QB Consulting ─── -->
+        <section class="section reveal">
+            <div class="exp-block">
+                <div class="exp-header">
+                    <span class="exp-company">QuantumBlack / McKinsey & Company</span>
+                    <span class="exp-date">2017 — 2023</span>
+                </div>
+                <div class="exp-role">Principal Product Designer / Senior Consultant</div>
+
+                <div class="content-apple">
+                    <div class="exp-description">
+                        <p>Worked on client engagements across industries, designing products and systems for data-rich, decision-heavy environments. This was my most client-facing period — working directly with enterprise clients, partners, and senior stakeholders to define problems and shape solutions.</p>
+                        <br>
+                        <p>Led end-to-end product design within multidisciplinary teams — consultants, engineers, data scientists — translating complex analytical capabilities into usable tools and decision-support systems. Contributed to solutions for high-performance environments including Formula One and Formula E.</p>
+                        <br>
+                        <p>Transitioned from client-facing consulting into QB Labs to focus on building new-edge, reusable products and platforms.</p>
+                    </div>
+                </div>
+
+                <div class="content-openai">
+                    <div class="exp-description">
+                        <p>Primary focus on client engagements — designing and delivering data-driven products across industries, working directly with enterprise clients, partners, and senior stakeholders. Led product design in multidisciplinary teams (consulting, engineering, data science). Built decision-support systems, analytical tooling, and operational dashboards.</p>
+                        <br>
+                        <p>Structured ambiguous, high-value business problems into actionable product directions. Contributed to solutions for high-performance environments (Formula One, Formula E). Transitioned into QB Labs to focus on new-edge product development and reusable platform design.</p>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Pharma</span>
+                    <span class="tag">Financial Services</span>
+                    <span class="tag">Insurance</span>
+                    <span class="tag">Mining</span>
+                    <span class="tag">Retail</span>
+                    <span class="tag">Formula One</span>
+                    <span class="tag">Formula E</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Featured Work ─── -->
+        <section class="section featured-section reveal">
+            <div class="section-label">Featured Work</div>
+
+            <!-- America's Cup -->
+            <div class="case-study">
+                <div class="case-study-visual visual-americas-cup">
+                    <img src="https://www.guillaumeverdier.com/wp-content/uploads/2023/02/ETNZ_HH-19054.jpg" alt="Emirates Team New Zealand Te Rehutai AC75 flying above the water on hydrofoils" loading="lazy">
+                    <div class="visual-overlay-text">
+                        <div class="visual-category">QuantumBlack &times; Emirates Team New Zealand</div>
+                        <div class="visual-title">Flying Across the Sea — AI &amp; the America's Cup</div>
+                    </div>
+                </div>
+                <div class="case-study-images">
+                    <img src="https://www.livesaildie.com/wp-content/uploads/2020/11/CC201123-209.jpg" alt="Emirates Team New Zealand Te Rehutai foiling on Hauraki Gulf" loading="lazy">
+                    <img src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/21/2024/10/37AC_241019_RP2_1124.jpg" alt="Emirates Team New Zealand racing in the America's Cup" loading="lazy">
+                </div>
+                <div class="case-study-body">
+                    <div class="case-study-meta">
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Client</span>
+                            <span class="case-meta-value">Emirates Team New Zealand</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Event</span>
+                            <span class="case-meta-value">36th America's Cup</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Domain</span>
+                            <span class="case-meta-value">AI, Deep Reinforcement Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="content-apple">
+                        <p class="case-study-description">
+                            QuantumBlack used deep reinforcement learning to teach an AI bot how to sail — and eight weeks in, the bot started beating professional sailors in the simulator. A thousand bots ran in parallel, learning from each other, creating the ideal way to test hydrofoil design variations around the clock. The result: New Zealand's design process accelerated by a factor of ten. They won their fourth title.
+                        </p>
+                    </div>
+
+                    <div class="content-openai">
+                        <p class="case-study-description">
+                            Deployed deep reinforcement learning to create an autonomous sailing simulator with 1,000 parallel bots for hydrofoil design optimization. Bots shared knowledge through a collaborative learning network, enabling 24/7 design iteration. After 8 weeks, the AI outperformed professional sailors in the simulator. Design iteration speed increased 10x. Emirates Team New Zealand won the 36th America's Cup.
+                        </p>
+                    </div>
+
+                    <div class="case-study-outcome">Design iteration speed: 10x &rarr; 4th America's Cup title for Team NZ</div>
+
+                    <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/how-we-help-clients/flying-across-the-sea-propelled-by-ai" class="case-study-link" target="_blank">
+                        Read on McKinsey.com <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Formula E -->
+            <div class="case-study">
+                <div class="case-study-visual visual-formula-e">
+                    <img src="https://resources.formula-e.pulselive.com/photo-resources/2023/07/28/f8404bbd-8714-4543-b465-9d652d71330b/Jake-Hughes-enters-the-straight-1.JPG?width=1200&height=630" alt="Jake Hughes in GENBETA Formula E car at ExCeL London" loading="lazy">
+                    <div class="visual-overlay-text">
+                        <div class="visual-category">QuantumBlack &times; Formula E</div>
+                        <div class="visual-title">Breaking the Record — AI, Data &amp; Electric Racing</div>
+                    </div>
+                </div>
+                <div class="case-study-images">
+                    <img src="https://www.goodwood.com/globalassets/.road--racing/race/modern/2023/7-july/formula-e-record/formula-e-indoor-speed-record-london-01.jpg" alt="GENBETA Formula E car racing indoors at ExCeL London" loading="lazy">
+                    <img src="https://resources.formula-e.pulselive.com/photo-resources/2023/07/28/e9111d45-e747-4f93-9aac-0ba1981f4c71/MAIN-SHOT-Jake-Hughes-GENBETA-certificate-wide.JPG?width=1440&height=810" alt="Jake Hughes with Guinness World Record certificate" loading="lazy">
+                </div>
+                <div class="case-study-body">
+                    <div class="case-study-meta">
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Client</span>
+                            <span class="case-meta-value">Formula E / McLaren Racing</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Event</span>
+                            <span class="case-meta-value">Guinness World Record Attempt</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Domain</span>
+                            <span class="case-meta-value">GenAI, Real-time Analytics</span>
+                        </div>
+                    </div>
+
+                    <div class="content-apple">
+                        <p class="case-study-description">
+                            QuantumBlack built the data-and-analytics platform behind a new Guinness World Record for indoor land speed — 218.71 km/h in a Formula E Gen3 car at ExCeL London. The driver interface analysed real-time telemetry to generate speed, power, and grip recommendations, allowing drivers Jake Hughes and Lucas di Grassi to fine-tune their approach across attempts. Built on Google Cloud's Vertex AI, the platform went from design to deployment in three weeks.
+                        </p>
+                    </div>
+
+                    <div class="content-openai">
+                        <p class="case-study-description">
+                            Built real-time data analytics platform for Guinness World Record indoor land speed attempt (218.71 km/h). Driver interface processed live telemetry — speed, power, grip — and generated actionable recommendations between runs. Built on Google Cloud Vertex AI. Design-to-deployment: 3 weeks. Drivers: Jake Hughes (McLaren) and Lucas di Grassi (Mahindra) in duel format at ExCeL London, 2023 Hankook London E-Prix.
+                        </p>
+                    </div>
+
+                    <div class="case-study-outcome">Guinness World Record &rarr; 218.71 km/h indoor &rarr; 3 weeks design-to-deploy</div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <a href="https://www.mckinsey.com/about-us/new-at-mckinsey-blog/a-new-world-record-for-formula-e-propelled-by-mckinseys-ai" class="case-study-link" target="_blank">
+                            Read on McKinsey.com <span class="arrow">&rarr;</span>
+                        </a>
+                        <a href="https://www.ft.com/content/cbac5e32-143e-11e9-a168-d45595ad076d" class="press-badge" target="_blank" style="text-decoration: none;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+                            Featured in Financial Times
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Tableau ─── -->
+        <section class="section reveal">
+            <div class="exp-block">
+                <div class="exp-header">
+                    <span class="exp-company">Tableau Software</span>
+                    <span class="exp-date">2013 — 2016</span>
+                </div>
+                <div class="exp-role">Senior Product Consultant, GSI</div>
+
+                <div class="content-apple">
+                    <div class="exp-description">
+                        <p>Worked with global system integrators — Accenture, Deloitte, Capgemini and others — to embed Tableau into enterprise data ecosystems. The focus was not just deploying the tool, but designing how it fits into existing workflows and supports real decision-making.</p>
+                        <br>
+                        <p>Helped partners build scalable analytics practices around Tableau, defining implementation patterns and training approaches that drove adoption across large organisations.</p>
+                    </div>
+                </div>
+
+                <div class="content-openai">
+                    <div class="exp-description">
+                        <p>Worked with global system integrators (Accenture, Deloitte, Capgemini and others) to integrate Tableau into enterprise data ecosystems. Defined implementation patterns, deployment workflows, and adoption strategies at scale.</p>
+                        <br>
+                        <p>Bridged product, technical, and business requirements. Helped partners build repeatable analytics practices and trained teams on effective data visualisation approaches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Earlier Experience ─── -->
+        <section class="section reveal">
+            <div class="section-label">Earlier Experience</div>
+            <div class="earlier-grid">
+                <div class="earlier-item">
+                    <div class="earlier-company">J.P. Morgan</div>
+                    <div class="earlier-role">Investment Banking Analyst — financial modelling, client delivery, deal execution</div>
+                </div>
+                <div class="earlier-item">
+                    <div class="earlier-company">Sberbank CIB</div>
+                    <div class="earlier-role">Junior VP, Private Wealth — portfolio strategy, HNW client advisory</div>
+                </div>
+                <div class="earlier-item">
+                    <div class="earlier-company">Rio Tinto</div>
+                    <div class="earlier-role">Research Fellow — energy and climate policy analysis</div>
+                </div>
+                <div class="earlier-item">
+                    <div class="earlier-company">Silicon Valley Bank</div>
+                    <div class="earlier-role">Growth Portfolio — technology venture portfolio support</div>
+                </div>
+                <div class="earlier-item">
+                    <div class="earlier-company">Acumen</div>
+                    <div class="earlier-role">Research Fellow — impact investing and social enterprise</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Approach (Apple) / Skills (OpenAI) ─── -->
+        <section class="section reveal">
+            <div class="content-apple">
+                <div class="section-label">Approach</div>
+                <p class="philosophy">
+                    I believe the best AI products feel inevitable — not because they're simple, but because someone made hard structural decisions early. That's the work I care about most.
+                </p>
+                <br><br>
+                <p class="exp-description" style="font-size: 0.95rem; line-height: 1.75;">
+                    Systems over screens. Clarity over complexity. Products as evolving systems, not static artefacts.
+                </p>
+            </div>
+
+            <div class="content-openai">
+                <div class="section-label">Skills</div>
+                <div class="skills-grid">
+                    <div>
+                        <div class="skill-group-title">Product & Systems</div>
+                        <div class="skill-item">Product strategy</div>
+                        <div class="skill-item">Platform design</div>
+                        <div class="skill-item">Workflow design</div>
+                        <div class="skill-item">System abstraction</div>
+                        <div class="skill-item">Cross-functional leadership</div>
+                    </div>
+                    <div>
+                        <div class="skill-group-title">AI & Technical</div>
+                        <div class="skill-item">Agent-based systems</div>
+                        <div class="skill-item">ML platforms</div>
+                        <div class="skill-item">Orchestration models</div>
+                        <div class="skill-item">Human-AI interaction</div>
+                        <div class="skill-item">LLM-based products</div>
+                    </div>
+                    <div>
+                        <div class="skill-group-title">Tools</div>
+                        <div class="skill-item">Cursor</div>
+                        <div class="skill-item">Claude Code</div>
+                        <div class="skill-item">Figma Make</div>
+                        <div class="skill-item">AI-assisted prototyping</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Tools ─── -->
+        <section class="section reveal">
+            <div class="section-label">Tools</div>
+            <div class="tools-row">
+                <span class="tool-badge">Cursor</span>
+                <span class="tool-badge">Claude Code</span>
+                <span class="tool-badge">Figma Make</span>
+                <span class="tool-badge">Figma</span>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Education ─── -->
+        <section class="section reveal">
+            <div class="section-label">Education</div>
+            <div class="edu-grid">
+                <div class="edu-item">
+                    <span class="edu-school">London School of Economics</span>
+                    <span class="edu-degree">MPA — Public & Economic Policy</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-school">Imperial College London</span>
+                    <span class="edu-degree">MEng — Energy Policy, Renewable Energy & Climate Change</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-school">Christie's Education</span>
+                    <span class="edu-degree">Modern & Contemporary Art</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-school">Moscow State University</span>
+                    <span class="edu-degree">BSc — Economics</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-school">British Higher School of Art & Design</span>
+                    <span class="edu-degree">Foundation — Graphic Design & Illustration</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal"></div>
+
+        <!-- ─── Footer ─── -->
+        <footer class="footer reveal">
+            <div class="content-apple">
+                <p class="footer-cta">Looking for a role where I can shape product direction from the ground up — ideally at the intersection of AI systems and real human workflows.</p>
+            </div>
+            <div class="content-openai">
+                <p class="footer-cta">Looking for a role where I can shape AI product direction end-to-end — from system design through to deployment.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/natalia-kurakina-73b0912b" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="mailto:natestar.iam@gmail.com" class="footer-link">Email</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // ─── Mode switching ───
+        function setMode(mode) {
+            document.body.className = mode;
+            localStorage.setItem('cv-mode', mode);
+        }
+
+        function toggleMode() {
+            const current = document.body.classList.contains('apple') ? 'openai' : 'apple';
+            setMode(current);
+        }
+
+        // Restore saved mode
+        const saved = localStorage.getItem('cv-mode');
+        if (saved) setMode(saved);
+
+        // ─── Scroll reveal ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ─── Smooth number counter on hero ───
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.meta-number');
+            numbers.forEach(el => {
+                const target = el.textContent;
+                const num = parseInt(target);
+                if (isNaN(num)) return;
+
+                const suffix = target.replace(num.toString(), '');
+                let current = 0;
+                const step = Math.max(1, Math.floor(num / 30));
+                const interval = setInterval(() => {
+                    current += step;
+                    if (current >= num) {
+                        current = num;
+                        clearInterval(interval);
+                    }
+                    el.textContent = current + suffix;
+                }, 30);
+            });
+        }
+
+        // Run counter animation on load
+        window.addEventListener('load', () => {
+            setTimeout(animateNumbers, 400);
+        });
+    </script>
+
+</body>
+</html>
