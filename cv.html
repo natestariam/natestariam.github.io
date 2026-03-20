@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Kurakina — CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 10px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #111;
+            background: #fff;
+            line-height: 1.5;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 22mm 22mm 18mm 22mm;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* ─── Header ─── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3.5mm;
+            padding-bottom: 3.5mm;
+            border-bottom: 0.5px solid #ccc;
+        }
+
+        .header-left h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.5mm;
+        }
+
+        .header-title {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #666;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .header-right a {
+            color: #111;
+            text-decoration: none;
+        }
+
+        /* ─── Profile ─── */
+        .profile {
+            margin-bottom: 3mm;
+            padding-bottom: 3mm;
+            border-bottom: 0.5px solid #ccc;
+        }
+
+        .profile p {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: #333;
+        }
+
+        /* ─── Stats row ─── */
+        .stats {
+            display: flex;
+            gap: 7mm;
+            margin-bottom: 3.5mm;
+            padding-bottom: 3mm;
+            border-bottom: 0.5px solid #ccc;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        /* ─── Section ─── */
+        .section-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 2.5mm;
+            font-weight: 500;
+        }
+
+        /* ─── Experience block ─── */
+        .exp {
+            margin-bottom: 3mm;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .exp-company {
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #111;
+        }
+
+        .exp-date {
+            font-size: 0.72rem;
+            color: #999;
+        }
+
+        .exp-role {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 0.5mm 0 1.5mm;
+            color: #111;
+        }
+
+        .exp-desc {
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .exp-desc p {
+            margin-bottom: 1mm;
+        }
+
+        .exp-desc p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ─── Platform grid ─── */
+        .platforms {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5mm;
+            margin-top: 2mm;
+        }
+
+        .platform {
+            padding: 2mm 2.5mm;
+            background: #f8f7f4;
+        }
+
+        .platform-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.3mm;
+        }
+
+        .platform-desc {
+            font-size: 0.68rem;
+            color: #666;
+            line-height: 1.35;
+        }
+
+        .platform-metric {
+            font-size: 0.64rem;
+            color: #999;
+            margin-top: 0.3mm;
+        }
+
+        /* ─── Tags ─── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1mm;
+            margin-top: 1.5mm;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            padding: 0.5mm 2mm;
+            background: #f8f7f4;
+            color: #555;
+            border: 0.5px solid #e0deda;
+        }
+
+        /* ─── Earlier experience ─── */
+        .earlier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5mm 5mm;
+        }
+
+        .earlier-company {
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .earlier-role {
+            font-size: 0.72rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* ─── Skills ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 3mm;
+            margin-bottom: 2.5mm;
+        }
+
+        .skill-group-title {
+            font-size: 0.56rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #999;
+            margin-bottom: 1mm;
+        }
+
+        .skill-item {
+            font-size: 0.75rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* ─── Tools ─── */
+        .tools-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1mm;
+        }
+
+        .tool-badge {
+            font-size: 0.65rem;
+            padding: 0.5mm 2mm;
+            background: #f8f7f4;
+            border: 0.5px solid #e0deda;
+            color: #333;
+        }
+
+        /* ─── Education ─── */
+        .edu-grid {
+            display: grid;
+            gap: 1mm;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-school {
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .edu-degree {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        /* ─── Divider ─── */
+        .divider {
+            height: 0.5px;
+            background: #ccc;
+            margin: 3mm 0;
+        }
+
+        /* ─── Page 2 header ─── */
+        .page2-header {
+            font-size: 0.65rem;
+            color: #999;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 4mm;
+            padding-bottom: 2.5mm;
+            border-bottom: 0.5px solid #ccc;
+        }
+
+        /* ─── Project links ─── */
+        .project-links {
+            display: flex;
+            gap: 3mm;
+            margin-top: 1mm;
+        }
+
+        .project-link {
+            font-size: 0.68rem;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            border-bottom: 0.5px solid #ccc;
+            padding-bottom: 0.3mm;
+        }
+
+        /* ─── Print ─── */
+        @media print {
+            body { background: #fff; }
+            .page {
+                padding: 18mm 20mm 16mm 20mm;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+
+    <div class="header">
+        <div class="header-left">
+            <h1>Natalia Kurakina</h1>
+            <div class="header-title">Design Director · AI Platforms · Product Strategy</div>
+        </div>
+        <div class="header-right">
+            London, UK<br>
+            <a href="mailto:natestar.iam@gmail.com">natestar.iam@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/natalia-kurakina-73b0912b">linkedin.com/in/natalia-kurakina</a><br>
+            <a href="https://natestariam.github.io">natestariam.github.io</a>
+        </div>
+    </div>
+
+    <div class="profile">
+        <p>Design Director at QuantumBlack (McKinsey AI), leading design and product development across agent-based systems, ML platforms, and workflow orchestration tools deployed in enterprise environments globally. Proficient in AI-assisted design workflows using Claude, Cursor, and Figma Make. Portfolio of seven products, team of eight, deployed across four continents.</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat"><span class="stat-number">7</span><span class="stat-label">Products</span></div>
+        <div class="stat"><span class="stat-number">4</span><span class="stat-label">Continents</span></div>
+        <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Years</span></div>
+        <div class="stat"><span class="stat-number">8</span><span class="stat-label">Team</span></div>
+    </div>
+
+    <div class="section-label">Experience</div>
+
+    <div class="exp">
+        <div class="exp-header">
+            <span class="exp-company">QuantumBlack, AI by McKinsey</span>
+            <span class="exp-date">2023 — Present</span>
+        </div>
+        <div class="exp-role">Design Director</div>
+        <div class="exp-desc">
+            <p>Leading design across seven AI platforms within QB Labs, focused on new-edge product development. Working closely with McKinsey partners, senior partners, and client teams to define product vision, align with enterprise use cases, and drive deployment.</p>
+            <p>Implementing and scaling the QuantumBlack design system across products — defining shared components, interaction patterns, and visual standards to ensure consistency and accelerate delivery across the practice.</p>
+            <p>Own design direction end-to-end: problem framing, platform architecture, interaction models, and production-ready interfaces. Contribute to product strategy and roadmap decisions at partner level. Lead a team of eight. Use AI-assisted tooling (Claude, Cursor, Figma Make) as core workflow infrastructure.</p>
+        </div>
+        <div class="platforms">
+            <div class="platform">
+                <div class="platform-name">Ark</div>
+                <div class="platform-desc">Open source runtime for hosting and orchestrating agents and workflows</div>
+                <div class="platform-metric">355 stars · 58 contributors · 55 releases in 7 months</div>
+            </div>
+            <div class="platform">
+                <div class="platform-name">Agents at Scale</div>
+                <div class="platform-desc">McKinsey's platform for building, deploying, and managing AI agents and workflows</div>
+                <div class="platform-metric">3 client deployments · used globally by McKinsey data scientists</div>
+            </div>
+            <div class="platform">
+                <div class="platform-name">Brix</div>
+                <div class="platform-desc">Inner source platform for reusable product components and shared capabilities</div>
+                <div class="platform-metric">3,000+ internal users · 4 client deployments</div>
+            </div>
+            <div class="platform">
+                <div class="platform-name">Alloy</div>
+                <div class="platform-desc">Platform for assembling and managing machine learning pipelines</div>
+                <div class="platform-metric">Product direction shaped by user research</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="exp">
+        <div class="exp-header">
+            <span class="exp-company">QuantumBlack / McKinsey & Company</span>
+            <span class="exp-date">2017 — 2023</span>
+        </div>
+        <div class="exp-role">Principal Product Designer / Senior Consultant</div>
+        <div class="exp-desc">
+            <p>Primary focus on client engagements — designing and delivering data-driven products across industries, working directly with enterprise clients, partners, and senior stakeholders. Led product design in multidisciplinary teams (consulting, engineering, data science). Built decision-support systems, analytical tooling, and operational dashboards.</p>
+            <p>Structured ambiguous, high-value business problems into actionable product directions. Contributed to solutions for high-performance environments (Formula One, Formula E). Transitioned into QB Labs to focus on new-edge product development and reusable platform design.</p>
+        </div>
+        <div class="tags">
+            <span class="tag">Healthcare</span>
+            <span class="tag">Life Sciences</span>
+            <span class="tag">Pharma</span>
+            <span class="tag">Financial Services</span>
+            <span class="tag">Insurance</span>
+            <span class="tag">Mining</span>
+            <span class="tag">Retail</span>
+            <span class="tag">Formula E</span>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="exp">
+        <div class="exp-header">
+            <span class="exp-company">Tableau Software</span>
+            <span class="exp-date">2013 — 2016</span>
+        </div>
+        <div class="exp-role">Senior Product Consultant, GSI</div>
+        <div class="exp-desc">
+            <p>Worked with global system integrators (Accenture, Deloitte, Capgemini and others) to integrate Tableau into enterprise data ecosystems. Defined implementation patterns, deployment workflows, and adoption strategies at scale. Helped partners build repeatable analytics practices.</p>
+        </div>
+        <div class="tags">
+            <span class="tag">Nike</span>
+            <span class="tag">Adidas</span>
+            <span class="tag">Airbus</span>
+            <span class="tag">Deloitte</span>
+            <span class="tag">Accenture</span>
+            <span class="tag">Infosys</span>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Earlier Experience</div>
+    <div class="earlier-grid">
+        <div>
+            <div class="earlier-company">J.P. Morgan</div>
+            <div class="earlier-role">Investment Banking Analyst — financial modelling, client delivery</div>
+        </div>
+        <div>
+            <div class="earlier-company">Sberbank CIB</div>
+            <div class="earlier-role">Junior VP, Private Wealth — portfolio strategy, HNW clients</div>
+        </div>
+        <div>
+            <div class="earlier-company">Rio Tinto</div>
+            <div class="earlier-role">Research Fellow — energy and climate policy</div>
+        </div>
+        <div>
+            <div class="earlier-company">Silicon Valley Bank</div>
+            <div class="earlier-role">Growth Portfolio — technology venture support</div>
+        </div>
+        <div>
+            <div class="earlier-company">Acumen</div>
+            <div class="earlier-role">Research Fellow — impact investing and social enterprise</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+
+    <div class="page2-header">Natalia Kurakina — Design Director</div>
+
+    <div class="section-label">Selected Projects</div>
+
+    <div class="exp">
+        <div class="exp-header">
+            <span class="exp-company">QuantumBlack × Emirates Team New Zealand</span>
+            <span class="exp-date">36th America's Cup</span>
+        </div>
+        <div class="exp-role">Flying Across the Sea — AI & the America's Cup</div>
+        <div class="exp-desc">
+            <p>Deep reinforcement learning to create an autonomous sailing simulator with 1,000 parallel bots for hydrofoil design optimisation. After 8 weeks, the AI outperformed professional sailors. Design iteration speed increased 10x. Emirates Team New Zealand won the 36th America's Cup.</p>
+        </div>
+        <div class="project-links">
+            <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/how-we-help-clients/flying-across-the-sea-propelled-by-ai" class="project-link">Read on McKinsey.com →</a>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="exp">
+        <div class="exp-header">
+            <span class="exp-company">QuantumBlack × Formula E / McLaren Racing</span>
+            <span class="exp-date">Guinness World Record</span>
+        </div>
+        <div class="exp-role">Breaking the Record — AI, Data & Electric Racing</div>
+        <div class="exp-desc">
+            <p>Built real-time data analytics platform for Guinness World Record indoor land speed attempt (218.71 km/h). Driver interface processed live telemetry — speed, power, grip — and generated actionable recommendations between runs. Design-to-deployment: 3 weeks.</p>
+        </div>
+        <div class="project-links">
+            <a href="https://www.mckinsey.com/about-us/new-at-mckinsey-blog/a-new-world-record-for-formula-e-propelled-by-mckinseys-ai" class="project-link">Read on McKinsey.com →</a>
+            <a href="https://www.ft.com/content/cbac5e32-143e-11e9-a168-d45595ad076d" class="project-link">Featured in Financial Times →</a>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Skills & Tools</div>
+
+    <div class="skills-grid">
+        <div>
+            <div class="skill-group-title">Product & Systems</div>
+            <div class="skill-item">Product strategy</div>
+            <div class="skill-item">Platform design</div>
+            <div class="skill-item">Workflow design</div>
+            <div class="skill-item">System abstraction</div>
+            <div class="skill-item">Cross-functional leadership</div>
+        </div>
+        <div>
+            <div class="skill-group-title">AI & Technical</div>
+            <div class="skill-item">Agent-based systems</div>
+            <div class="skill-item">ML platforms</div>
+            <div class="skill-item">Orchestration models</div>
+            <div class="skill-item">Human-AI interaction</div>
+            <div class="skill-item">LLM-based products</div>
+        </div>
+        <div>
+            <div class="skill-group-title">Design & Prototyping</div>
+            <div class="skill-item">Figma / Figma Make</div>
+            <div class="skill-item">Cursor</div>
+            <div class="skill-item">Claude</div>
+            <div class="skill-item">Lovable</div>
+            <div class="skill-item">Miro</div>
+        </div>
+        <div>
+            <div class="skill-group-title">Engineering & Ops</div>
+            <div class="skill-item">GitHub</div>
+            <div class="skill-item">Vercel</div>
+            <div class="skill-item">Notion</div>
+            <div class="skill-item">Jira / Confluence</div>
+        </div>
+    </div>
+
+    <div class="tools-row" style="margin-bottom: 3mm;">
+        <span class="tool-badge">Figma</span>
+        <span class="tool-badge">Figma Make</span>
+        <span class="tool-badge">Cursor</span>
+        <span class="tool-badge">Claude</span>
+        <span class="tool-badge">Lovable</span>
+        <span class="tool-badge">GitHub</span>
+        <span class="tool-badge">Vercel</span>
+        <span class="tool-badge">Notion</span>
+        <span class="tool-badge">Miro</span>
+        <span class="tool-badge">Jira</span>
+        <span class="tool-badge">Confluence</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Education</div>
+
+    <div class="edu-grid">
+        <div class="edu-item">
+            <span class="edu-school">London School of Economics</span>
+            <span class="edu-degree">MPA — Public & Economic Policy</span>
+        </div>
+        <div class="edu-item">
+            <span class="edu-school">Imperial College London</span>
+            <span class="edu-degree">MEng — Energy Policy, Renewable Energy & Climate Change</span>
+        </div>
+        <div class="edu-item">
+            <span class="edu-school">Christie's Education</span>
+            <span class="edu-degree">Modern & Contemporary Art</span>
+        </div>
+        <div class="edu-item">
+            <span class="edu-school">Moscow State University</span>
+            <span class="edu-degree">BSc — Economics</span>
+        </div>
+        <div class="edu-item">
+            <span class="edu-school">British Higher School of Art & Design</span>
+            <span class="edu-degree">Foundation — Graphic Design & Illustration</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
