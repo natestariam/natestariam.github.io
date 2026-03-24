@@ -373,35 +373,17 @@
             font-size: 0.6rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 400;
             margin-bottom: 0.5rem;
             display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            transition: background-color 0.8s, color 0.8s;
+            transition: color 0.8s;
         }
 
-        body.apple .platform-status {
-            background-color: var(--apple-highlight);
-            color: var(--apple-muted);
-        }
+        body.apple .platform-status { color: #bbb; }
+        body.openai .platform-status { color: #555; }
 
-        body.apple .platform-status.status-current {
-            background-color: transparent;
-            color: var(--apple-text);
-            border: 0.5px solid var(--apple-text);
-        }
-
-        body.openai .platform-status {
-            background-color: var(--oai-highlight);
-            color: var(--oai-muted);
-        }
-
-        body.openai .platform-status.status-current {
-            background-color: transparent;
-            color: var(--oai-text);
-            border: 0.5px solid var(--oai-text);
-        }
+        body.apple .platform-status.status-current { color: var(--apple-text); font-weight: 500; }
+        body.openai .platform-status.status-current { color: var(--oai-text); font-weight: 500; }
 
         .platform-name {
             font-size: 1.1rem;
