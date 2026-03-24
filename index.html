@@ -386,9 +386,19 @@
             color: var(--apple-muted);
         }
 
+        body.apple .platform-status.status-current {
+            background-color: var(--apple-text);
+            color: var(--apple-bg);
+        }
+
         body.openai .platform-status {
             background-color: var(--oai-highlight);
             color: var(--oai-muted);
+        }
+
+        body.openai .platform-status.status-current {
+            background-color: var(--oai-text);
+            color: var(--oai-bg);
         }
 
         .platform-name {
@@ -1057,7 +1067,7 @@
                 <!-- Platform Cards -->
                 <div class="platforms-grid">
                     <div class="platform-card">
-                        <span class="platform-status">Current</span>
+                        <span class="platform-status status-current">Current</span>
                         <div class="platform-name">Ark</div>
                         <div class="platform-desc">Proprietary agent runtime, released as open source, for hosting and orchestrating agents and workflows</div>
                         <div class="platform-metric">355 stars · 58 contributors · 55 releases in 7 months</div>
