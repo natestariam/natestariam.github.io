@@ -179,17 +179,10 @@
             transition: font-size 0.3s;
         }
 
-        body.apple .hero h1 {
+        .hero h1 {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 6rem;
             font-weight: 400;
-        }
-
-        body.openai .hero h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 5rem;
-            font-weight: 300;
-            letter-spacing: -0.05em;
         }
 
         .hero-subtitle {
@@ -278,15 +271,6 @@
         body.openai .section-label { color: var(--oai-muted); }
 
         /* ─── Content blocks ─── */
-        .content-apple, .content-openai {
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body.apple .content-openai,
-        body.openai .content-apple {
-            display: none;
-        }
 
         /* ─── Experience Block ─── */
         .exp-block {
@@ -330,18 +314,11 @@
             transition: color 0.8s;
         }
 
-        body.apple .exp-role {
+        .exp-role {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: 2.2rem;
             color: var(--apple-text);
-        }
-
-        body.openai .exp-role {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            color: var(--oai-text);
         }
 
         .exp-description {
@@ -1009,13 +986,6 @@
     <!-- ─── Navigation ─── -->
     <nav class="nav">
         <div class="nav-name">Natalia Kurakina</div>
-        <div class="mode-switcher">
-            <span class="mode-label label-apple" onclick="setMode('apple')">Creative</span>
-            <div class="toggle-track" onclick="toggleMode()">
-                <div class="toggle-thumb"></div>
-            </div>
-            <span class="mode-label label-openai" onclick="setMode('openai')">Technical</span>
-        </div>
     </nav>
 
     <div class="container">
@@ -1024,21 +994,10 @@
         <section class="hero">
             <div class="hero-overline">Design Director · London</div>
 
-            <!-- Apple hero -->
-            <div class="content-apple">
-                <h1>Natalia<br>Kurakina</h1>
-                <p class="hero-subtitle">
-                    I lead design for AI platforms at QuantumBlack (McKinsey AI) — agent runtimes, orchestration systems, ML tooling. My work turns complex technical capabilities into products that actually get deployed. I work at the forefront of AI-assisted design, using tools like Claude, Cursor, and Figma Make as core parts of my creative and product workflow.
-                </p>
-            </div>
-
-            <!-- OpenAI hero -->
-            <div class="content-openai">
-                <h1>Design Director<br>AI Systems &<br>Product Strategy</h1>
-                <p class="hero-subtitle">
-                    Design Director at QuantumBlack (McKinsey AI). Leading design and product development across agent-based systems, ML platforms, and workflow orchestration tools deployed in enterprise environments globally. Proficient in AI-assisted design workflows using Claude, Cursor, and Figma Make.
-                </p>
-            </div>
+            <h1>Design Director<br>AI Systems &<br>Product Strategy</h1>
+            <p class="hero-subtitle">
+                I lead design for AI platforms at QuantumBlack (McKinsey AI) — agent runtimes, orchestration systems, ML tooling. My work turns complex technical capabilities into products that actually get deployed. I work at the forefront of AI-assisted design, using tools like Claude, Cursor, and Figma Make as core parts of my creative and product workflow.
+            </p>
 
             <div class="hero-meta">
                 <div class="meta-item">
@@ -1074,28 +1033,14 @@
                 </div>
                 <div class="exp-role">Design Director</div>
 
-                <!-- Apple description -->
-                <div class="content-apple">
-                    <div class="exp-description">
-                        <p>Leading design across a portfolio of seven AI and agentic platforms within QB Labs, focused on new-edge product development for the practice.</p>
-                        <br>
-                        <p>I collaborate directly with McKinsey partners, senior partners, and client teams to define how these systems evolve, get deployed, and create value.</p>
-                        <br>
-                        <p>A key part of my role is implementing and scaling the QuantumBlack design system across multiple products and teams — defining shared components, interaction patterns, and visual standards that bring coherence to the growing QB Labs ecosystem and accelerate delivery across the practice.</p>
-                        <br>
-                        <p>Day to day, I define product direction alongside senior leadership, mentor and grow junior designers across the practice, and own the end-to-end experience — from early problem framing through to production-ready platform interfaces. I use AI tooling (Claude, Cursor, Figma Make) as part of my daily workflow — not as a novelty, but as infrastructure for faster thinking and making.</p>
-                    </div>
-                </div>
-
-                <!-- OpenAI description -->
-                <div class="content-openai">
-                    <div class="exp-description">
-                        <p>Leading design across seven AI platforms within QB Labs, focused on new-edge product development. Working closely with McKinsey partners, senior partners, and client teams to define product vision, align with enterprise use cases, and drive deployment.</p>
-                        <br>
-                        <p>Implementing and scaling the QuantumBlack design system across products — defining shared components, interaction patterns, and visual standards to ensure consistency and accelerate delivery across the practice.</p>
-                        <br>
-                        <p>Own design direction end-to-end: problem framing, platform architecture, interaction models, and production-ready interfaces. Contribute to product strategy and roadmap decisions at partner level. Mentor and develop junior designers across the practice. Use AI-assisted tooling (Claude, Cursor, Figma Make) as core workflow infrastructure.</p>
-                    </div>
+                <div class="exp-description">
+                    <p>Leading design across a portfolio of seven AI and agentic platforms within QB Labs, focused on new-edge product development for the practice.</p>
+                    <br>
+                    <p>I collaborate directly with McKinsey partners, senior partners, and client teams to define how these systems evolve, get deployed, and create value.</p>
+                    <br>
+                    <p>A key part of my role is implementing and scaling the QuantumBlack design system across multiple products and teams — defining shared components, interaction patterns, and visual standards that bring coherence to the growing QB Labs ecosystem and accelerate delivery across the practice.</p>
+                    <br>
+                    <p>Day to day, I define product direction alongside senior leadership, mentor and grow junior designers across the practice, and own the end-to-end experience — from early problem framing through to production-ready platform interfaces. I use AI tooling (Claude, Cursor, Figma Make) as part of my daily workflow — not as a novelty, but as infrastructure for faster thinking and making.</p>
                 </div>
 
                 <!-- Platform Cards -->
@@ -1139,22 +1084,12 @@
                 </div>
                 <div class="exp-role">Principal Product Designer / Senior Consultant</div>
 
-                <div class="content-apple">
-                    <div class="exp-description">
-                        <p>Worked on client engagements across industries, designing products and systems for data-rich, decision-heavy environments. This was my most client-facing period — working directly with enterprise clients, partners, and senior stakeholders to define problems and shape solutions.</p>
-                        <br>
-                        <p>Led end-to-end product design within multidisciplinary teams — consultants, engineers, data scientists — translating complex analytical capabilities into usable tools and decision-support systems. Contributed to solutions for high-performance environments including Formula One and Formula E.</p>
-                        <br>
-                        <p>Transitioned from client-facing consulting into QB Labs to focus on building new-edge, reusable products and platforms.</p>
-                    </div>
-                </div>
-
-                <div class="content-openai">
-                    <div class="exp-description">
-                        <p>Primary focus on client engagements — designing and delivering data-driven products across industries, working directly with enterprise clients, partners, and senior stakeholders. Led product design in multidisciplinary teams (consulting, engineering, data science). Built decision-support systems, analytical tooling, and operational dashboards.</p>
-                        <br>
-                        <p>Structured ambiguous, high-value business problems into actionable product directions. Contributed to solutions for high-performance environments (Formula One, Formula E). Transitioned into QB Labs to focus on new-edge product development and reusable platform design.</p>
-                    </div>
+                <div class="exp-description">
+                    <p>Worked on client engagements across industries, designing products and systems for data-rich, decision-heavy environments. This was my most client-facing period — working directly with enterprise clients, partners, and senior stakeholders to define problems and shape solutions.</p>
+                    <br>
+                    <p>Led end-to-end product design within multidisciplinary teams — consultants, engineers, data scientists — translating complex analytical capabilities into usable tools and decision-support systems. Contributed to solutions for high-performance environments including Formula One and Formula E.</p>
+                    <br>
+                    <p>Transitioned from client-facing consulting into QB Labs to focus on building new-edge, reusable products and platforms.</p>
                 </div>
 
                 <div class="tags">
@@ -1181,20 +1116,10 @@
                 </div>
                 <div class="exp-role">Senior Product Consultant, GSI</div>
 
-                <div class="content-apple">
-                    <div class="exp-description">
-                        <p>Worked with global system integrators — Accenture, Deloitte, Capgemini and others — to embed Tableau into enterprise data ecosystems. The focus was not just deploying the tool, but designing how it fits into existing workflows and supports real decision-making.</p>
-                        <br>
-                        <p>Helped partners build scalable analytics practices around Tableau, defining implementation patterns and training approaches that drove adoption across large organisations.</p>
-                    </div>
-                </div>
-
-                <div class="content-openai">
-                    <div class="exp-description">
-                        <p>Worked with global system integrators (Accenture, Deloitte, Capgemini and others) to integrate Tableau into enterprise data ecosystems. Defined implementation patterns, deployment workflows, and adoption strategies at scale.</p>
-                        <br>
-                        <p>Bridged product, technical, and business requirements. Helped partners build repeatable analytics practices and trained teams on effective data visualisation approaches.</p>
-                    </div>
+                <div class="exp-description">
+                    <p>Worked with global system integrators — Accenture, Deloitte, Capgemini and others — to embed Tableau into enterprise data ecosystems. The focus was not just deploying the tool, but designing how it fits into existing workflows and supports real decision-making.</p>
+                    <br>
+                    <p>Helped partners build scalable analytics practices around Tableau, defining implementation patterns and training approaches that drove adoption across large organisations.</p>
                 </div>
 
                 <div class="tags">
@@ -1272,17 +1197,9 @@
                         </div>
                     </div>
 
-                    <div class="content-apple">
-                        <p class="case-study-description">
-                            QuantumBlack used deep reinforcement learning to teach an AI bot how to sail — and eight weeks in, the bot started beating professional sailors in the simulator. A thousand bots ran in parallel, learning from each other, creating the ideal way to test hydrofoil design variations around the clock. The result: New Zealand's design process accelerated by a factor of ten. They won their fourth title.
-                        </p>
-                    </div>
-
-                    <div class="content-openai">
-                        <p class="case-study-description">
-                            Deployed deep reinforcement learning to create an autonomous sailing simulator with 1,000 parallel bots for hydrofoil design optimization. Bots shared knowledge through a collaborative learning network, enabling 24/7 design iteration. After 8 weeks, the AI outperformed professional sailors in the simulator. Design iteration speed increased 10x. Emirates Team New Zealand won the 36th America's Cup.
-                        </p>
-                    </div>
+                    <p class="case-study-description">
+                        QuantumBlack used deep reinforcement learning to teach an AI bot how to sail — and eight weeks in, the bot started beating professional sailors in the simulator. A thousand bots ran in parallel, learning from each other, creating the ideal way to test hydrofoil design variations around the clock. The result: New Zealand's design process accelerated by a factor of ten. They won their fourth title.
+                    </p>
 
                     <div class="case-study-outcome">Design iteration speed: 10x &rarr; 4th America's Cup title for Team NZ</div>
 
@@ -1321,17 +1238,9 @@
                         </div>
                     </div>
 
-                    <div class="content-apple">
-                        <p class="case-study-description">
-                            QuantumBlack built the data-and-analytics platform behind a new Guinness World Record for indoor land speed — 218.71 km/h in a Formula E Gen3 car at ExCeL London. The driver interface analysed real-time telemetry to generate speed, power, and grip recommendations, allowing drivers Jake Hughes and Lucas di Grassi to fine-tune their approach across attempts. Built on Google Cloud's Vertex AI, the platform went from design to deployment in three weeks.
-                        </p>
-                    </div>
-
-                    <div class="content-openai">
-                        <p class="case-study-description">
-                            Built real-time data analytics platform for Guinness World Record indoor land speed attempt (218.71 km/h). Driver interface processed live telemetry — speed, power, grip — and generated actionable recommendations between runs. Built on Google Cloud Vertex AI. Design-to-deployment: 3 weeks. Drivers: Jake Hughes (McLaren) and Lucas di Grassi (Mahindra) in duel format at ExCeL London, 2023 Hankook London E-Prix.
-                        </p>
-                    </div>
+                    <p class="case-study-description">
+                        QuantumBlack built the data-and-analytics platform behind a new Guinness World Record for indoor land speed — 218.71 km/h in a Formula E Gen3 car at ExCeL London. The driver interface analysed real-time telemetry to generate speed, power, and grip recommendations, allowing drivers Jake Hughes and Lucas di Grassi to fine-tune their approach across attempts. Built on Google Cloud's Vertex AI, the platform went from design to deployment in three weeks.
+                    </p>
 
                     <div class="case-study-outcome">Guinness World Record &rarr; 218.71 km/h indoor &rarr; 3 weeks design-to-deploy</div>
 
@@ -1354,49 +1263,37 @@
         <section class="section reveal">
             <div class="section-label">How I Work</div>
 
-            <div class="content-apple">
-                <p class="philosophy">
-                    I believe the best AI products feel inevitable — not because they're simple, but because someone made hard structural decisions early. That's the work I care about most.
-                </p>
-                <br>
-                <p class="exp-description" style="font-size: 0.95rem; line-height: 1.75;">
-                    Systems over screens. Clarity over complexity. Products as evolving systems, not static artefacts.
-                </p>
-            </div>
-
-            <div class="content-openai">
-                <div class="skills-grid">
-                    <div>
-                        <div class="skill-group-title">Product & Systems</div>
-                        <div class="skill-item">Product strategy</div>
-                        <div class="skill-item">Platform design</div>
-                        <div class="skill-item">Workflow design</div>
-                        <div class="skill-item">System abstraction</div>
-                        <div class="skill-item">Cross-functional leadership</div>
-                    </div>
-                    <div>
-                        <div class="skill-group-title">AI & Technical</div>
-                        <div class="skill-item">Agent-based systems</div>
-                        <div class="skill-item">ML platforms</div>
-                        <div class="skill-item">Orchestration models</div>
-                        <div class="skill-item">Human-AI interaction</div>
-                        <div class="skill-item">LLM-based products</div>
-                    </div>
-                    <div>
-                        <div class="skill-group-title">Design & Prototyping</div>
-                        <div class="skill-item">Figma / Figma Make</div>
-                        <div class="skill-item">Cursor</div>
-                        <div class="skill-item">Claude</div>
-                        <div class="skill-item">Lovable</div>
-                        <div class="skill-item">Miro</div>
-                    </div>
-                    <div>
-                        <div class="skill-group-title">Engineering & Ops</div>
-                        <div class="skill-item">GitHub</div>
-                        <div class="skill-item">Vercel</div>
-                        <div class="skill-item">Notion</div>
-                        <div class="skill-item">Jira / Confluence</div>
-                    </div>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-group-title">Product & Systems</div>
+                    <div class="skill-item">Product strategy</div>
+                    <div class="skill-item">Platform design</div>
+                    <div class="skill-item">Workflow design</div>
+                    <div class="skill-item">System abstraction</div>
+                    <div class="skill-item">Cross-functional leadership</div>
+                </div>
+                <div>
+                    <div class="skill-group-title">AI & Technical</div>
+                    <div class="skill-item">Agent-based systems</div>
+                    <div class="skill-item">ML platforms</div>
+                    <div class="skill-item">Orchestration models</div>
+                    <div class="skill-item">Human-AI interaction</div>
+                    <div class="skill-item">LLM-based products</div>
+                </div>
+                <div>
+                    <div class="skill-group-title">Design & Prototyping</div>
+                    <div class="skill-item">Figma / Figma Make</div>
+                    <div class="skill-item">Cursor</div>
+                    <div class="skill-item">Claude</div>
+                    <div class="skill-item">Lovable</div>
+                    <div class="skill-item">Miro</div>
+                </div>
+                <div>
+                    <div class="skill-group-title">Engineering & Ops</div>
+                    <div class="skill-item">GitHub</div>
+                    <div class="skill-item">Vercel</div>
+                    <div class="skill-item">Notion</div>
+                    <div class="skill-item">Jira / Confluence</div>
                 </div>
             </div>
 
@@ -1448,12 +1345,7 @@
 
         <!-- ─── Footer ─── -->
         <footer class="footer reveal">
-            <div class="content-apple">
-                <p class="footer-cta">Looking for a role where I can shape product direction from the ground up — ideally at the intersection of AI systems and real human workflows.</p>
-            </div>
-            <div class="content-openai">
-                <p class="footer-cta">Looking for a role where I can shape AI product direction end-to-end — from system design through to deployment.</p>
-            </div>
+            <p class="footer-cta">Looking for a role where I can shape product direction from the ground up — ideally at the intersection of AI systems and real human workflows.</p>
             <div class="footer-links">
                 <a href="https://www.linkedin.com/in/natalia-kurakina-73b0912b" class="footer-link" target="_blank">LinkedIn</a>
                 <a href="mailto:natestar.iam@gmail.com" class="footer-link">Email</a>
@@ -1463,20 +1355,6 @@
     </div>
 
     <script>
-        // ─── Mode switching ───
-        function setMode(mode) {
-            document.body.className = mode;
-            localStorage.setItem('cv-mode', mode);
-        }
-
-        function toggleMode() {
-            const current = document.body.classList.contains('apple') ? 'openai' : 'apple';
-            setMode(current);
-        }
-
-        // Restore saved mode
-        const saved = localStorage.getItem('cv-mode');
-        if (saved) setMode(saved);
 
         // ─── Scroll reveal ───
         const observer = new IntersectionObserver((entries) => {
