@@ -583,19 +583,76 @@
             justify-content: center;
         }
 
-        .lineage-visual.mcqueen {
-            background:
-                radial-gradient(ellipse at center, #2a2a2a 0%, #000 70%);
+        .lineage-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .lineage-visual.coperni {
-            background:
-                radial-gradient(ellipse at 30% 50%, #4a4a4a 0%, #1a1a1a 60%, #000 100%);
+        .lineage-card:hover .lineage-visual img {
+            transform: scale(1.04);
         }
 
-        .lineage-visual.on {
-            background:
-                radial-gradient(ellipse at center, #3a2a1a 0%, #1a0f05 70%);
+        .lineage-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+
+        .lineage-play {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .lineage-play-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .lineage-play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 6px solid white;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            margin-left: 2px;
+        }
+
+        .lineage-year-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 2px;
+            z-index: 2;
+            letter-spacing: 0.1em;
         }
 
         /* McQueen — two robots spraying toward center figure */
@@ -915,6 +972,7 @@
             .metrics { grid-template-columns: 1fr 1fr; }
             .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
             .lineage { grid-template-columns: 1fr; }
+            .concept-block-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
         }
 
         @media (max-width: 768px) {
@@ -1041,17 +1099,12 @@
             <div class="lineage">
 
                 <a href="https://www.youtube.com/watch?v=P13oZsD-t4s" target="_blank" class="lineage-card">
-                    <div class="lineage-visual mcqueen">
-                        <div class="mcqueen-scene">
-                            <div class="mcqueen-figure"></div>
-                            <div class="mcqueen-robot left"></div>
-                            <div class="mcqueen-robot right"></div>
-                            <div class="mcqueen-particle"></div>
-                            <div class="mcqueen-particle"></div>
-                            <div class="mcqueen-particle"></div>
-                            <div class="mcqueen-particle"></div>
-                            <div class="mcqueen-particle"></div>
-                            <div class="mcqueen-particle"></div>
+                    <div class="lineage-visual">
+                        <img src="https://fashionphantasmagoria.wordpress.com/wp-content/uploads/2014/10/1271.jpg" alt="Shalom Harlow on the McQueen runway, her white dress spray-painted by robot arms" loading="lazy">
+                        <div class="lineage-year-badge">SS 1999</div>
+                        <div class="lineage-play">
+                            <span class="lineage-play-icon"></span>
+                            Watch finale
                         </div>
                     </div>
                     <div class="lineage-body">
@@ -1064,31 +1117,30 @@
                 </a>
 
                 <a href="https://www.youtube.com/watch?v=JjtNpz57fOI" target="_blank" class="lineage-card">
-                    <div class="lineage-visual coperni">
-                        <div class="coperni-spray left"></div>
-                        <div class="coperni-spray right"></div>
-                        <div class="coperni-nozzle left"></div>
-                        <div class="coperni-nozzle right"></div>
-                        <div class="coperni-figure"></div>
+                    <div class="lineage-visual">
+                        <img src="https://static.dezeen.com/uploads/2022/10/coperni-spring-summer-2023-fabrican-spray-on-dress-fashion-paris_dezeen_2364_col_2-852x568.jpg" alt="Bella Hadid being sprayed with Fabrican to form a dress on the Coperni runway" loading="lazy">
+                        <div class="lineage-year-badge">SS 2023</div>
+                        <div class="lineage-play">
+                            <span class="lineage-play-icon"></span>
+                            Watch the moment
+                        </div>
                     </div>
                     <div class="lineage-body">
                         <div class="lineage-label">Coperni × Fabrican</div>
                         <div class="lineage-title">Bella Hadid, sprayed into a dress</div>
                         <div class="lineage-year">SS 2023 · Paris</div>
-                        <div class="lineage-desc">Nine minutes on stage, a liquid fibre sprayed onto her body by two technicians, hardening into a wearable dress in real time. The internet stopped moving. Craft became livestream.</div>
+                        <div class="lineage-desc">Fifteen minutes on stage, a liquid fibre sprayed onto her body by two technicians, hardening into a wearable dress in real time. The internet stopped moving. Craft became livestream.</div>
                         <span class="lineage-link">Watch →</span>
                     </div>
                 </a>
 
                 <div class="lineage-card" style="cursor: default; background: var(--highlight); border-color: var(--accent);">
-                    <div class="lineage-visual on">
-                        <div class="on-arm"></div>
-                        <div class="on-filament"></div>
-                        <div class="on-shoe">
-                            <svg viewBox="0 0 120 50" preserveAspectRatio="xMidYMid meet">
-                                <path d="M15,38 Q15,25 30,22 L55,12 Q85,8 100,18 Q112,26 110,35 L110,40 Q75,46 30,43 Q18,42 15,38 Z" />
-                                <path d="M28,40 Q60,45 102,40" />
-                            </svg>
+                    <div class="lineage-visual">
+                        <img src="https://cdn.uc.assets.prezly.com/0882176c-caa6-4b1d-9feb-12df4d1315d3/-/preview/1000x1500/-/format/auto/on_lightspray-factory-busan-20_feb_2026-08.jpg" alt="A robotic arm spraying the upper of an On LightSpray shoe in the Busan factory" loading="lazy">
+                        <div class="lineage-year-badge" style="background: rgba(255, 69, 0, 0.9);">2026</div>
+                        <div class="lineage-play">
+                            <span class="lineage-play-icon" style="background: rgba(255,69,0,0.4); border-color: rgba(255,255,255,0.5);"></span>
+                            Live, every day
                         </div>
                     </div>
                     <div class="lineage-body">
@@ -1100,6 +1152,96 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Concept: Shoe sprayed on a person -->
+            <div style="margin-top: 3rem; padding: 2.5rem; background: #0a0a0a; border-radius: 2px; color: #fff; position: relative; overflow: hidden;">
+                <div class="concept-block-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; z-index: 2;">
+                    <div>
+                        <div style="font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500;">Lab Concept · 2027</div>
+                        <div style="font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.25rem;">What if the shoe is sprayed <em style="font-style: italic;">onto</em> the runner?</div>
+                        <p style="font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.65); font-weight: 300; margin-bottom: 1rem;">A provocation, not a roadmap. Imagine the logical extension of LightSpray: a runner steps onto a platform, sensors read their foot in real time, and the upper is sprayed directly around a reusable last they're wearing. The shoe is made — and fitted — in the same act.</p>
+                        <p style="font-size: 0.78rem; line-height: 1.6; color: rgba(255,255,255,0.45); font-weight: 300;">Not a feature for 2026. A direction for where the Lab could take On's manufacturing DNA over a 3–5 year horizon, if the cultural lineage above is any guide.</p>
+                    </div>
+                    <div style="aspect-ratio: 1 / 1; background: radial-gradient(ellipse at center, #1a1a1a, #000); border-radius: 2px; position: relative; overflow: hidden;">
+                        <!-- Concept SVG animation: figure standing, robot arms spraying toward feet -->
+                        <svg viewBox="0 0 300 300" style="width: 100%; height: 100%; position: absolute; inset: 0;">
+                            <!-- Stage light glow -->
+                            <defs>
+                                <radialGradient id="spotlight" cx="50%" cy="30%" r="60%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.15)" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+                                </radialGradient>
+                                <linearGradient id="filamentGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#FF4500" stop-opacity="0.9" />
+                                    <stop offset="100%" stop-color="#FF4500" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="300" height="300" fill="url(#spotlight)" />
+                            <!-- Platform -->
+                            <ellipse cx="150" cy="265" rx="90" ry="10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" />
+                            <ellipse cx="150" cy="265" rx="65" ry="7" fill="rgba(255,69,0,0.08)" stroke="rgba(255,69,0,0.4)" stroke-width="0.8" />
+                            <!-- Figure (stylised runner silhouette) -->
+                            <g fill="#e8e4de" opacity="0.9">
+                                <!-- Head -->
+                                <circle cx="150" cy="75" r="10" />
+                                <!-- Torso -->
+                                <path d="M140,88 L160,88 L166,160 L134,160 Z" />
+                                <!-- Arms (down, relaxed) -->
+                                <path d="M140,94 L130,145 L134,148 L142,100 Z" />
+                                <path d="M160,94 L170,145 L166,148 L158,100 Z" />
+                                <!-- Legs -->
+                                <path d="M140,160 L138,230 L146,230 L148,160 Z" />
+                                <path d="M160,160 L162,230 L154,230 L152,160 Z" />
+                                <!-- Feet area highlighted -->
+                                <rect x="132" y="230" width="18" height="7" rx="2" fill="rgba(255,255,255,0.6)" />
+                                <rect x="150" y="230" width="18" height="7" rx="2" fill="rgba(255,255,255,0.6)" />
+                            </g>
+                            <!-- Being-formed shoe on left foot -->
+                            <path d="M130,232 Q128,226 136,224 L148,222 Q152,222 151,228 L151,235 Q140,238 130,236 Z" fill="none" stroke="#FF4500" stroke-width="1.5" stroke-dasharray="120" stroke-dashoffset="120">
+                                <animate attributeName="stroke-dashoffset" values="120;0;0;120" dur="5s" repeatCount="indefinite" />
+                            </path>
+                            <!-- Robot arm left -->
+                            <g>
+                                <line x1="50" y1="120" x2="110" y2="210" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="50" cy="120" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+                                <circle cx="110" cy="210" r="4" fill="#FF4500">
+                                    <animate attributeName="r" values="3;5;3" dur="1.5s" repeatCount="indefinite" />
+                                </circle>
+                                <!-- Filament stream left -->
+                                <line x1="110" y1="214" x2="135" y2="232" stroke="url(#filamentGrad)" stroke-width="1.2">
+                                    <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite" />
+                                </line>
+                            </g>
+                            <!-- Robot arm right -->
+                            <g>
+                                <line x1="250" y1="120" x2="190" y2="210" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="250" cy="120" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+                                <circle cx="190" cy="210" r="4" fill="#FF4500">
+                                    <animate attributeName="r" values="3;5;3" dur="1.5s" begin="0.3s" repeatCount="indefinite" />
+                                </circle>
+                                <!-- Filament stream right -->
+                                <line x1="190" y1="214" x2="165" y2="232" stroke="url(#filamentGrad)" stroke-width="1.2">
+                                    <animate attributeName="opacity" values="0;1;0" dur="1.2s" begin="0.3s" repeatCount="indefinite" />
+                                </line>
+                            </g>
+                            <!-- Particles -->
+                            <circle cx="128" cy="228" r="0.8" fill="#FF4500">
+                                <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                                <animate attributeName="cy" values="220;236;220" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="172" cy="228" r="0.8" fill="#FF4500">
+                                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                                <animate attributeName="cy" values="220;236;220" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="140" cy="236" r="0.6" fill="#FF4500">
+                                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Label -->
+                            <text x="150" y="290" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="2">LIVE · 02:14 REMAINING</text>
+                        </svg>
+                    </div>
+                </div>
             </div>
 
             <div class="intersection-diagram">
