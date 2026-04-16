@@ -169,11 +169,49 @@
         }
 
         .concept-visual {
-            height: 160px;
+            height: 200px;
             background: linear-gradient(135deg, #F5F4F0 0%, #EDEBE5 100%);
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid var(--border);
+        }
+
+        /* Prominent "Tests" badge inside each visual */
+        .concept-testing {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.7rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .concept-testing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .concept-testing-dot.animated {
+            animation: testing-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes testing-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(255, 69, 0, 0); }
         }
 
         .concept-body { padding: 1.5rem; padding-bottom: 2.5rem; }
@@ -229,36 +267,95 @@
         .canvas-proves strong { color: var(--text); font-weight: 500; }
 
         /* Concept preview animations */
-        .preview-second-pair { display: flex; align-items: center; justify-content: space-around; padding: 0 1.5rem; height: 100%; }
-        .shoe-mini { width: 50px; height: 50px; }
-        .shoe-mini svg { width: 100%; height: 100%; fill: none; stroke-width: 1.5; }
-        .shoe-mini.first svg { stroke: var(--muted); }
-        .shoe-mini.second svg { stroke: var(--accent); stroke-dasharray: 120; stroke-dashoffset: 120; animation: draw 3s ease-in-out infinite; }
-        @keyframes draw { 0% { stroke-dashoffset: 120; } 50%,100% { stroke-dashoffset: 0; } }
-        .flow-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--muted), transparent 50%, var(--accent)); margin: 0 0.8rem; position: relative; opacity: 0.4; }
-        .flow-line::after { content: ''; position: absolute; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: flow 3s linear infinite; }
-        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+        /* ── Preview 01: The Second Pair — data twin visualisation ── */
+        .preview-second-pair {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F0EDE5 0%, #E8E4DC 100%);
+        }
+        .preview-second-pair svg { width: 100%; height: 100%; }
+        .sp-ring { fill: none; stroke: rgba(17,17,17,0.12); stroke-width: 0.5; stroke-dasharray: 3 3; }
+        .sp-ring.orbit-1 { animation: sp-rotate 25s linear infinite; transform-origin: 150px 100px; }
+        .sp-ring.orbit-2 { animation: sp-rotate 40s linear infinite reverse; transform-origin: 150px 100px; }
+        @keyframes sp-rotate { to { transform: rotate(360deg); } }
+        .sp-datapoint { fill: var(--accent); animation: sp-pulse 3s ease-in-out infinite; }
+        .sp-datapoint.d1 { animation-delay: 0s; }
+        .sp-datapoint.d2 { animation-delay: 0.4s; }
+        .sp-datapoint.d3 { animation-delay: 0.8s; }
+        .sp-datapoint.d4 { animation-delay: 1.2s; }
+        .sp-datapoint.d5 { animation-delay: 1.6s; }
+        @keyframes sp-pulse { 0%,100% { opacity: 0.3; r: 2; } 50% { opacity: 1; r: 4; } }
+        .sp-heat { fill: rgba(255,69,0,0.15); animation: sp-breath 4s ease-in-out infinite; }
+        @keyframes sp-breath { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+        .sp-arrow-path { stroke: var(--accent); stroke-width: 1; fill: none; stroke-dasharray: 150; stroke-dashoffset: 150; animation: sp-draw 4s ease-in-out infinite; }
+        @keyframes sp-draw { 0% { stroke-dashoffset: 150; } 50%,100% { stroke-dashoffset: 0; } }
 
-        .preview-quiet-run { padding: 0 1.5rem; display: flex; flex-direction: column; justify-content: center; height: 100%; }
-        .run-line { position: relative; height: 1px; background: var(--border); margin: 2rem 0; }
-        .run-pulse { position: absolute; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); transform: translateX(-50%); animation: pulse-mark 4s ease-in-out infinite; }
-        .run-pulse:nth-child(1) { left: 22%; }
-        .run-pulse:nth-child(2) { left: 58%; animation-delay: 1.3s; }
-        .run-pulse:nth-child(3) { left: 86%; animation-delay: 2.6s; }
-        @keyframes pulse-mark { 0%,100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255,69,0,0.4); } 50% { transform: translateX(-50%) scale(1.4); box-shadow: 0 0 0 10px rgba(255,69,0,0); } }
+        /* ── Preview 02: The Quiet Run — restraint timeline ── */
+        .preview-quiet-run {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(180deg, #F5F4F0 0%, #EDEBE5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preview-quiet-run svg { width: 100%; height: 100%; }
+        .qr-wave { fill: none; stroke: rgba(17,17,17,0.3); stroke-width: 1; stroke-linecap: round; }
+        .qr-silence { stroke-dasharray: 200; stroke-dashoffset: 0; }
+        .qr-spike { fill: var(--accent); animation: qr-spike 6s ease-in-out infinite; }
+        .qr-spike.s1 { animation-delay: 0.5s; }
+        .qr-spike.s2 { animation-delay: 2.5s; }
+        .qr-spike.s3 { animation-delay: 4.5s; }
+        @keyframes qr-spike { 0%, 90%, 100% { opacity: 0.3; transform: scaleY(0.5); } 5%, 15% { opacity: 1; transform: scaleY(1); } }
+        .qr-phone { fill: white; stroke: rgba(17,17,17,0.15); stroke-width: 0.8; }
+        .qr-phone-notch { fill: rgba(17,17,17,0.1); }
+        .qr-phone-text { font-family: 'JetBrains Mono', monospace; fill: rgba(17,17,17,0.5); font-size: 4px; letter-spacing: 1; }
+        .qr-phone-distance { font-family: 'Playfair Display', serif; fill: var(--text); font-size: 14px; font-weight: 400; }
+        .qr-phone-mini { font-family: 'Inter', sans-serif; fill: rgba(17,17,17,0.4); font-size: 3.5px; }
 
-        .preview-atelier { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0 1rem; height: 100%; }
-        .stage-mini { flex: 1; height: 70px; background: var(--card); border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; animation: stage-glow 6s ease-in-out infinite; }
-        .stage-mini:nth-child(1) { animation-delay: 0s; }
-        .stage-mini:nth-child(3) { animation-delay: 2s; }
-        .stage-mini:nth-child(5) { animation-delay: 4s; }
-        .stage-mini svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 1.5; }
-        .stage-arrow { color: var(--muted); opacity: 0.5; }
-        @keyframes stage-glow { 0%,100% { border-color: var(--border); } 33% { border-color: var(--accent); background: var(--accent-soft); } }
+        /* ── Preview 03: The Pop-Up Atelier — top-down store ── */
+        .preview-atelier {
+            position: relative;
+            height: 100%;
+            background: #0a0a0a;
+        }
+        .preview-atelier svg { width: 100%; height: 100%; }
+        .pa-zone { fill: rgba(255,255,255,0.03); stroke: rgba(255,255,255,0.15); stroke-width: 0.5; }
+        .pa-zone.spray { fill: rgba(255,69,0,0.06); stroke: var(--accent); stroke-width: 0.8; }
+        .pa-robot-arm { stroke: rgba(255,255,255,0.35); stroke-width: 1.2; stroke-linecap: round; }
+        .pa-robot-head { fill: var(--accent); animation: pa-spray 2s ease-in-out infinite; }
+        @keyframes pa-spray { 0%, 100% { r: 3; } 50% { r: 5; } }
+        .pa-shoe { fill: none; stroke: var(--accent); stroke-width: 0.8; stroke-dasharray: 50; stroke-dashoffset: 50; animation: pa-draw 4s ease-in-out infinite; }
+        @keyframes pa-draw { 0% { stroke-dashoffset: 50; } 70%, 100% { stroke-dashoffset: 0; } }
+        .pa-customer { fill: rgba(255,255,255,0.5); animation: pa-move 8s ease-in-out infinite; }
+        .pa-customer.c1 { animation-delay: 0s; }
+        .pa-customer.c2 { animation-delay: 2s; }
+        .pa-customer.c3 { animation-delay: 4s; }
+        @keyframes pa-move { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .pa-label { font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; }
+        .pa-spray-stream { stroke: rgba(255,69,0,0.6); stroke-width: 0.8; animation: pa-stream 1.5s ease-in-out infinite; }
+        @keyframes pa-stream { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
 
-        .preview-coffee { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; padding: 0 1rem; }
-
-        .preview-community { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; }
+        /* ── Preview 04: The Coffee Runner — cohort pyramid ── */
+        .preview-coffee {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(135deg, #F5F4F0 0%, #EDEBE5 100%);
+        }
+        .preview-coffee svg { width: 100%; height: 100%; }
+        .cr-cohort { fill: rgba(17,17,17,0.15); transition: all 0.4s; }
+        .cr-cohort.highlighted { fill: var(--accent); }
+        .cr-cohort.highlighted-stroke { fill: none; stroke: var(--accent); stroke-width: 0.8; stroke-dasharray: 3 2; }
+        .cr-label { font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(17,17,17,0.4); letter-spacing: 1px; text-transform: uppercase; }
+        .cr-label-highlight { fill: var(--accent); font-weight: 600; }
+        .cr-pct { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; }
+        .cr-ring-pulse { fill: none; stroke: var(--accent); stroke-width: 0.6; animation: cr-ring 2.5s ease-out infinite; }
+        @keyframes cr-ring { 0% { r: 14; opacity: 0.8; } 100% { r: 28; opacity: 0; } }
+        .cr-coffee-cup { fill: rgba(17,17,17,0.08); }
+        .cr-shoe { fill: none; stroke: rgba(17,17,17,0.4); stroke-width: 0.8; }
         .preview-community svg { width: 75%; height: 75%; }
         .community-node-mini { fill: var(--text); opacity: 0; animation: node-fade 6s ease-in-out infinite; }
         .community-line-mini { stroke: var(--text); stroke-width: 0.4; opacity: 0; animation: line-fade 6s ease-in-out infinite; }
@@ -2322,13 +2419,43 @@
 
                 <div class="concept" onclick="openCanvas('proto-1')">
                     <div class="concept-visual preview-second-pair">
-                        <div class="shoe-mini first">
-                            <svg viewBox="0 0 60 60"><path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" /><path d="M18,42 Q30,46 48,42" /></svg>
-                        </div>
-                        <div class="flow-line"></div>
-                        <div class="shoe-mini second">
-                            <svg viewBox="0 0 60 60"><path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" /><path d="M18,42 Q30,46 48,42" /></svg>
-                        </div>
+                        <div class="concept-testing"><span class="concept-testing-dot animated"></span>Tests · Hyperpersonalisation</div>
+                        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid meet">
+                            <!-- Orbit rings around the shoe -->
+                            <g transform="translate(150, 100)">
+                                <ellipse class="sp-ring orbit-1" cx="0" cy="0" rx="90" ry="55"/>
+                                <ellipse class="sp-ring orbit-2" cx="0" cy="0" rx="115" ry="70"/>
+                            </g>
+                            <!-- Shoe with heatmap -->
+                            <g transform="translate(88, 78)">
+                                <!-- Shoe outline -->
+                                <path d="M5,35 Q5,22 18,18 L45,8 Q78,3 96,12 Q108,20 106,32 L106,38 Q75,44 18,42 Q5,40 5,35 Z" fill="white" stroke="rgba(17,17,17,0.6)" stroke-width="1.3"/>
+                                <path d="M14,38 Q55,42 103,38" stroke="rgba(17,17,17,0.4)" stroke-width="0.7" fill="none"/>
+                                <!-- Heatmap dots on shoe (wear patterns) -->
+                                <circle class="sp-heat" cx="85" cy="20" r="8"/>
+                                <circle class="sp-heat" cx="55" cy="18" r="6"/>
+                                <circle class="sp-heat" cx="30" cy="25" r="5"/>
+                                <!-- Data points -->
+                                <circle class="sp-datapoint d1" cx="85" cy="20" r="2.5"/>
+                                <circle class="sp-datapoint d2" cx="60" cy="22" r="2"/>
+                                <circle class="sp-datapoint d3" cx="30" cy="25" r="2"/>
+                                <circle class="sp-datapoint d4" cx="72" cy="12" r="2"/>
+                                <circle class="sp-datapoint d5" cx="45" cy="28" r="2"/>
+                            </g>
+                            <!-- Connecting data flow to second shoe emerging -->
+                            <path class="sp-arrow-path" d="M250,100 Q265,80 275,60" marker-end="url(#sp-arrow)"/>
+                            <defs>
+                                <marker id="sp-arrow" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--accent)"/></marker>
+                            </defs>
+                            <!-- Small second shoe emerging top right -->
+                            <g transform="translate(246, 38)" opacity="0.7">
+                                <path d="M3,18 Q3,11 9,9 L22,4 Q38,2 47,6 Q52,10 51,16 L51,19 Q38,22 10,21 Q3,20 3,18 Z" fill="rgba(255,69,0,0.15)" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="50" stroke-dashoffset="50">
+                                    <animate attributeName="stroke-dashoffset" values="50;0;0;50" dur="4s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                            <!-- Twin label -->
+                            <text x="150" y="180" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.45)" text-anchor="middle" letter-spacing="2">FIRST PAIR · DATA TWIN · NEXT PAIR</text>
+                        </svg>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 01 · 90 days</div>
@@ -2340,9 +2467,44 @@
 
                 <div class="concept" onclick="openCanvas('proto-2')">
                     <div class="concept-visual preview-quiet-run">
-                        <div class="run-line">
-                            <div class="run-pulse"></div><div class="run-pulse"></div><div class="run-pulse"></div>
-                        </div>
+                        <div class="concept-testing"><span class="concept-testing-dot animated"></span>Tests · The Running Self</div>
+                        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid meet">
+                            <!-- Phone in center showing minimal UI -->
+                            <g transform="translate(120, 35)">
+                                <rect class="qr-phone" x="0" y="0" width="60" height="110" rx="8" ry="8"/>
+                                <rect class="qr-phone-notch" x="22" y="4" width="16" height="3" rx="1.5"/>
+                                <!-- Minimal UI content -->
+                                <text class="qr-phone-text" x="30" y="24" text-anchor="middle">RUNNING · 12:42</text>
+                                <text class="qr-phone-distance" x="30" y="55" text-anchor="middle">5.4 km</text>
+                                <line x1="14" y1="68" x2="46" y2="68" stroke="rgba(17,17,17,0.1)" stroke-width="0.5"/>
+                                <text class="qr-phone-mini" x="30" y="82" text-anchor="middle">That's it.</text>
+                                <text class="qr-phone-mini" x="30" y="92" text-anchor="middle">That's the whole screen.</text>
+                            </g>
+                            <!-- Timeline behind/below the phone -->
+                            <line x1="20" y1="160" x2="280" y2="160" stroke="rgba(17,17,17,0.15)" stroke-width="0.8"/>
+                            <!-- Silence stretches -->
+                            <rect x="20" y="156" width="60" height="8" fill="rgba(17,17,17,0.04)"/>
+                            <rect x="95" y="156" width="90" height="8" fill="rgba(17,17,17,0.04)"/>
+                            <rect x="205" y="156" width="75" height="8" fill="rgba(17,17,17,0.04)"/>
+                            <!-- 3 small spike markers (rare interventions) -->
+                            <g>
+                                <circle class="qr-spike s1" cx="85" cy="160" r="3"/>
+                                <text class="qr-phone-text" x="85" y="150" text-anchor="middle" style="font-size:3.5px;">cue</text>
+                            </g>
+                            <g>
+                                <circle class="qr-spike s2" cx="195" cy="160" r="3"/>
+                                <text class="qr-phone-text" x="195" y="150" text-anchor="middle" style="font-size:3.5px;">cue</text>
+                            </g>
+                            <g>
+                                <circle class="qr-spike s3" cx="270" cy="160" r="3"/>
+                                <text class="qr-phone-text" x="270" y="150" text-anchor="middle" style="font-size:3.5px;">cue</text>
+                            </g>
+                            <!-- Label -->
+                            <text x="150" y="182" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.45)" text-anchor="middle" letter-spacing="2">45 MINUTES · 3 INTERVENTIONS · 42 OF SILENCE</text>
+                            <!-- Breath indicator on left -->
+                            <text x="30" y="50" font-family="Playfair Display, serif" font-style="italic" font-size="8" fill="rgba(17,17,17,0.3)">silence</text>
+                            <text x="255" y="50" font-family="Playfair Display, serif" font-style="italic" font-size="8" fill="rgba(17,17,17,0.3)">silence</text>
+                        </svg>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 02 · 60 days</div>
@@ -2354,11 +2516,48 @@
 
                 <div class="concept" onclick="openCanvas('proto-3')">
                     <div class="concept-visual preview-atelier">
-                        <div class="stage-mini"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6,20 Q6,14 12,14 Q18,14 18,20"/></svg></div>
-                        <div class="stage-arrow">→</div>
-                        <div class="stage-mini"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5"/><path d="M14,14 L19,19"/></svg></div>
-                        <div class="stage-arrow">→</div>
-                        <div class="stage-mini"><svg viewBox="0 0 24 24"><path d="M4,14 Q4,10 10,9 L16,6 Q20,5 22,8 L22,14 Q14,16 6,15 Z"/></svg></div>
+                        <div class="concept-testing"><span class="concept-testing-dot animated"></span>Tests · Living Atelier 2028</div>
+                        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid meet">
+                            <!-- Top-down store plan -->
+                            <rect x="20" y="20" width="260" height="160" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+
+                            <!-- Left zone: Lounge/arrival -->
+                            <rect class="pa-zone" x="30" y="30" width="70" height="90" rx="2"/>
+                            <text class="pa-label" x="65" y="45" text-anchor="middle">ARRIVAL</text>
+                            <circle class="pa-customer c1" cx="50" cy="75" r="2.5"/>
+                            <circle class="pa-customer c2" cx="75" cy="90" r="2.5"/>
+
+                            <!-- Central zone: Spray theatre (highlighted) -->
+                            <rect class="pa-zone spray" x="115" y="30" width="130" height="120" rx="2"/>
+                            <text class="pa-label" x="180" y="46" text-anchor="middle" fill="var(--accent)" style="font-weight: 500;">SPRAY THEATRE</text>
+                            <!-- Robot arm center -->
+                            <g transform="translate(180, 85)">
+                                <rect x="-18" y="-22" width="36" height="6" fill="rgba(255,255,255,0.2)" rx="1"/>
+                                <line class="pa-robot-arm" x1="0" y1="-16" x2="0" y2="12"/>
+                                <circle class="pa-robot-head" cx="0" cy="14" r="3.5"/>
+                                <!-- Spray particles toward shoe -->
+                                <line class="pa-spray-stream" x1="0" y1="18" x2="-8" y2="30"/>
+                                <line class="pa-spray-stream" x1="0" y1="18" x2="8" y2="30" style="animation-delay: 0.5s"/>
+                                <!-- Shoe being made -->
+                                <path class="pa-shoe" d="M-15,32 Q-15,28 -10,28 L10,28 Q15,30 14,33 Q0,35 -14,34 Q-15,34 -15,32 Z"/>
+                            </g>
+                            <!-- Viewing glass line -->
+                            <line x1="115" y1="130" x2="245" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="0.4" stroke-dasharray="3 3"/>
+                            <text class="pa-label" x="180" y="142" text-anchor="middle" style="font-size: 3.5px;">VIEWING GLASS</text>
+
+                            <!-- Right zone: Consult -->
+                            <rect class="pa-zone" x="255" y="30" width="20" height="60" rx="2" transform="rotate(0 265 60)"/>
+                            <rect class="pa-zone" x="255" y="30" width="25" height="60" rx="2"/>
+                            <text class="pa-label" x="267" y="45" text-anchor="middle" transform="rotate(-90 267 45)" style="font-size: 3.5px;">CONSULT</text>
+                            <circle class="pa-customer c3" cx="267" cy="70" r="2.5"/>
+
+                            <!-- Bottom zone: Community bench -->
+                            <rect class="pa-zone" x="30" y="140" width="215" height="30" rx="2"/>
+                            <text class="pa-label" x="130" y="158" text-anchor="middle" style="font-size: 4px;">COMMUNITY BENCH · LIVE VIEWING</text>
+
+                            <!-- Bottom label -->
+                            <text x="150" y="188" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="2">12-WEEK POP-UP · ONE STORE · LIVESTREAMED</text>
+                        </svg>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 03 · 12 weeks</div>
@@ -2370,32 +2569,91 @@
 
                 <div class="concept" onclick="openCanvas('proto-4')">
                     <div class="concept-visual preview-coffee">
-                        <svg viewBox="0 0 200 160" style="width: 85%; height: 85%;">
+                        <div class="concept-testing"><span class="concept-testing-dot animated"></span>Tests · Beyond the Run</div>
+                        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid meet">
                             <defs>
-                                <radialGradient id="coffeeGlow" cx="50%" cy="50%" r="50%">
-                                    <stop offset="0%" stop-color="rgba(255,69,0,0.25)"/>
+                                <radialGradient id="crGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="rgba(255,69,0,0.3)"/>
                                     <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
                                 </radialGradient>
                             </defs>
-                            <!-- 5 cohort dots in a row -->
-                            <circle cx="25" cy="80" r="14" fill="url(#coffeeGlow)"/>
-                            <circle cx="25" cy="80" r="10" fill="var(--accent)" stroke="var(--accent)" stroke-width="1">
-                                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite"/>
-                            </circle>
-                            <text x="25" y="83" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="600">35%</text>
-                            <circle cx="70" cy="80" r="6" fill="rgba(17,17,17,0.25)"/>
-                            <text x="70" y="82" font-family="Inter" font-size="6" fill="rgba(17,17,17,0.5)" text-anchor="middle">25%</text>
-                            <circle cx="105" cy="80" r="5" fill="rgba(17,17,17,0.2)"/>
-                            <text x="105" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">15%</text>
-                            <circle cx="140" cy="80" r="4" fill="rgba(17,17,17,0.18)"/>
-                            <text x="140" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">10%</text>
-                            <circle cx="170" cy="80" r="5" fill="rgba(17,17,17,0.2)"/>
-                            <text x="170" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">15%</text>
-                            <!-- Label for the highlighted one -->
-                            <text x="25" y="115" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--accent)" text-anchor="middle" letter-spacing="1.5">COFFEE RUNNER</text>
-                            <text x="25" y="125" font-family="Playfair Display, serif" font-style="italic" font-size="7" fill="rgba(17,17,17,0.7)" text-anchor="middle">hidden majority</text>
-                            <line x1="100" y1="44" x2="100" y2="60" stroke="rgba(17,17,17,0.2)" stroke-width="0.4"/>
-                            <text x="100" y="38" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="2">5 COHORTS · ONE TO DESIGN FOR FIRST</text>
+
+                            <!-- Hero persona scene on left: Coffee cup + shoe -->
+                            <g transform="translate(35, 40)">
+                                <!-- Coffee cup -->
+                                <path class="cr-coffee-cup" d="M 5,20 Q 5,18 7,18 L 33,18 Q 35,18 35,20 L 33,50 Q 33,52 31,52 L 9,52 Q 7,52 7,50 Z"/>
+                                <ellipse cx="20" cy="19" rx="14" ry="3" fill="rgba(17,17,17,0.12)"/>
+                                <path d="M35,28 Q42,28 42,35 Q42,42 35,42" fill="none" stroke="rgba(17,17,17,0.25)" stroke-width="1.2"/>
+                                <!-- Steam from coffee -->
+                                <path d="M15,12 Q17,6 13,2" fill="none" stroke="rgba(17,17,17,0.15)" stroke-width="0.6">
+                                    <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M22,12 Q24,5 20,1" fill="none" stroke="rgba(17,17,17,0.15)" stroke-width="0.6">
+                                    <animate attributeName="opacity" values="0;0.6;0" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+                                </path>
+                                <!-- Shoe next to coffee -->
+                                <g transform="translate(0, 65)">
+                                    <path class="cr-shoe" d="M0,20 Q0,13 6,11 L22,5 Q40,2 48,8 Q53,13 52,19 L52,22 Q36,25 8,23 Q0,22 0,20 Z"/>
+                                    <path class="cr-shoe" d="M6,22 Q26,25 50,22" stroke-width="0.5"/>
+                                </g>
+                                <!-- Label -->
+                                <text x="26" y="108" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="1.5">COFFEE RUNNER</text>
+                                <text x="26" y="118" font-family="Playfair Display, serif" font-style="italic" font-size="7" fill="rgba(17,17,17,0.7)" text-anchor="middle">45+, doesn't run</text>
+                            </g>
+
+                            <!-- Cohort pyramid on right -->
+                            <g transform="translate(185, 25)">
+                                <text x="40" y="4" font-family="JetBrains Mono, monospace" font-size="4.5" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="1.5">5 COHORTS · BY SIZE</text>
+
+                                <!-- Row 1: Coffee Runner (highlighted, largest) -->
+                                <g transform="translate(0, 14)">
+                                    <circle class="cr-ring-pulse" cx="6" cy="6"/>
+                                    <circle class="cr-cohort highlighted" cx="6" cy="6" r="6"/>
+                                    <rect x="16" y="2" width="65" height="8" fill="rgba(255,69,0,0.12)" rx="1"/>
+                                    <rect x="16" y="2" width="52" height="8" fill="var(--accent)" rx="1"/>
+                                    <text class="cr-pct" x="72" y="9" font-size="6" fill="white">35%</text>
+                                    <text class="cr-label cr-label-highlight" x="16" y="18" font-size="3.5">COFFEE RUNNER</text>
+                                </g>
+
+                                <!-- Row 2: Monday Runner -->
+                                <g transform="translate(0, 36)">
+                                    <circle class="cr-cohort" cx="6" cy="6" r="5"/>
+                                    <rect x="16" y="2" width="65" height="8" fill="rgba(17,17,17,0.05)" rx="1"/>
+                                    <rect x="16" y="2" width="37" height="8" fill="rgba(17,17,17,0.35)" rx="1"/>
+                                    <text class="cr-pct" x="58" y="9" font-size="5.5" fill="white">25%</text>
+                                    <text class="cr-label" x="16" y="18">MONDAY RUNNER</text>
+                                </g>
+
+                                <!-- Row 3: Studio Runner -->
+                                <g transform="translate(0, 58)">
+                                    <circle class="cr-cohort" cx="6" cy="6" r="4"/>
+                                    <rect x="16" y="2" width="65" height="8" fill="rgba(17,17,17,0.05)" rx="1"/>
+                                    <rect x="16" y="2" width="22" height="8" fill="rgba(17,17,17,0.3)" rx="1"/>
+                                    <text class="cr-pct" x="43" y="9" font-size="5" fill="white">15%</text>
+                                    <text class="cr-label" x="16" y="18">STUDIO</text>
+                                </g>
+
+                                <!-- Row 4: Trail Seeker -->
+                                <g transform="translate(0, 80)">
+                                    <circle class="cr-cohort" cx="6" cy="6" r="3.5"/>
+                                    <rect x="16" y="2" width="65" height="8" fill="rgba(17,17,17,0.05)" rx="1"/>
+                                    <rect x="16" y="2" width="15" height="8" fill="rgba(17,17,17,0.28)" rx="1"/>
+                                    <text class="cr-pct" x="36" y="9" font-size="5" fill="white">10%</text>
+                                    <text class="cr-label" x="16" y="18">TRAIL</text>
+                                </g>
+
+                                <!-- Row 5: Elite -->
+                                <g transform="translate(0, 102)">
+                                    <circle class="cr-cohort" cx="6" cy="6" r="3.5"/>
+                                    <rect x="16" y="2" width="65" height="8" fill="rgba(17,17,17,0.05)" rx="1"/>
+                                    <rect x="16" y="2" width="22" height="8" fill="rgba(17,17,17,0.3)" rx="1"/>
+                                    <text class="cr-pct" x="43" y="9" font-size="5" fill="white">15%</text>
+                                    <text class="cr-label" x="16" y="18">ELITE</text>
+                                </g>
+                            </g>
+
+                            <!-- Bottom label -->
+                            <text x="150" y="188" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.45)" text-anchor="middle" letter-spacing="2">THE 35% ON DOESN'T DESIGN FOR · YET</text>
                         </svg>
                     </div>
                     <div class="concept-body">
