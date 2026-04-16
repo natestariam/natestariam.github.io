@@ -1444,6 +1444,204 @@
             font-weight: 300;
         }
 
+        /* ─── Beyond the Run section ─── */
+        .cohorts {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            margin-top: 2.5rem;
+        }
+
+        .cohort {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 1.5rem 1.25rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cohort:hover {
+            transform: translateY(-2px);
+            border-color: var(--text);
+        }
+
+        .cohort.highlighted {
+            background: #0a0a0a;
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .cohort.highlighted .cohort-tag { color: var(--accent); }
+        .cohort.highlighted .cohort-name { color: white; }
+        .cohort.highlighted .cohort-desc { color: rgba(255,255,255,0.65); }
+        .cohort.highlighted .cohort-percent { color: var(--accent); }
+        .cohort.highlighted .cohort-label { color: rgba(255,255,255,0.4); }
+
+        .cohort-tag {
+            font-size: 0.52rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .cohort-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            min-height: 2.6rem;
+        }
+
+        .cohort-desc {
+            font-size: 0.75rem;
+            line-height: 1.55;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .cohort-percent {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .cohort.highlighted .cohort-percent {
+            border-top-color: rgba(255,255,255,0.15);
+        }
+
+        .cohort-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 0.3rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* Verticals */
+        .verticals {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .vertical {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .vertical:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .vertical-visual {
+            height: 140px;
+            background: linear-gradient(135deg, #F5F4F0 0%, #E8E5DE 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vertical-body { padding: 1.5rem 1.25rem 1.75rem; }
+
+        .vertical-tag {
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .vertical-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .vertical-desc {
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .vertical-vs {
+            font-size: 0.65rem;
+            color: var(--muted);
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .vertical-vs strong {
+            color: var(--text);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* Positioning matrix */
+        .matrix-wrapper {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+        }
+
+        .matrix-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .matrix-svg {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .matrix-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .pillars { grid-template-columns: 1fr; }
@@ -1461,6 +1659,9 @@
             .compare-grid { grid-template-columns: 1fr; }
             .principles { grid-template-columns: 1fr 1fr; }
             .atelier-zones { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .cohorts { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .verticals { grid-template-columns: 1fr 1fr; }
+            .matrix-wrapper { padding: 2rem 1.5rem; }
         }
 
         @media (max-width: 768px) {
@@ -2155,6 +2356,289 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Beyond the Run · Segmentation & Verticals ─── -->
+        <section class="section reveal">
+            <div class="section-label">The bigger strategic bet · Beyond the run</div>
+            <h2 class="section-title">On isn't a running<br>brand. Not anymore.</h2>
+            <div class="section-body">
+                <p>Here's an uncomfortable truth the Lab should confront early: <strong>the majority of On customers don't run in On shoes</strong>. They wear them to brunch, to the airport, to the office, to yoga. They're affluent, often over 40, and they buy Cloud and Cloud X as lifestyle objects that happen to be technically excellent. The brand talks about marathons. The cash register tells a different story.</p>
+                <p>This isn't a problem. It's an opportunity On is under-exploiting. The Lab's job is to design for the runners On actually <em>has</em>, not just the ones it markets to — and to build the verticals that compete where On doesn't yet: trail, training, studio, and the high-fashion crossover where Arc'teryx, Lululemon, Alo, and Loro Piana are quietly eating lunch.</p>
+            </div>
+
+            <!-- The 5 cohorts -->
+            <div style="margin-top: 3rem;">
+                <div class="section-label">The five runners · Who actually buys On today</div>
+            </div>
+
+            <div class="cohorts">
+                <div class="cohort highlighted">
+                    <div class="cohort-tag">Cohort 01</div>
+                    <div class="cohort-name">The Coffee Runner</div>
+                    <div class="cohort-desc">45+, affluent, urban. Doesn't run. Wears Cloud X to brunch, the airport, meetings. Buys for quiet status and comfort.</div>
+                    <div class="cohort-percent">~35%</div>
+                    <div class="cohort-label">Hidden majority</div>
+                </div>
+
+                <div class="cohort">
+                    <div class="cohort-tag">Cohort 02</div>
+                    <div class="cohort-name">The Monday Runner</div>
+                    <div class="cohort-desc">30–45. Commutes, travels, trains 3x / week. Needs shoes that do the gym, the flight, and the 5K.</div>
+                    <div class="cohort-percent">~25%</div>
+                    <div class="cohort-label">Multi-activity</div>
+                </div>
+
+                <div class="cohort">
+                    <div class="cohort-tag">Cohort 03</div>
+                    <div class="cohort-name">The Studio Runner</div>
+                    <div class="cohort-desc">Mostly women, 28–45. Pilates, yoga, barre, light runs. Buying into wellness, not performance.</div>
+                    <div class="cohort-percent">~15%</div>
+                    <div class="cohort-label">Lulu / Alo territory</div>
+                </div>
+
+                <div class="cohort">
+                    <div class="cohort-tag">Cohort 04</div>
+                    <div class="cohort-name">The Trail Seeker</div>
+                    <div class="cohort-desc">Weekend hikers, ultra runners, nature-first. Currently buying Hoka, Salomon, Arc'teryx — almost never On.</div>
+                    <div class="cohort-percent">~10%</div>
+                    <div class="cohort-label">Competitive gap</div>
+                </div>
+
+                <div class="cohort">
+                    <div class="cohort-tag">Cohort 05</div>
+                    <div class="cohort-name">The Elite</div>
+                    <div class="cohort-desc">OAC athletes, serious marathoners, club runners. Small number, outsized cultural weight. The brand's spiritual centre.</div>
+                    <div class="cohort-percent">~15%</div>
+                    <div class="cohort-label">Loud minority</div>
+                </div>
+            </div>
+
+            <div class="insight" style="margin-top: 3rem;">
+                <div class="insight-label">The mismatch</div>
+                <div class="insight-body">"On spends most of its marketing talking to the 15% of its customers who run competitively, while quietly selling to the 35% who wear the shoes to Erewhon. The Lab should design for both — explicitly and intentionally — without compromising the craft that makes either work."</div>
+            </div>
+
+            <!-- The four new verticals -->
+            <div style="margin-top: 4rem;">
+                <div class="section-label">Four new verticals · Where On should compete by 2028</div>
+                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 400; font-style: italic; margin-top: 1rem; line-height: 1.3;">Not feature-stacked extensions.<br>Each one earns its place through craft.</h3>
+            </div>
+
+            <div class="verticals">
+                <!-- On Trail -->
+                <div class="vertical">
+                    <div class="vertical-visual">
+                        <svg viewBox="0 0 140 100" style="width: 80%; height: 80%;">
+                            <!-- Mountain silhouette -->
+                            <path d="M10,80 L35,45 L55,60 L80,25 L105,50 L130,35 L130,90 L10,90 Z" fill="none" stroke="var(--text)" stroke-width="1.2" opacity="0.7"/>
+                            <path d="M35,45 L50,55 L55,60" stroke="rgba(17,17,17,0.4)" stroke-width="0.6" fill="none"/>
+                            <path d="M80,25 L92,40 L105,50" stroke="rgba(17,17,17,0.4)" stroke-width="0.6" fill="none"/>
+                            <!-- Sun -->
+                            <circle cx="110" cy="22" r="4" fill="var(--accent)" opacity="0.6"/>
+                            <!-- Path line -->
+                            <path d="M15,88 Q45,85 70,80 Q95,75 125,78" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-body">
+                        <div class="vertical-tag">Vertical 01</div>
+                        <div class="vertical-name">On Trail</div>
+                        <div class="vertical-desc">Trail running and long-distance hiking. Aggressive lugs, rock-plate stability, weatherproof uppers. Keep On's design DNA — but build for vertical.</div>
+                        <div class="vertical-vs">vs. <strong>Hoka, Salomon, Arc'teryx</strong></div>
+                    </div>
+                </div>
+
+                <!-- On Studio -->
+                <div class="vertical">
+                    <div class="vertical-visual">
+                        <svg viewBox="0 0 140 100" style="width: 80%; height: 80%;">
+                            <!-- Lotus / flow shape -->
+                            <ellipse cx="70" cy="60" rx="50" ry="8" fill="none" stroke="var(--text)" stroke-width="1" opacity="0.6"/>
+                            <ellipse cx="70" cy="60" rx="35" ry="20" fill="none" stroke="var(--text)" stroke-width="1" opacity="0.5"/>
+                            <ellipse cx="70" cy="60" rx="20" ry="28" fill="none" stroke="var(--accent)" stroke-width="1.2" opacity="0.8"/>
+                            <circle cx="70" cy="60" r="4" fill="var(--accent)"/>
+                            <!-- Breath lines -->
+                            <line x1="70" y1="20" x2="70" y2="35" stroke="rgba(17,17,17,0.3)" stroke-width="0.5"/>
+                            <line x1="35" y1="45" x2="50" y2="55" stroke="rgba(17,17,17,0.3)" stroke-width="0.5"/>
+                            <line x1="105" y1="45" x2="90" y2="55" stroke="rgba(17,17,17,0.3)" stroke-width="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-body">
+                        <div class="vertical-tag">Vertical 02</div>
+                        <div class="vertical-name">On Studio</div>
+                        <div class="vertical-desc">Yoga, pilates, barre, barefoot training. A new category for On — minimal, flexible, grip-first. Paired with a serious apparel line.</div>
+                        <div class="vertical-vs">vs. <strong>Lululemon, Alo, Vuori</strong></div>
+                    </div>
+                </div>
+
+                <!-- On Train -->
+                <div class="vertical">
+                    <div class="vertical-visual">
+                        <svg viewBox="0 0 140 100" style="width: 80%; height: 80%;">
+                            <!-- Weight/barbell -->
+                            <line x1="30" y1="55" x2="110" y2="55" stroke="var(--text)" stroke-width="1.5" opacity="0.7"/>
+                            <rect x="25" y="42" width="10" height="26" fill="var(--text)" opacity="0.6" rx="1"/>
+                            <rect x="105" y="42" width="10" height="26" fill="var(--text)" opacity="0.6" rx="1"/>
+                            <rect x="18" y="35" width="8" height="40" fill="var(--accent)" opacity="0.5" rx="1"/>
+                            <rect x="114" y="35" width="8" height="40" fill="var(--accent)" opacity="0.5" rx="1"/>
+                            <!-- Stability base -->
+                            <ellipse cx="70" cy="82" rx="42" ry="4" fill="none" stroke="var(--text)" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-body">
+                        <div class="vertical-tag">Vertical 03</div>
+                        <div class="vertical-name">On Train</div>
+                        <div class="vertical-desc">Functional fitness, lifting, cross-training. Flat, stable, lateral support. Designed for the gym, not the treadmill.</div>
+                        <div class="vertical-vs">vs. <strong>Nike Metcon, Reebok Nano, NoBull</strong></div>
+                    </div>
+                </div>
+
+                <!-- On Off -->
+                <div class="vertical">
+                    <div class="vertical-visual">
+                        <svg viewBox="0 0 140 100" style="width: 80%; height: 80%;">
+                            <!-- City / lifestyle shape -->
+                            <rect x="30" y="45" width="20" height="40" fill="none" stroke="var(--text)" stroke-width="0.8" opacity="0.6"/>
+                            <rect x="52" y="30" width="20" height="55" fill="none" stroke="var(--text)" stroke-width="0.8" opacity="0.7"/>
+                            <rect x="74" y="40" width="20" height="45" fill="none" stroke="var(--text)" stroke-width="0.8" opacity="0.6"/>
+                            <rect x="96" y="50" width="16" height="35" fill="none" stroke="var(--text)" stroke-width="0.8" opacity="0.5"/>
+                            <!-- Windows -->
+                            <rect x="58" y="38" width="3" height="3" fill="var(--accent)" opacity="0.6"/>
+                            <rect x="64" y="38" width="3" height="3" fill="var(--accent)" opacity="0.4"/>
+                            <rect x="58" y="48" width="3" height="3" fill="var(--accent)" opacity="0.5"/>
+                            <rect x="64" y="58" width="3" height="3" fill="var(--accent)" opacity="0.7"/>
+                            <!-- Horizon -->
+                            <line x1="15" y1="85" x2="125" y2="85" stroke="var(--text)" stroke-width="0.5" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <div class="vertical-body">
+                        <div class="vertical-tag">Vertical 04</div>
+                        <div class="vertical-name">On Off</div>
+                        <div class="vertical-desc">A lifestyle line designed for how people already wear On. Airports, cities, travel. Sophisticated materials, refined silhouettes — no fake performance.</div>
+                        <div class="vertical-vs">vs. <strong>The Row, Loro Piana, Brunello Cucinelli</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Positioning matrix -->
+            <div class="matrix-wrapper">
+                <div class="matrix-label">Where On sits — and where the Lab should steer</div>
+
+                <svg class="matrix-svg" viewBox="0 0 640 480">
+                    <defs>
+                        <radialGradient id="onSpot" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(255,69,0,0.35)"/>
+                            <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Axes -->
+                    <line x1="320" y1="40" x2="320" y2="440" stroke="rgba(17,17,17,0.2)" stroke-width="0.6"/>
+                    <line x1="40" y1="240" x2="600" y2="240" stroke="rgba(17,17,17,0.2)" stroke-width="0.6"/>
+
+                    <!-- Axis labels -->
+                    <text x="320" y="24" font-family="Inter, sans-serif" font-size="9" fill="var(--text)" text-anchor="middle" letter-spacing="2" font-weight="500" style="text-transform: uppercase;">Luxury</text>
+                    <text x="320" y="468" font-family="Inter, sans-serif" font-size="9" fill="var(--text)" text-anchor="middle" letter-spacing="2" font-weight="500" style="text-transform: uppercase;">Mass</text>
+                    <text x="22" y="244" font-family="Inter, sans-serif" font-size="9" fill="var(--text)" text-anchor="middle" letter-spacing="2" font-weight="500" style="text-transform: uppercase;" transform="rotate(-90, 22, 244)">Performance</text>
+                    <text x="618" y="244" font-family="Inter, sans-serif" font-size="9" fill="var(--text)" text-anchor="middle" letter-spacing="2" font-weight="500" style="text-transform: uppercase;" transform="rotate(90, 618, 244)">Lifestyle</text>
+
+                    <!-- Quadrant labels -->
+                    <text x="175" y="60" font-family="Inter, sans-serif" font-size="7" fill="var(--muted)" text-anchor="middle" letter-spacing="1.5" style="text-transform: uppercase;">Technical luxury</text>
+                    <text x="460" y="60" font-family="Inter, sans-serif" font-size="7" fill="var(--muted)" text-anchor="middle" letter-spacing="1.5" style="text-transform: uppercase;">Quiet luxury</text>
+                    <text x="175" y="430" font-family="Inter, sans-serif" font-size="7" fill="var(--muted)" text-anchor="middle" letter-spacing="1.5" style="text-transform: uppercase;">Mass performance</text>
+                    <text x="460" y="430" font-family="Inter, sans-serif" font-size="7" fill="var(--muted)" text-anchor="middle" letter-spacing="1.5" style="text-transform: uppercase;">Mass lifestyle</text>
+
+                    <!-- Competitors -->
+                    <!-- Top left: Technical luxury -->
+                    <g>
+                        <circle cx="150" cy="140" r="4" fill="rgba(17,17,17,0.7)"/>
+                        <text x="158" y="144" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Arc'teryx</text>
+                    </g>
+                    <g>
+                        <circle cx="200" cy="180" r="4" fill="rgba(17,17,17,0.6)"/>
+                        <text x="208" y="184" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Salomon</text>
+                    </g>
+
+                    <!-- Top right: Quiet luxury -->
+                    <g>
+                        <circle cx="490" cy="110" r="4" fill="rgba(17,17,17,0.7)"/>
+                        <text x="498" y="114" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Loro Piana</text>
+                    </g>
+                    <g>
+                        <circle cx="430" cy="150" r="4" fill="rgba(17,17,17,0.6)"/>
+                        <text x="438" y="154" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">The Row</text>
+                    </g>
+                    <g>
+                        <circle cx="490" cy="190" r="4" fill="rgba(17,17,17,0.6)"/>
+                        <text x="498" y="194" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">B. Cucinelli</text>
+                    </g>
+
+                    <!-- Bottom left: Mass performance -->
+                    <g>
+                        <circle cx="130" cy="330" r="4" fill="rgba(17,17,17,0.6)"/>
+                        <text x="138" y="334" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Nike</text>
+                    </g>
+                    <g>
+                        <circle cx="200" cy="370" r="4" fill="rgba(17,17,17,0.5)"/>
+                        <text x="208" y="374" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Hoka</text>
+                    </g>
+                    <g>
+                        <circle cx="170" cy="395" r="4" fill="rgba(17,17,17,0.5)"/>
+                        <text x="178" y="399" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Adidas</text>
+                    </g>
+
+                    <!-- Bottom right: Mass lifestyle -->
+                    <g>
+                        <circle cx="440" cy="330" r="4" fill="rgba(17,17,17,0.5)"/>
+                        <text x="448" y="334" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Lululemon</text>
+                    </g>
+                    <g>
+                        <circle cx="500" cy="360" r="4" fill="rgba(17,17,17,0.4)"/>
+                        <text x="508" y="364" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Alo</text>
+                    </g>
+                    <g>
+                        <circle cx="520" cy="395" r="4" fill="rgba(17,17,17,0.4)"/>
+                        <text x="528" y="399" font-family="Inter, sans-serif" font-size="10" fill="var(--text)">Vuori</text>
+                    </g>
+
+                    <!-- ON current position (bottom, between performance & lifestyle, mid-price) -->
+                    <g>
+                        <circle cx="320" cy="300" r="28" fill="rgba(17,17,17,0.08)"/>
+                        <circle cx="320" cy="300" r="5" fill="rgba(17,17,17,0.85)"/>
+                        <text x="335" y="304" font-family="Inter, sans-serif" font-size="11" fill="var(--text)" font-weight="600">On · today</text>
+                    </g>
+
+                    <!-- ON target position (top centre - the sweet spot) -->
+                    <circle cx="320" cy="170" r="60" fill="url(#onSpot)"/>
+                    <g>
+                        <circle cx="320" cy="170" r="8" fill="var(--accent)"/>
+                        <circle cx="320" cy="170" r="14" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 2"/>
+                        <text x="335" y="168" font-family="Inter, sans-serif" font-size="11" fill="var(--accent)" font-weight="600">On · 2028</text>
+                        <text x="335" y="182" font-family="Playfair Display, serif" font-style="italic" font-size="11" fill="var(--accent)">Technical luxury for moving bodies</text>
+                    </g>
+
+                    <!-- Arrow from today → 2028 -->
+                    <path d="M 320 292 L 320 182" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 3" fill="none" marker-end="url(#arrowhead)"/>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+                            <path d="M 0 0 L 6 3 L 0 6 z" fill="var(--accent)"/>
+                        </marker>
+                    </defs>
+                </svg>
+
+                <div class="matrix-footer">
+                    The empty quadrant — <em>luxury + performance + moving bodies</em> — is On's to take.
+                </div>
+            </div>
+
+            <!-- Strategic conclusion -->
+            <div class="reframe-block" style="margin-top: 3rem;">
+                <div class="reframe-label">The strategic reframe</div>
+                <div class="reframe-quote">On isn't the Swiss Nike. It should become the <em>Loro Piana of moving bodies</em>.</div>
+                <p class="reframe-body">Quiet luxury brands own wardrobe ritual, material obsession, and generational wear. Technical brands own performance and specificity. On already has both instincts — LightSpray is craft-obsession at scale, CloudTec is technical specificity. The Lab's strategic job is to merge these into a clear positioning: sportswear that's worn with intent, not just aspiration. And to give the Coffee Runner a dedicated product line without apologising for it.</p>
             </div>
         </section>
 
