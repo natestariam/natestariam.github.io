@@ -1206,6 +1206,244 @@
             overflow: hidden;
         }
 
+        /* ─── Living Atelier 2028 ─── */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .compare-card {
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .compare-card.against {
+            background: #F3F0EA;
+            border-color: #D5D0C8;
+        }
+
+        .compare-card.for {
+            background: #0a0a0a;
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .compare-card.for .compare-label { color: var(--accent); }
+        .compare-card.for .compare-title { color: white; }
+        .compare-card.for .compare-body { color: rgba(255,255,255,0.7); }
+        .compare-card.for .compare-strike { color: rgba(255,255,255,0.3); }
+
+        .compare-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .compare-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .compare-body {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .compare-strike {
+            font-size: 0.72rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #999;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .compare-card.for .compare-strike { border-top-color: rgba(255,255,255,0.1); }
+
+        /* 4 design principles */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .principle {
+            padding: 1.75rem 1.25rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .principle:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .principle-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+        }
+
+        .principle-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .principle-body {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* Atelier 2028 scene */
+        .atelier-scene {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: linear-gradient(180deg, #0a0a0a, #151515);
+            color: white;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .atelier-scene-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .atelier-scene-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .atelier-scene-title em { font-style: italic; }
+
+        .atelier-scene-svg {
+            width: 100%;
+            max-width: 900px;
+            margin: 1rem auto 2rem;
+            display: block;
+        }
+
+        .atelier-zones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .atelier-zone {
+            text-align: center;
+        }
+
+        .atelier-zone-key {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin: 0 auto 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: white;
+        }
+
+        .atelier-zone-key.a { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+        .atelier-zone-key.b { background: rgba(255,69,0,0.25); border: 1px solid var(--accent); color: white; }
+        .atelier-zone-key.c { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); }
+        .atelier-zone-key.d { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+
+        .atelier-zone-name {
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .atelier-zone-desc {
+            font-size: 0.62rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+        }
+
+        /* Reframe quote block */
+        .reframe-block {
+            margin-top: 3rem;
+            padding: 3rem 2.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 2px;
+        }
+
+        .reframe-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .reframe-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            line-height: 1.45;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+        }
+
+        .reframe-quote em {
+            font-style: normal;
+            background: linear-gradient(transparent 60%, var(--accent-soft) 60%);
+        }
+
+        .reframe-body {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .pillars { grid-template-columns: 1fr; }
@@ -1220,6 +1458,9 @@
             .layers::before { display: none; }
             .scenarios { grid-template-columns: 1fr; }
             .twin-dashboard { grid-template-columns: 1fr; gap: 2rem; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .principles { grid-template-columns: 1fr 1fr; }
+            .atelier-zones { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         }
 
         @media (max-width: 768px) {
@@ -1914,6 +2155,244 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── The Living Atelier · 2028 ─── -->
+        <section class="section reveal">
+            <div class="section-label">The 2028 bet · The Living Atelier</div>
+            <h2 class="section-title">When retail stops<br>pretending to be <em>an app</em>.</h2>
+            <div class="section-body">
+                <p>In 2020, Burberry opened a "Social Retail" store in Shenzhen with Tencent — WeChat-native, QR codes in fitting rooms, a virtual pet called Thomas that levelled up as customers earned social currency. It was first. It was bold. Six years later, it has barely scaled beyond that one store. The concept was right, the execution was wrong. They made a store that tried to be an app.</p>
+                <p>On has the chance to make the opposite. A store so confident in its craft that the technology disappears into it — where the most luxurious thing isn't the pet, the points, or the fitting-room mirror, but the fact that <em>someone is making your shoe while you watch</em>. That's a shift Burberry, Dior, and even Jacquemus are all moving toward. On can define it.</p>
+            </div>
+
+            <!-- Comparison block -->
+            <div class="compare-grid">
+                <div class="compare-card against">
+                    <div class="compare-label">What didn't work</div>
+                    <div class="compare-title">Burberry · Social Retail, Shenzhen · 2020</div>
+                    <div class="compare-body">Customers unlocked "social currency" by interacting, fed a virtual fawn that levelled up, scanned QR codes in fitting rooms. Tech wrapped around the store rather than embedded in it.</div>
+                    <div class="compare-strike">
+                        — Gamification cheapens luxury.<br>
+                        — The phone fought the room.<br>
+                        — 6 years on, still just one store.<br>
+                        — PR moment, not a scalable model.
+                    </div>
+                </div>
+
+                <div class="compare-card for">
+                    <div class="compare-label">What On can do</div>
+                    <div class="compare-title">The Living Atelier · 2028</div>
+                    <div class="compare-body">A store where 70% of the floor is making. LightSpray machines visible everywhere. Your twin travels with you — when you walk in, your shoe is already being sprayed. Staff greet you by context, not by checkout.</div>
+                    <div class="compare-strike">
+                        — Craft as the content.<br>
+                        — The phone disappears into the room.<br>
+                        — Memory, not points.<br>
+                        — A model that scales city by city.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Four design principles -->
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-number">01</div>
+                    <div class="principle-title">Ambient twin recognition</div>
+                    <div class="principle-body">Your digital twin arrives before you do. By the time you walk in, the staff know your last run, your next race, your injury history — because you opted in. No tablets, no wristbands. The store just knows.</div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">02</div>
+                    <div class="principle-title">70% making, 30% retail</div>
+                    <div class="principle-body">Flip the ratio. Most of the floor is LightSpray machines, last-builders, and craftspeople working on named pairs. The "product" on display is the act of making itself. Like a Savile Row tailor, not a Nike outlet.</div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">03</div>
+                    <div class="principle-title">Craft as livestream</div>
+                    <div class="principle-body">Every Atelier streams. From bed, you can watch your pair being made. What fashion weeks did once a season, On does every hour. Burberry's fashion show livestream, democratised and intimate.</div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">04</div>
+                    <div class="principle-title">Memory over gamification</div>
+                    <div class="principle-body">No points, no virtual pets, no social currency. Regulars get priority slots, OAC athletes drop by, repeat visitors are remembered by name. Scarcity of attention, not abundance of badges. Relationships compound — gamification doesn't.</div>
+                </div>
+            </div>
+
+            <!-- Atelier 2028 scene -->
+            <div class="atelier-scene">
+                <div class="atelier-scene-label">The floor · A Saturday morning</div>
+                <div class="atelier-scene-title">A store where the <em>product</em> is<br>the <em>process</em>.</div>
+
+                <svg class="atelier-scene-svg" viewBox="0 0 900 400">
+                    <defs>
+                        <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="rgba(255,255,255,0.04)"/>
+                            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                        </linearGradient>
+                        <radialGradient id="sprayGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(255,69,0,0.35)"/>
+                            <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Outer store walls -->
+                    <rect x="20" y="20" width="860" height="360" fill="url(#floorGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+
+                    <!-- Zone A: Arrival / Lounge (left) -->
+                    <rect x="40" y="40" width="180" height="160" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <text x="130" y="64" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle" letter-spacing="2">A · ARRIVAL</text>
+                    <text x="130" y="80" font-family="Playfair Display, serif" font-style="italic" font-size="12" fill="rgba(255,255,255,0.6)" text-anchor="middle">Lounge</text>
+                    <!-- Customer dots in lounge -->
+                    <circle cx="80" cy="120" r="4" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="130" cy="150" r="4" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="180" cy="130" r="4" fill="rgba(255,255,255,0.4)"/>
+                    <!-- Sofas suggested -->
+                    <rect x="60" y="170" width="40" height="6" rx="2" fill="rgba(255,255,255,0.08)"/>
+                    <rect x="160" y="170" width="40" height="6" rx="2" fill="rgba(255,255,255,0.08)"/>
+
+                    <!-- Zone B: Spray Theatre (center, highlighted) -->
+                    <rect x="250" y="40" width="400" height="220" fill="rgba(255,69,0,0.05)" stroke="rgba(255,69,0,0.5)" stroke-width="1"/>
+                    <text x="450" y="64" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--accent)" text-anchor="middle" letter-spacing="2">B · SPRAY THEATRE</text>
+                    <text x="450" y="82" font-family="Playfair Display, serif" font-style="italic" font-size="13" fill="white" text-anchor="middle">70% of the floor</text>
+
+                    <!-- LightSpray robots in action -->
+                    <!-- Robot 1 -->
+                    <g>
+                        <circle cx="330" cy="160" r="40" fill="url(#sprayGlow)"/>
+                        <rect x="310" y="120" width="40" height="8" fill="rgba(255,255,255,0.3)" rx="1"/>
+                        <line x1="330" y1="128" x2="330" y2="158" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+                        <circle cx="330" cy="160" r="5" fill="var(--accent)">
+                            <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- Shoe -->
+                        <path d="M310,175 Q310,170 315,170 L350,170 Q355,173 354,177 Q340,180 316,178 Q310,178 310,175 Z" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="80" stroke-dashoffset="80">
+                            <animate attributeName="stroke-dashoffset" values="80;0;0;80" dur="5s" repeatCount="indefinite"/>
+                        </path>
+                        <text x="330" y="210" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">MAYA · 02:14</text>
+                    </g>
+
+                    <!-- Robot 2 -->
+                    <g>
+                        <circle cx="450" cy="160" r="38" fill="url(#sprayGlow)" opacity="0.7"/>
+                        <rect x="430" y="120" width="40" height="8" fill="rgba(255,255,255,0.3)" rx="1"/>
+                        <line x1="450" y1="128" x2="450" y2="158" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+                        <circle cx="450" cy="160" r="4" fill="var(--accent)">
+                            <animate attributeName="r" values="3;6;3" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+                        </circle>
+                        <path d="M430,175 Q430,170 435,170 L470,170 Q475,173 474,177 Q460,180 436,178 Q430,178 430,175 Z" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.7"/>
+                        <text x="450" y="210" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="1">THOMAS · 00:48</text>
+                    </g>
+
+                    <!-- Robot 3 -->
+                    <g>
+                        <circle cx="570" cy="160" r="40" fill="url(#sprayGlow)" opacity="0.8"/>
+                        <rect x="550" y="120" width="40" height="8" fill="rgba(255,255,255,0.3)" rx="1"/>
+                        <line x1="570" y1="128" x2="570" y2="158" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+                        <circle cx="570" cy="160" r="5" fill="var(--accent)">
+                            <animate attributeName="r" values="4;7;4" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <path d="M550,175 Q550,170 555,170 L590,170 Q595,173 594,177 Q580,180 556,178 Q550,178 550,175 Z" fill="none" stroke="var(--accent)" stroke-width="1"/>
+                        <text x="570" y="210" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">PRIYA · 01:33</text>
+                    </g>
+
+                    <!-- Glass viewing line -->
+                    <line x1="250" y1="230" x2="650" y2="230" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <text x="450" y="250" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="2">VIEWING GLASS · LIVE STREAM TO APP</text>
+
+                    <!-- Viewers inside viewing bench -->
+                    <rect x="270" y="265" width="360" height="12" fill="rgba(255,255,255,0.05)" rx="2"/>
+                    <circle cx="310" cy="271" r="3" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="360" cy="271" r="3" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="420" cy="271" r="3" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="510" cy="271" r="3" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="580" cy="271" r="3" fill="rgba(255,255,255,0.4)"/>
+
+                    <!-- Zone C: Fit / Consult (right upper) -->
+                    <rect x="680" y="40" width="180" height="160" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+                    <text x="770" y="64" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.45)" text-anchor="middle" letter-spacing="2">C · CONSULT</text>
+                    <text x="770" y="82" font-family="Playfair Display, serif" font-style="italic" font-size="12" fill="rgba(255,255,255,0.7)" text-anchor="middle">Fit &amp; gait lab</text>
+                    <!-- Mirror circles -->
+                    <circle cx="720" cy="130" r="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                    <circle cx="770" cy="150" r="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                    <circle cx="820" cy="130" r="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                    <!-- Staff + customer pair -->
+                    <circle cx="740" cy="175" r="3" fill="rgba(255,255,255,0.5)"/>
+                    <circle cx="752" cy="175" r="3" fill="var(--accent)"/>
+
+                    <!-- Zone D: Café / Community (bottom) -->
+                    <rect x="40" y="290" width="400" height="90" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <text x="240" y="314" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle" letter-spacing="2">D · COMMUNITY</text>
+                    <text x="240" y="330" font-family="Playfair Display, serif" font-style="italic" font-size="11" fill="rgba(255,255,255,0.55)" text-anchor="middle">Café · Talks · OAC drop-ins</text>
+                    <!-- Tables -->
+                    <rect x="60" y="340" width="30" height="20" rx="3" fill="rgba(255,255,255,0.05)"/>
+                    <rect x="110" y="340" width="30" height="20" rx="3" fill="rgba(255,255,255,0.05)"/>
+                    <rect x="160" y="340" width="30" height="20" rx="3" fill="rgba(255,255,255,0.05)"/>
+                    <rect x="210" y="340" width="30" height="20" rx="3" fill="rgba(255,255,255,0.05)"/>
+                    <circle cx="75" cy="350" r="2.5" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="125" cy="350" r="2.5" fill="rgba(255,255,255,0.4)"/>
+                    <circle cx="225" cy="350" r="2.5" fill="rgba(255,255,255,0.4)"/>
+
+                    <!-- Right lower: Archive / Collection -->
+                    <rect x="460" y="290" width="400" height="90" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <text x="660" y="314" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle" letter-spacing="2">E · COLLECTION &amp; ARCHIVE</text>
+                    <text x="660" y="330" font-family="Playfair Display, serif" font-style="italic" font-size="11" fill="rgba(255,255,255,0.55)" text-anchor="middle">Walk through On's story. LightSpray evolution.</text>
+                </svg>
+
+                <!-- Zone key -->
+                <div class="atelier-zones">
+                    <div class="atelier-zone">
+                        <div class="atelier-zone-key a">A</div>
+                        <div class="atelier-zone-name">Arrival</div>
+                        <div class="atelier-zone-desc">Twin recognises you. Staff briefed before you sit down.</div>
+                    </div>
+                    <div class="atelier-zone">
+                        <div class="atelier-zone-key b">B</div>
+                        <div class="atelier-zone-name">Spray Theatre</div>
+                        <div class="atelier-zone-desc">Named pairs in production behind glass. Livestreamed.</div>
+                    </div>
+                    <div class="atelier-zone">
+                        <div class="atelier-zone-key c">C</div>
+                        <div class="atelier-zone-name">Consult &amp; Fit</div>
+                        <div class="atelier-zone-desc">Gait lab. Staff co-designs your spec with you.</div>
+                    </div>
+                    <div class="atelier-zone">
+                        <div class="atelier-zone-key d">D</div>
+                        <div class="atelier-zone-name">Community</div>
+                        <div class="atelier-zone-desc">Café, talks, OAC drop-ins. Relationships, not transactions.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reframe block -->
+            <div class="reframe-block">
+                <div class="reframe-label">The reframe</div>
+                <div class="reframe-quote">"Burberry built a store pretending to be an app.<br>On should build an app that's trying to <em>disappear into the store</em>."</div>
+                <p class="reframe-body">The app isn't the experience. The physical ritual is. Technology exists to make the ritual easier, more personal, and remembered — not to take its place. That's the design principle that separates retail futurism from retail gimmickry, and it's the one the Lab should own.</p>
+            </div>
+
+            <!-- Horizon targets -->
+            <div class="metrics" style="margin-top: 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+                <div class="metric">
+                    <div class="metric-value">2028</div>
+                    <div class="metric-label">First Living<br>Atelier opens</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">70 / 30</div>
+                    <div class="metric-label">Making to<br>retail ratio</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">24 / 7</div>
+                    <div class="metric-label">Livestream from<br>every Atelier</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Virtual pets.<br>Zero points.</div>
+                </div>
             </div>
         </section>
 
