@@ -963,6 +963,249 @@
             color: var(--text);
         }
 
+        /* ─── Hyperpersonalisation section ─── */
+        .hyper-section {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hyper-hero {
+            padding: 4rem 0 3rem;
+        }
+
+        .hyper-principle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.7rem;
+            line-height: 1.45;
+            font-style: italic;
+            color: var(--text);
+            max-width: 680px;
+            margin: 2rem 0 0;
+        }
+
+        /* 4 layers diagram */
+        .layers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .layers::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), var(--accent), var(--border), transparent);
+        }
+
+        .layer {
+            padding: 0 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .layer-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .layer:hover .layer-icon {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .layer-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--text);
+            stroke-width: 1.3;
+            fill: none;
+        }
+
+        .layer-number {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--text);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .layer-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-desc {
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* Scenario strip */
+        .scenarios {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .scenario {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .scenario-visual {
+            aspect-ratio: 5 / 4;
+            background: linear-gradient(135deg, #F5F4F0 0%, #EDEBE5 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scenario-body {
+            padding: 1.4rem;
+        }
+
+        .scenario-tag {
+            font-size: 0.55rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+        }
+
+        .scenario-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        .scenario-desc {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .scenario-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            line-height: 1.5;
+        }
+
+        /* Digital twin dashboard */
+        .twin-dashboard {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #0a0a0a;
+            color: #fff;
+            border-radius: 2px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .twin-left {
+            padding-right: 1rem;
+        }
+
+        .twin-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .twin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .twin-title em { font-style: italic; }
+
+        .twin-desc {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        .twin-stats {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.75rem;
+        }
+
+        .twin-stat-label {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .twin-stat-value {
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .twin-right {
+            aspect-ratio: 1;
+            background: radial-gradient(ellipse at center, #1a1a1a, #000);
+            border-radius: 2px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .pillars { grid-template-columns: 1fr; }
@@ -973,6 +1216,10 @@
             .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
             .lineage { grid-template-columns: 1fr; }
             .concept-block-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+            .layers { grid-template-columns: 1fr 1fr; gap: 2.5rem 1rem; }
+            .layers::before { display: none; }
+            .scenarios { grid-template-columns: 1fr; }
+            .twin-dashboard { grid-template-columns: 1fr; gap: 2rem; }
         }
 
         @media (max-width: 768px) {
@@ -1082,6 +1329,280 @@
                     <div class="pillar-body">AI that removes friction and gives back time. Re-orders automatically. Proactively notices injury. Craft, not spectacle.</div>
                 </div>
 
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Hyperpersonalisation ─── -->
+        <section class="section reveal">
+            <div class="section-label">The thread · Hyperpersonalisation</div>
+            <h2 class="section-title">Not a <em>configuration</em>.<br>A <em>conversation</em>.</h2>
+            <div class="section-body">
+                <p>Every other brand treats personalisation as something you do <em>at purchase</em> — pick a colour, stitch your name, go. That's not personalisation. That's gift-wrap. The real opportunity is to design a loop where the shoe and the runner are in continuous dialogue, and every pair is a rendering of what On has learned about that person since the last one.</p>
+            </div>
+
+            <p class="hyper-principle">"Hyperpersonalisation isn't a feature you ship once. It's a relationship you design for years."</p>
+
+            <!-- Four layers of hyperpersonalisation -->
+            <div class="layers">
+                <div class="layer">
+                    <div class="layer-icon">
+                        <svg viewBox="0 0 30 30"><circle cx="15" cy="11" r="5"/><path d="M5,26 Q5,18 15,18 Q25,18 25,26"/></svg>
+                        <div class="layer-number">01</div>
+                    </div>
+                    <div class="layer-title">Identity</div>
+                    <div class="layer-desc">A persistent digital twin — foot, gait, biomechanics, history. Not a profile. A living model.</div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-icon">
+                        <svg viewBox="0 0 30 30"><path d="M4,20 Q4,14 10,12 L18,8 Q24,6 26,10 L26,18 Q18,22 6,22 Q3,22 4,20 Z"/><path d="M7,20 Q15,23 25,20"/></svg>
+                        <div class="layer-number">02</div>
+                    </div>
+                    <div class="layer-title">Expression</div>
+                    <div class="layer-desc">Every pair is a rendering of that twin at a moment. No two runners get the same shoe. No two pairs from the same runner either.</div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-icon">
+                        <svg viewBox="0 0 30 30"><path d="M15,4 L15,26"/><path d="M4,15 L26,15"/><circle cx="15" cy="15" r="9" stroke-dasharray="2 2"/></svg>
+                        <div class="layer-number">03</div>
+                    </div>
+                    <div class="layer-title">Adaptation</div>
+                    <div class="layer-desc">Sensors in the shoe feed wear and gait data back to the twin. Over 200km, it knows you better than you know you.</div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-icon">
+                        <svg viewBox="0 0 30 30"><path d="M15,3 L19,12 L28,13 L21,19 L23,28 L15,23 L7,28 L9,19 L2,13 L11,12 Z"/></svg>
+                        <div class="layer-number">04</div>
+                    </div>
+                    <div class="layer-title">Context</div>
+                    <div class="layer-desc">The same runner gets different shoes for different moments. Race-day, recovery, jet-lagged travel. Personal × contextual.</div>
+                </div>
+            </div>
+
+            <!-- Three scenarios -->
+            <div style="margin-top: 4rem;">
+                <div class="section-label" style="text-align: center; margin-bottom: 2rem;">Three scenarios that prove the loop</div>
+            </div>
+
+            <div class="scenarios">
+                <!-- Race-day shoe -->
+                <div class="scenario">
+                    <div class="scenario-visual">
+                        <svg viewBox="0 0 300 240" style="width: 100%; height: 100%;">
+                            <defs>
+                                <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#FF4500" stop-opacity="0.15"/>
+                                    <stop offset="100%" stop-color="#FF4500" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Sky/course gradient -->
+                            <rect x="0" y="0" width="300" height="120" fill="url(#sun)"/>
+                            <!-- Elevation profile -->
+                            <path d="M20,160 L60,155 L90,150 L120,140 L150,120 L175,100 L200,90 L225,110 L255,115 L280,105" fill="none" stroke="rgba(17,17,17,0.25)" stroke-width="1"/>
+                            <path d="M20,160 L60,155 L90,150 L120,140 L150,120 L175,100 L200,90 L225,110 L255,115 L280,105 L280,210 L20,210 Z" fill="rgba(17,17,17,0.05)"/>
+                            <!-- Course markers -->
+                            <line x1="20" y1="160" x2="20" y2="215" stroke="rgba(17,17,17,0.2)" stroke-width="0.5"/>
+                            <line x1="175" y1="100" x2="175" y2="215" stroke="rgba(255,69,0,0.5)" stroke-width="0.6" stroke-dasharray="2 2"/>
+                            <line x1="280" y1="105" x2="280" y2="215" stroke="rgba(17,17,17,0.2)" stroke-width="0.5"/>
+                            <text x="20" y="227" font-family="JetBrains Mono, monospace" font-size="6" fill="#999" text-anchor="middle">0KM</text>
+                            <text x="175" y="227" font-family="JetBrains Mono, monospace" font-size="6" fill="#FF4500" text-anchor="middle" font-weight="bold">KM 30 · FATIGUE</text>
+                            <text x="280" y="227" font-family="JetBrains Mono, monospace" font-size="6" fill="#999" text-anchor="middle">42.2KM</text>
+                            <!-- Weather chip -->
+                            <rect x="210" y="20" width="80" height="26" rx="4" fill="white" stroke="rgba(17,17,17,0.15)" stroke-width="0.5"/>
+                            <circle cx="225" cy="33" r="5" fill="none" stroke="#FF4500" stroke-width="1"/>
+                            <path d="M220,38 Q223,41 226,38 Q229,41 232,38" stroke="rgba(17,17,17,0.4)" stroke-width="0.6" fill="none"/>
+                            <text x="240" y="36" font-family="Inter, sans-serif" font-size="7" fill="#111">15°C · LIGHT RAIN</text>
+                            <!-- Shoe result -->
+                            <g transform="translate(105, 50)">
+                                <ellipse cx="40" cy="50" rx="45" ry="8" fill="rgba(255,69,0,0.1)"/>
+                                <path d="M5,45 Q5,32 18,28 L40,18 Q62,14 75,22 Q82,30 80,42 L80,48 Q55,54 18,50 Q8,48 5,45 Z" fill="none" stroke="#FF4500" stroke-width="1.3"/>
+                                <path d="M15,48 Q40,52 78,48" stroke="rgba(255,69,0,0.5)" stroke-width="0.8" fill="none"/>
+                                <circle cx="55" cy="35" r="2" fill="#FF4500"/>
+                                <circle cx="30" cy="40" r="1.5" fill="rgba(255,69,0,0.6)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="scenario-body">
+                        <div class="scenario-tag">Scenario A</div>
+                        <div class="scenario-name">The race-day shoe</div>
+                        <div class="scenario-desc">Friday night. Maya's marathon is Sunday. Her AI generates a one-off race shoe from the course elevation, Sunday's 15°C forecast, 12 weeks of training, and her fatigue pattern at km 30+. Sprayed overnight. At her hotel Saturday.</div>
+                        <div class="scenario-quote">"A shoe nobody else will ever own."</div>
+                    </div>
+                </div>
+
+                <!-- Bad-day shoe -->
+                <div class="scenario">
+                    <div class="scenario-visual">
+                        <svg viewBox="0 0 300 240" style="width: 100%; height: 100%;">
+                            <!-- HRV graph showing decline -->
+                            <g transform="translate(20, 40)">
+                                <text x="0" y="-10" font-family="JetBrains Mono, monospace" font-size="6" fill="#999" letter-spacing="1.5">HRV · LAST 3 NIGHTS</text>
+                                <line x1="0" y1="60" x2="260" y2="60" stroke="rgba(17,17,17,0.1)" stroke-width="0.5"/>
+                                <!-- Baseline bars -->
+                                <rect x="10" y="10" width="20" height="50" fill="rgba(17,17,17,0.15)" rx="1"/>
+                                <rect x="40" y="15" width="20" height="45" fill="rgba(17,17,17,0.15)" rx="1"/>
+                                <rect x="70" y="8" width="20" height="52" fill="rgba(17,17,17,0.15)" rx="1"/>
+                                <rect x="100" y="12" width="20" height="48" fill="rgba(17,17,17,0.15)" rx="1"/>
+                                <!-- Declining bars -->
+                                <rect x="140" y="25" width="20" height="35" fill="rgba(255,69,0,0.3)" rx="1"/>
+                                <rect x="170" y="32" width="20" height="28" fill="rgba(255,69,0,0.5)" rx="1"/>
+                                <rect x="200" y="40" width="20" height="20" fill="#FF4500" rx="1"/>
+                                <text x="210" y="80" font-family="JetBrains Mono, monospace" font-size="6" fill="#FF4500" text-anchor="middle">TODAY</text>
+                            </g>
+                            <!-- Adjustment card -->
+                            <g transform="translate(30, 160)">
+                                <rect x="0" y="0" width="240" height="60" rx="2" fill="white" stroke="rgba(17,17,17,0.1)" stroke-width="0.5"/>
+                                <text x="12" y="18" font-family="JetBrains Mono, monospace" font-size="6" fill="#999" letter-spacing="1.5">AUTOMATIC ADJUSTMENT</text>
+                                <text x="12" y="35" font-family="Playfair Display, serif" font-style="italic" font-size="12" fill="#111">Midsole: +12% cushioning</text>
+                                <text x="12" y="50" font-family="Inter, sans-serif" font-size="8" fill="rgba(17,17,17,0.5)">She will never see this screen.</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="scenario-body">
+                        <div class="scenario-tag">Scenario B</div>
+                        <div class="scenario-name">The bad-day shoe</div>
+                        <div class="scenario-desc">She's slept poorly three nights running. Her HRV is low. Her next refresh's midsole is composed with 12% more cushioning — automatically. She doesn't know it. The shoe is softer because she needs softer.</div>
+                        <div class="scenario-quote">"Hyperpersonalisation as kindness."</div>
+                    </div>
+                </div>
+
+                <!-- Injured-but-still-moving shoe -->
+                <div class="scenario">
+                    <div class="scenario-visual">
+                        <svg viewBox="0 0 300 240" style="width: 100%; height: 100%;">
+                            <!-- Foot diagram with injury marker -->
+                            <g transform="translate(90, 30)">
+                                <!-- Achilles zone highlight -->
+                                <ellipse cx="55" cy="30" rx="18" ry="10" fill="rgba(255,69,0,0.15)" stroke="rgba(255,69,0,0.5)" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="80" y="20" font-family="JetBrains Mono, monospace" font-size="6" fill="#FF4500" letter-spacing="1.5">ACHILLES</text>
+                                <!-- Foot side profile -->
+                                <path d="M10,120 Q10,100 25,95 L55,35 Q75,28 85,50 L95,110 Q95,125 85,128 L20,128 Q10,125 10,120 Z" fill="none" stroke="rgba(17,17,17,0.6)" stroke-width="1"/>
+                                <!-- Heel counter highlight -->
+                                <path d="M50,38 Q70,32 82,48 L88,80 Q85,85 78,82 L60,50" fill="none" stroke="#FF4500" stroke-width="1.3"/>
+                                <!-- Drop indicator -->
+                                <line x1="20" y1="128" x2="95" y2="128" stroke="rgba(17,17,17,0.3)" stroke-width="0.5" stroke-dasharray="1 2"/>
+                                <line x1="95" y1="115" x2="95" y2="128" stroke="#FF4500" stroke-width="1"/>
+                                <path d="M92,118 L95,115 L98,118" fill="none" stroke="#FF4500" stroke-width="0.8"/>
+                                <text x="105" y="122" font-family="JetBrains Mono, monospace" font-size="6" fill="#FF4500">−2MM DROP</text>
+                            </g>
+                            <!-- Physio note at bottom -->
+                            <g transform="translate(30, 175)">
+                                <rect x="0" y="0" width="240" height="50" rx="2" fill="white" stroke="rgba(17,17,17,0.1)" stroke-width="0.5"/>
+                                <text x="12" y="16" font-family="JetBrains Mono, monospace" font-size="6" fill="#999" letter-spacing="1.5">PHYSIO NOTE · SYNCED</text>
+                                <text x="12" y="32" font-family="Playfair Display, serif" font-style="italic" font-size="9" fill="#111">"Reinforce heel counter. Lower offset."</text>
+                                <text x="12" y="43" font-family="Inter, sans-serif" font-size="7" fill="rgba(17,17,17,0.5)">Next refresh adjusts. She doesn't have to ask.</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="scenario-body">
+                        <div class="scenario-tag">Scenario C</div>
+                        <div class="scenario-name">The injured-but-still-moving shoe</div>
+                        <div class="scenario-desc">She's tweaked her Achilles. Her physio notes flow into her twin (with her permission). The next refresh reinforces the heel counter and drops the offset by 2mm. The shoe heals with her.</div>
+                        <div class="scenario-quote">"The shoe as quiet collaborator."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Twin Dashboard -->
+            <div class="twin-dashboard">
+                <div class="twin-left">
+                    <div class="twin-label">The runner's digital twin</div>
+                    <div class="twin-title">One <em>model</em>, many<br>shoes over time.</div>
+                    <div class="twin-desc">The runner's twin is the unit of personalisation — not the shoe. Each pair is a rendering of the twin at a point in time, tuned to a specific purpose. The twin is what the runner "owns" in the On ecosystem. The shoes are outputs.</div>
+                    <div class="twin-stats">
+                        <div>
+                            <div class="twin-stat-label">Model version</div>
+                            <div class="twin-stat-value">v 14.2</div>
+                        </div>
+                        <div>
+                            <div class="twin-stat-label">Runs observed</div>
+                            <div class="twin-stat-value">247</div>
+                        </div>
+                        <div>
+                            <div class="twin-stat-label">Inputs fused</div>
+                            <div class="twin-stat-value">Gait · HRV · Wear · Physio</div>
+                        </div>
+                        <div>
+                            <div class="twin-stat-label">Pairs rendered</div>
+                            <div class="twin-stat-value">6</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="twin-right">
+                    <svg viewBox="0 0 300 300" style="width: 100%; height: 100%;">
+                        <defs>
+                            <radialGradient id="twinGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(255,69,0,0.2)"/>
+                                <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Central twin circle with rings -->
+                        <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" stroke-dasharray="3 4">
+                            <animateTransform attributeName="transform" type="rotate" from="0 150 150" to="360 150 150" dur="40s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="150" cy="150" r="80" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5">
+                            <animateTransform attributeName="transform" type="rotate" from="360 150 150" to="0 150 150" dur="30s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="150" cy="150" r="55" fill="url(#twinGlow)"/>
+                        <!-- Twin node center -->
+                        <circle cx="150" cy="150" r="8" fill="#FF4500">
+                            <animate attributeName="r" values="6;10;6" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="150" y="154" font-family="JetBrains Mono, monospace" font-size="6" fill="white" text-anchor="middle" letter-spacing="2">TWIN</text>
+                        <!-- Input nodes around the twin -->
+                        <g>
+                            <circle cx="50" cy="80" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="50" y="70" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">GAIT</text>
+                            <line x1="50" y1="80" x2="142" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <g>
+                            <circle cx="250" cy="80" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="250" y="70" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">HRV</text>
+                            <line x1="250" y1="80" x2="158" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <g>
+                            <circle cx="40" cy="180" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">WEAR</text>
+                            <line x1="40" y1="180" x2="140" y2="156" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <g>
+                            <circle cx="260" cy="180" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="260" y="200" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">PHYSIO</text>
+                            <line x1="260" y1="180" x2="160" y2="156" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <g>
+                            <circle cx="150" cy="40" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="150" y="28" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">SLEEP</text>
+                            <line x1="150" y1="40" x2="150" y2="140" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <g>
+                            <circle cx="150" cy="260" r="4" fill="rgba(255,255,255,0.6)"/>
+                            <text x="150" y="278" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">CONTEXT</text>
+                            <line x1="150" y1="260" x2="150" y2="160" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="1 2"/>
+                        </g>
+                        <!-- Output shoes orbiting -->
+                        <g>
+                            <g transform="translate(90, 250)">
+                                <path d="M0,8 Q0,3 4,2 L10,0 Q16,0 18,3 L18,7 Q12,9 2,9 Q0,9 0,8 Z" fill="none" stroke="#FF4500" stroke-width="0.8" opacity="0.8"/>
+                            </g>
+                            <g transform="translate(210, 250)">
+                                <path d="M0,8 Q0,3 4,2 L10,0 Q16,0 18,3 L18,7 Q12,9 2,9 Q0,9 0,8 Z" fill="none" stroke="#FF4500" stroke-width="0.8" opacity="0.6"/>
+                            </g>
+                            <g transform="translate(150, 240)">
+                                <path d="M0,8 Q0,3 4,2 L10,0 Q16,0 18,3 L18,7 Q12,9 2,9 Q0,9 0,8 Z" fill="#FF4500" fill-opacity="0.3" stroke="#FF4500" stroke-width="1"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="insight" style="margin: 3rem 0 0;">
+                <div class="insight-label">The reframe</div>
+                <div class="insight-body">"Most brands personalise the shoe. On's opportunity is to personalise the <em>runner</em> — build a twin so rich that every output, every pair, every refresh, is a fresh rendering of the person. Hyperpersonalisation is the thread that makes every other Lab initiative work."</div>
             </div>
         </section>
 
