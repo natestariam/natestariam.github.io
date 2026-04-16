@@ -195,7 +195,38 @@
 
         .concept-tag { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
         .concept-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.6rem; }
-        .concept-desc { font-size: 0.82rem; line-height: 1.6; color: var(--muted); font-weight: 300; }
+        .concept-desc { font-size: 0.82rem; line-height: 1.6; color: var(--muted); font-weight: 300; margin-bottom: 0.9rem; }
+
+        .concept-proves {
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .concept-proves strong { color: var(--text); font-weight: 500; }
+
+        /* Canvas proves banner */
+        .canvas-proves {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent);
+            border-radius: 2px;
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .canvas-proves strong { color: var(--text); font-weight: 500; }
 
         /* Concept preview animations */
         .preview-second-pair { display: flex; align-items: center; justify-content: space-around; padding: 0 1.5rem; height: 100%; }
@@ -224,6 +255,8 @@
         .stage-mini svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 1.5; }
         .stage-arrow { color: var(--muted); opacity: 0.5; }
         @keyframes stage-glow { 0%,100% { border-color: var(--border); } 33% { border-color: var(--accent); background: var(--accent-soft); } }
+
+        .preview-coffee { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; padding: 0 1rem; }
 
         .preview-community { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; }
         .preview-community svg { width: 75%; height: 75%; }
@@ -2279,10 +2312,11 @@
 
         <!-- ─── Prototypes ─── -->
         <section class="section reveal">
-            <div class="section-label">03 · Three prototypes I'd scope in the first 90 days</div>
-            <h2 class="section-title">From theory<br>to artefact.</h2>
+            <div class="section-label">03 · Four prototypes I'd scope in the first 90 days</div>
+            <h2 class="section-title">Small bets that<br>prove the <em>bigger</em> ones.</h2>
             <div class="section-body" style="margin-bottom: 2rem;">
-                <p>Strategy is only credible if it leads to something you can touch. These are the directions I'd turn into small, testable prototypes in the first three months. Click any prototype to open its canvas.</p>
+                <p>Everything above is a thesis. These four prototypes are the smallest possible artefacts that test each of them. One proves hyperpersonalisation can feel human. One proves restraint outperforms feature-stacking. One proves the Living Atelier can scale. One proves the Coffee Runner is worth designing for. Each is shippable in 90 days. Each is a foothold for a 2028 vision.</p>
+                <p style="font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem;">Click any card to open its canvas. Each prototype names the bigger bet it's testing.</p>
             </div>
             <div class="concepts">
 
@@ -2297,9 +2331,10 @@
                         </div>
                     </div>
                     <div class="concept-body">
-                        <div class="concept-tag">Prototype 01</div>
+                        <div class="concept-tag">Prototype 01 · 90 days</div>
                         <div class="concept-name">The Second Pair</div>
                         <div class="concept-desc">An AI companion that learns from your first shoe and designs the spec of your next. Manufacturing as the final design decision.</div>
+                        <div class="concept-proves">Tests → <strong>Hyperpersonalisation</strong></div>
                     </div>
                 </div>
 
@@ -2310,9 +2345,10 @@
                         </div>
                     </div>
                     <div class="concept-body">
-                        <div class="concept-tag">Prototype 02</div>
+                        <div class="concept-tag">Prototype 02 · 60 days</div>
                         <div class="concept-name">The Quiet Run</div>
                         <div class="concept-desc">A companion app experiment that deliberately says less, not more. Insight only when it's actionable.</div>
+                        <div class="concept-proves">Tests → <strong>The Running Self</strong> · Pillar 01</div>
                     </div>
                 </div>
 
@@ -2325,34 +2361,48 @@
                         <div class="stage-mini"><svg viewBox="0 0 24 24"><path d="M4,14 Q4,10 10,9 L16,6 Q20,5 22,8 L22,14 Q14,16 6,15 Z"/></svg></div>
                     </div>
                     <div class="concept-body">
-                        <div class="concept-tag">Prototype 03</div>
-                        <div class="concept-name">The Atelier</div>
-                        <div class="concept-desc">One store, one quarter. Arrival to shoe sprayed in front of you. Tests the full physical-digital loop as one journey.</div>
+                        <div class="concept-tag">Prototype 03 · 12 weeks</div>
+                        <div class="concept-name">The Pop-Up Atelier</div>
+                        <div class="concept-desc">A 12-week residency in one existing On store. Spray theatre, ambient twin recognition, named pairs made in public. The scaled-down proof of the 2028 vision.</div>
+                        <div class="concept-proves">Tests → <strong>The Living Atelier · 2028</strong></div>
                     </div>
                 </div>
 
                 <div class="concept" onclick="openCanvas('proto-4')">
-                    <div class="concept-visual preview-community">
-                        <svg viewBox="0 0 200 160">
-                            <line class="community-line-mini" x1="40" y1="30" x2="100" y2="80" style="animation-delay: 0.5s" />
-                            <line class="community-line-mini" x1="160" y1="30" x2="100" y2="80" style="animation-delay: 0.8s" />
-                            <line class="community-line-mini" x1="30" y1="80" x2="100" y2="80" style="animation-delay: 1.1s" />
-                            <line class="community-line-mini" x1="170" y1="80" x2="100" y2="80" style="animation-delay: 1.4s" />
-                            <line class="community-line-mini" x1="40" y1="130" x2="100" y2="80" style="animation-delay: 1.7s" />
-                            <line class="community-line-mini" x1="160" y1="130" x2="100" y2="80" style="animation-delay: 2s" />
-                            <circle class="community-node-mini" cx="40" cy="30" r="3" style="animation-delay: 0s" />
-                            <circle class="community-node-mini" cx="160" cy="30" r="3" style="animation-delay: 0.3s" />
-                            <circle class="community-node-mini" cx="30" cy="80" r="3" style="animation-delay: 0.6s" />
-                            <circle class="community-node-mini" cx="170" cy="80" r="3" style="animation-delay: 0.9s" />
-                            <circle class="community-node-mini" cx="40" cy="130" r="3" style="animation-delay: 1.2s" />
-                            <circle class="community-node-mini" cx="160" cy="130" r="3" style="animation-delay: 1.5s" />
-                            <circle class="community-center-mini" cx="100" cy="80" r="4" />
+                    <div class="concept-visual preview-coffee">
+                        <svg viewBox="0 0 200 160" style="width: 85%; height: 85%;">
+                            <defs>
+                                <radialGradient id="coffeeGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="rgba(255,69,0,0.25)"/>
+                                    <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- 5 cohort dots in a row -->
+                            <circle cx="25" cy="80" r="14" fill="url(#coffeeGlow)"/>
+                            <circle cx="25" cy="80" r="10" fill="var(--accent)" stroke="var(--accent)" stroke-width="1">
+                                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="25" y="83" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="600">35%</text>
+                            <circle cx="70" cy="80" r="6" fill="rgba(17,17,17,0.25)"/>
+                            <text x="70" y="82" font-family="Inter" font-size="6" fill="rgba(17,17,17,0.5)" text-anchor="middle">25%</text>
+                            <circle cx="105" cy="80" r="5" fill="rgba(17,17,17,0.2)"/>
+                            <text x="105" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">15%</text>
+                            <circle cx="140" cy="80" r="4" fill="rgba(17,17,17,0.18)"/>
+                            <text x="140" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">10%</text>
+                            <circle cx="170" cy="80" r="5" fill="rgba(17,17,17,0.2)"/>
+                            <text x="170" y="82" font-family="Inter" font-size="5" fill="rgba(17,17,17,0.5)" text-anchor="middle">15%</text>
+                            <!-- Label for the highlighted one -->
+                            <text x="25" y="115" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--accent)" text-anchor="middle" letter-spacing="1.5">COFFEE RUNNER</text>
+                            <text x="25" y="125" font-family="Playfair Display, serif" font-style="italic" font-size="7" fill="rgba(17,17,17,0.7)" text-anchor="middle">hidden majority</text>
+                            <line x1="100" y1="44" x2="100" y2="60" stroke="rgba(17,17,17,0.2)" stroke-width="0.4"/>
+                            <text x="100" y="38" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="2">5 COHORTS · ONE TO DESIGN FOR FIRST</text>
                         </svg>
                     </div>
                     <div class="concept-body">
-                        <div class="concept-tag">Prototype 04</div>
-                        <div class="concept-name">The Community Signal</div>
-                        <div class="concept-desc">Turns community conversation, race data, and product feedback into early R&D signals. The Lab as insight engine.</div>
+                        <div class="concept-tag">Prototype 04 · 90 days</div>
+                        <div class="concept-name">The Coffee Runner Study</div>
+                        <div class="concept-desc">A tight research-and-capsule study on the 35% of On customers who don't run. Design a 5-SKU lifestyle capsule, test it against a matched group, measure what changes.</div>
+                        <div class="concept-proves">Tests → <strong>Beyond the Run</strong> · Segmentation</div>
                     </div>
                 </div>
 
@@ -3509,7 +3559,8 @@
             <div class="canvas-header">
                 <div class="canvas-tag">Prototype 01 · 90-Day Build</div>
                 <h1 class="canvas-title">The <em>Second</em> Pair</h1>
-                <p class="canvas-lede">What if your next pair is designed by the one you just wore? A six-week prototype where the first shoe becomes the brief for the second — and manufacturing becomes the last design decision, not the first.</p>
+                <p class="canvas-lede">What if your next pair is designed by the one you just wore? A 90-day prototype where the first shoe becomes the brief for the second — and manufacturing becomes the last design decision, not the first.</p>
+                <div class="canvas-proves">Tests → <strong>Hyperpersonalisation</strong> (The digital twin as the unit of design)</div>
             </div>
 
             <div class="journey">
@@ -3649,6 +3700,7 @@
                 <div class="canvas-tag">Prototype 02 · 60-Day Build</div>
                 <h1 class="canvas-title">The <em>Quiet</em> Run</h1>
                 <p class="canvas-lede">A companion app experiment designed around a radical idea: the app says nothing unless it has something worth saying. We test whether AI can feel restorative — not demanding — in the moment of the run itself.</p>
+                <div class="canvas-proves">Tests → <strong>The Running Self</strong> · Pillar 01 (restraint as a feature)</div>
             </div>
 
             <div class="journey">
@@ -3770,9 +3822,10 @@
         <button class="canvas-close" onclick="closeCanvas()">✕</button>
         <div class="canvas-inner">
             <div class="canvas-header">
-                <div class="canvas-tag">Prototype 03 · One Store, One Quarter</div>
-                <h1 class="canvas-title">The <em>Atelier</em></h1>
-                <p class="canvas-lede">A single flagship store becomes the Lab's stage. For one quarter, we test what happens when arrival, consultation, design, and manufacturing all happen in one continuous thirty-minute experience — with the runner at the centre of it.</p>
+                <div class="canvas-tag">Prototype 03 · Pop-Up, One Store, 12 Weeks</div>
+                <h1 class="canvas-title">The <em>Pop-Up</em> Atelier</h1>
+                <p class="canvas-lede">A 12-week residency inside one existing On flagship. Spray theatre visible through glass, ambient twin recognition for returning customers, named pairs made in public. The minimum-viable proof of the Living Atelier 2028 vision — small enough to ship, big enough to learn from.</p>
+                <div class="canvas-proves">Tests → <strong>The Living Atelier · 2028</strong> (Craft as content, not configuration)</div>
             </div>
 
             <div class="journey">
@@ -3909,48 +3962,49 @@
         </div>
     </div>
 
-    <!-- ─── CANVAS: PROTOTYPE 04 — The Community Signal ─── -->
+    <!-- ─── CANVAS: PROTOTYPE 04 — The Coffee Runner Study ─── -->
     <div class="canvas-modal" id="canvas-proto-4">
         <button class="canvas-close" onclick="closeCanvas()">✕</button>
         <div class="canvas-inner">
             <div class="canvas-header">
-                <div class="canvas-tag">Prototype 04 · Insight Engine</div>
-                <h1 class="canvas-title">The <em>Community</em> Signal</h1>
-                <p class="canvas-lede">On's community — OAC athletes, run clubs, customers — is already having the conversation. The Lab's job is to listen. This prototype turns community signal into early R&D direction, without turning the community into a focus group.</p>
+                <div class="canvas-tag">Prototype 04 · 90-Day Study</div>
+                <h1 class="canvas-title">The <em>Coffee</em> Runner Study</h1>
+                <p class="canvas-lede">The 35% of On customers who don't run are our biggest unbranded audience. This is a tight research-and-capsule study to understand them, design for them, and test whether a dedicated lifestyle line meaningfully changes what they buy, how they spend, and how they talk about the brand.</p>
+                <div class="canvas-proves">Tests → <strong>Beyond the Run</strong> · Segmentation hypothesis</div>
             </div>
 
             <div class="journey">
-                <div class="journey-label">From conversation to insight to product</div>
+                <div class="journey-label">From hidden majority to designed-for cohort</div>
                 <div class="journey-steps">
                     <div class="journey-step">
                         <div class="step-dot">01</div>
-                        <div class="step-time">Source</div>
-                        <div class="step-title">Listen</div>
-                        <div class="step-sub">OAC notes, community channels, race data.</div>
+                        <div class="step-time">Wk 1–2</div>
+                        <div class="step-title">Observe</div>
+                        <div class="step-sub">Shadow 40 Coffee Runners in 4 cities.</div>
                     </div>
                     <div class="journey-step">
                         <div class="step-dot">02</div>
-                        <div class="step-time">Ingest</div>
-                        <div class="step-title">Aggregate</div>
-                        <div class="step-sub">AI clusters signals, ignores noise.</div>
+                        <div class="step-time">Wk 3–4</div>
+                        <div class="step-title">Frame</div>
+                        <div class="step-sub">Map the brief. Tone, fit, materials, moments.</div>
                     </div>
                     <div class="journey-step active">
                         <div class="step-dot">03</div>
-                        <div class="step-time">Weekly</div>
-                        <div class="step-title">Digest</div>
-                        <div class="step-sub">One page. Patterns, not datapoints.</div>
+                        <div class="step-time">Wk 5–8</div>
+                        <div class="step-title">Design</div>
+                        <div class="step-sub">Five-SKU lifestyle capsule. No fake performance.</div>
                     </div>
                     <div class="journey-step">
                         <div class="step-dot">04</div>
-                        <div class="step-time">Quarterly</div>
-                        <div class="step-title">Brief</div>
-                        <div class="step-sub">R&D receives prioritised product questions.</div>
+                        <div class="step-time">Wk 9–11</div>
+                        <div class="step-title">Test</div>
+                        <div class="step-sub">Ship to 200. Match against a control group.</div>
                     </div>
                     <div class="journey-step">
                         <div class="step-dot">05</div>
-                        <div class="step-time">Release</div>
-                        <div class="step-title">Credit</div>
-                        <div class="step-sub">Community knows their signal shaped it.</div>
+                        <div class="step-time">Wk 12</div>
+                        <div class="step-title">Decide</div>
+                        <div class="step-sub">Go / no-go on full On Off line.</div>
                     </div>
                 </div>
             </div>
@@ -3959,80 +4013,90 @@
                 <div class="scene">
                     <div class="scene-canvas">
                         <div class="ui-screen">
-                            <div class="ui-h">Listening · Last 7 days</div>
-                            <div class="ui-stat"><span class="ui-stat-label">OAC notes</span><span class="ui-stat-value">34</span></div>
-                            <div class="ui-stat"><span class="ui-stat-label">Run club signals</span><span class="ui-stat-value">218</span></div>
-                            <div class="ui-stat"><span class="ui-stat-label">Race data points</span><span class="ui-stat-value">4,102</span></div>
-                            <div class="ui-stat"><span class="ui-stat-label">Reviews</span><span class="ui-stat-value">612</span></div>
+                            <div class="ui-h">Observation · Zurich, Apr 14</div>
+                            <div class="ui-title">Coffee Runner · Andrea, 52</div>
+                            <div class="ui-meta">Owns 4 pairs of On. Has run twice in 2 years.</div>
                             <div class="ui-divider"></div>
-                            <div class="ui-meta" style="font-style: italic;">Opt-in only. Every source is consented.</div>
+                            <div class="ui-stat"><span class="ui-stat-label">Wears to</span><span class="ui-stat-value">Office, travel</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Pairs with</span><span class="ui-stat-value">Suit, merino, denim</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Also owns</span><span class="ui-stat-value">Loro Piana, Common Projects</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">"I like that they're quiet. No one can tell what brand they are."</div>
                         </div>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-tag">Scene 01 — Source</div>
-                        <div class="scene-title">The inputs are plural.</div>
-                        <div class="scene-desc">Not a single "voice of the customer." The signal comes from elite athletes, weekend runners, sales data, race results, and review text — weighted differently, but all heard.</div>
+                        <div class="scene-tag">Scene 01 — Observe</div>
+                        <div class="scene-title">Actually watching, not surveying.</div>
+                        <div class="scene-desc">Two weeks shadowing 40 customers across Zurich, London, New York, Singapore. We learn where they actually wear the shoes, what they pair them with, and what they'd never admit in a survey.</div>
                     </div>
                 </div>
 
                 <div class="scene">
                     <div class="scene-canvas">
                         <div class="ui-screen">
-                            <div class="ui-h">Weekly Digest · W12</div>
-                            <div class="ui-title">Three patterns worth attention</div>
+                            <div class="ui-h">Capsule · On Off Vol. 1</div>
+                            <div class="ui-title">Five pairs, built for the city.</div>
                             <div class="ui-divider"></div>
-                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot orange" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">Trail runners want lower stack.</div><div class="ui-meta">12 signals across 3 continents.</div></div></div>
-                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot grey" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">Cloud X 4 tongue pressure.</div><div class="ui-meta">8 notes, one fix tested.</div></div></div>
-                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot green" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">LightSpray colour curiosity.</div><div class="ui-meta">Opportunity, not a problem.</div></div></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cloud Quiet</span><span class="ui-stat-value">Travel / airport</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cloud Office</span><span class="ui-stat-value">Business casual</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cloud Weekend</span><span class="ui-stat-value">Off-duty, washable</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cloud Boot</span><span class="ui-stat-value">Cold weather</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cloud Dress</span><span class="ui-stat-value">Evening, refined</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">No "extra cushioning for runners." Honest lifestyle product.</div>
                         </div>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-tag">Scene 02 — Digest</div>
-                        <div class="scene-title">One page a week.</div>
-                        <div class="scene-desc">Every Friday, a single page lands in the inboxes of R&D, product, and design leadership. Three patterns, ranked. Signal, not dashboard.</div>
+                        <div class="scene-tag">Scene 02 — Design</div>
+                        <div class="scene-title">Five honest SKUs.</div>
+                        <div class="scene-desc">Not Cloud X with different laces. A genuinely separate capsule: refined uppers, leather options, unbranded silhouettes, materials that belong in a Loro Piana window — not a Runner's World ad.</div>
                     </div>
                 </div>
 
                 <div class="scene">
                     <div class="scene-canvas">
                         <div class="ui-screen">
-                            <div class="ui-h">Release note · Cloudmonster 4</div>
-                            <div class="ui-title">A thank you, not a feature list.</div>
+                            <div class="ui-h">Week 12 · Results</div>
+                            <div class="ui-title">The numbers we'd want to see</div>
                             <div class="ui-divider"></div>
-                            <div class="ui-meta" style="font-style: italic; line-height: 1.5;">"After hearing from 34 OAC athletes and 200+ of you who run trails on weekends, we tested a lower stack version. It ships next month."</div>
+                            <div class="ui-stat"><span class="ui-stat-label">Avg basket</span><span class="ui-stat-value">+47%</span></div>
+                            <div class="ui-bar"><div class="ui-bar-fill" style="width: 74%;"></div></div>
+                            <div class="ui-stat" style="margin-top: 0.4rem;"><span class="ui-stat-label">Repeat purchase</span><span class="ui-stat-value">+38%</span></div>
+                            <div class="ui-bar"><div class="ui-bar-fill" style="width: 68%;"></div></div>
+                            <div class="ui-stat" style="margin-top: 0.4rem;"><span class="ui-stat-label">Brand NPS (cohort)</span><span class="ui-stat-value">+22</span></div>
                             <div class="ui-divider"></div>
-                            <div class="ui-meta">The community sees their influence directly in the release. Trust compounds.</div>
+                            <div class="ui-meta" style="font-style: italic;">If any of these clear the bar, On Off becomes a proper line.</div>
                         </div>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-tag">Scene 03 — Credit</div>
-                        <div class="scene-title">The loop closes publicly.</div>
-                        <div class="scene-desc">When a release ships, the community sees which signal inspired it. It's not "we listened" — it's "here's what we heard, and here's what we made." That's how listening becomes a brand value.</div>
+                        <div class="scene-tag">Scene 03 — Decide</div>
+                        <div class="scene-title">Evidence, not anecdote.</div>
+                        <div class="scene-desc">The study is designed to be killable. If the numbers don't clear pre-agreed thresholds, On Off doesn't ship. If they do, the Lab has the strongest possible case for a full vertical — backed by runners, not just instincts.</div>
                     </div>
                 </div>
             </div>
 
             <div class="insight">
                 <div class="insight-label">Prototype Hypothesis</div>
-                <div class="insight-body">"If the Lab can turn community signal into a weekly insight page that R&D actually reads, we've made the AI Lab useful to the whole company — not a side project, but a central nervous system."</div>
+                <div class="insight-body">"If designing <em>intentionally</em> for the Coffee Runner lifts basket, retention, and NPS against a control, we've proven that On's biggest untapped audience is a product strategy problem — not a marketing one. That unlocks the full Beyond the Run agenda."</div>
             </div>
 
             <div class="metrics">
                 <div class="metric">
-                    <div class="metric-value">1 page</div>
-                    <div class="metric-label">Weekly digest<br>length cap</div>
+                    <div class="metric-value">40</div>
+                    <div class="metric-label">Customers<br>shadowed in week 1</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-value">3</div>
-                    <div class="metric-label">Patterns surfaced<br>per week</div>
+                    <div class="metric-value">5 SKUs</div>
+                    <div class="metric-label">Capsule size<br>hard cap</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-value">Consent</div>
-                    <div class="metric-label">Every signal source<br>opted in</div>
+                    <div class="metric-value">200</div>
+                    <div class="metric-label">Invited testers<br>vs matched control</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-value">Credited</div>
-                    <div class="metric-label">Community sees<br>their influence</div>
+                    <div class="metric-value">Killable</div>
+                    <div class="metric-label">Pre-agreed thresholds.<br>No vanity metrics.</div>
                 </div>
             </div>
         </div>
