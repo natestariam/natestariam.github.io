@@ -549,6 +549,363 @@
         .metric-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 0.4rem; }
         .metric-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
 
+        /* ─── Lineage section ─── */
+        .lineage {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .lineage-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: transform 0.4s, border-color 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .lineage-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--text);
+        }
+
+        .lineage-visual {
+            aspect-ratio: 3 / 4;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lineage-visual.mcqueen {
+            background:
+                radial-gradient(ellipse at center, #2a2a2a 0%, #000 70%);
+        }
+
+        .lineage-visual.coperni {
+            background:
+                radial-gradient(ellipse at 30% 50%, #4a4a4a 0%, #1a1a1a 60%, #000 100%);
+        }
+
+        .lineage-visual.on {
+            background:
+                radial-gradient(ellipse at center, #3a2a1a 0%, #1a0f05 70%);
+        }
+
+        /* McQueen — two robots spraying toward center figure */
+        .mcqueen-scene {
+            position: absolute;
+            inset: 0;
+        }
+
+        .mcqueen-figure {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 110px;
+            background: #f0ece6;
+            border-radius: 15px 15px 4px 4px;
+            opacity: 0.85;
+        }
+
+        .mcqueen-figure::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #f0ece6;
+        }
+
+        .mcqueen-robot {
+            position: absolute;
+            top: 50%;
+            width: 4px;
+            height: 50px;
+            background: #888;
+            transform-origin: bottom;
+            animation: robot-spray 4s ease-in-out infinite;
+        }
+
+        .mcqueen-robot.left {
+            left: 22%;
+            transform: translateY(-50%) rotate(25deg);
+        }
+
+        .mcqueen-robot.right {
+            right: 22%;
+            transform: translateY(-50%) rotate(-25deg);
+        }
+
+        .mcqueen-robot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FF4500;
+        }
+
+        @keyframes robot-spray {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .mcqueen-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #FF4500;
+            animation: particle-spray 2s ease-out infinite;
+        }
+
+        .mcqueen-particle:nth-child(4) { top: 40%; left: 32%; animation-delay: 0s; }
+        .mcqueen-particle:nth-child(5) { top: 50%; left: 36%; animation-delay: 0.3s; }
+        .mcqueen-particle:nth-child(6) { top: 60%; left: 34%; animation-delay: 0.6s; }
+        .mcqueen-particle:nth-child(7) { top: 45%; right: 32%; animation-delay: 0.15s; }
+        .mcqueen-particle:nth-child(8) { top: 55%; right: 36%; animation-delay: 0.45s; }
+        .mcqueen-particle:nth-child(9) { top: 65%; right: 34%; animation-delay: 0.75s; }
+
+        @keyframes particle-spray {
+            0% { opacity: 0; transform: scale(0.5); }
+            30% { opacity: 1; }
+            100% { opacity: 0; transform: scale(2) translateY(-10px); }
+        }
+
+        /* Coperni — nozzles spraying liquid onto figure */
+        .coperni-figure {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 120px;
+            background: linear-gradient(180deg, transparent 0%, transparent 30%, #fff 30%, #fff 90%, transparent 100%);
+            border-radius: 16px 16px 4px 4px;
+            opacity: 0.9;
+            animation: dress-form 4s ease-in-out infinite;
+        }
+
+        .coperni-figure::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #e8c8a8;
+        }
+
+        @keyframes dress-form {
+            0% { background: linear-gradient(180deg, transparent 0%, transparent 100%); }
+            50% { background: linear-gradient(180deg, transparent 0%, transparent 30%, #fff 30%, #fff 60%, transparent 100%); }
+            100% { background: linear-gradient(180deg, transparent 0%, transparent 30%, #fff 30%, #fff 90%, transparent 100%); }
+        }
+
+        .coperni-nozzle {
+            position: absolute;
+            top: 40%;
+            width: 20px;
+            height: 2px;
+            background: #aaa;
+        }
+
+        .coperni-nozzle.left { left: 10%; }
+        .coperni-nozzle.right { right: 10%; }
+
+        .coperni-spray {
+            position: absolute;
+            top: 40%;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: coperni-fade 4s ease-in-out infinite;
+        }
+
+        .coperni-spray.left { left: 25%; }
+        .coperni-spray.right { right: 25%; transform: scaleX(-1); }
+
+        @keyframes coperni-fade {
+            0% { opacity: 0; }
+            30%, 70% { opacity: 0.7; }
+            100% { opacity: 0; }
+        }
+
+        /* On LightSpray — robotic arm spraying a shoe */
+        .on-shoe {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 32px;
+        }
+
+        .on-shoe svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .on-shoe svg path {
+            fill: none;
+            stroke: #f0ece6;
+            stroke-width: 1.5;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: draw-shoe-lineage 4s ease-in-out infinite;
+        }
+
+        @keyframes draw-shoe-lineage {
+            0% { stroke-dashoffset: 200; }
+            70%, 100% { stroke-dashoffset: 0; }
+        }
+
+        .on-arm {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            width: 3px;
+            height: 35%;
+            background: #888;
+            transform-origin: top;
+            transform: translateX(-50%) rotate(0deg);
+            animation: arm-sweep 4s ease-in-out infinite;
+        }
+
+        @keyframes arm-sweep {
+            0%, 100% { transform: translateX(-50%) rotate(-20deg); }
+            50% { transform: translateX(-50%) rotate(20deg); }
+        }
+
+        .on-arm::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FF4500;
+            box-shadow: 0 0 12px rgba(255, 69, 0, 0.6);
+        }
+
+        .on-filament {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            width: 1px;
+            height: 20%;
+            background: linear-gradient(180deg, #FF4500, transparent);
+            transform: translateX(-50%);
+            animation: filament-fall 1.5s linear infinite;
+        }
+
+        @keyframes filament-fall {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            30% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        }
+
+        .lineage-body {
+            padding: 1.75rem;
+        }
+
+        .lineage-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+        }
+
+        .lineage-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+        }
+
+        .lineage-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .lineage-desc {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+        }
+
+        .lineage-link {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .intersection-diagram {
+            margin: 4rem auto 0;
+            padding: 3rem 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .intersection-svg {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .intersection-label-top {
+            text-align: center;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .intersection-center {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text);
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .pillars { grid-template-columns: 1fr; }
@@ -557,6 +914,7 @@
             .scenes { grid-template-columns: 1fr; }
             .metrics { grid-template-columns: 1fr 1fr; }
             .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+            .lineage { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -666,6 +1024,98 @@
                     <div class="pillar-body">AI that removes friction and gives back time. Re-orders automatically. Proactively notices injury. Craft, not spectacle.</div>
                 </div>
 
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Lineage / Cultural Reference ─── -->
+        <section class="section reveal">
+            <div class="section-label">A lineage · Fashion × Performance</div>
+            <h2 class="section-title">The spray has<br><em>history</em>.</h2>
+            <div class="section-body">
+                <p>On didn't invent the theatre of spraying clothes onto bodies — fashion did. The difference is that fashion has treated it as spectacle, a one-night show. On has the manufacturing technology to make it a daily, scalable act. That's a rare place to stand.</p>
+                <p>The sweet spot the Lab should design for isn't "AI for sportswear." It's the much rarer overlap where <strong>high fashion's obsession with craft as performance</strong> meets <strong>high performance's obsession with craft as advantage</strong>. On already lives there. The question is how visible we make it.</p>
+            </div>
+
+            <div class="lineage">
+
+                <a href="https://www.youtube.com/watch?v=P13oZsD-t4s" target="_blank" class="lineage-card">
+                    <div class="lineage-visual mcqueen">
+                        <div class="mcqueen-scene">
+                            <div class="mcqueen-figure"></div>
+                            <div class="mcqueen-robot left"></div>
+                            <div class="mcqueen-robot right"></div>
+                            <div class="mcqueen-particle"></div>
+                            <div class="mcqueen-particle"></div>
+                            <div class="mcqueen-particle"></div>
+                            <div class="mcqueen-particle"></div>
+                            <div class="mcqueen-particle"></div>
+                            <div class="mcqueen-particle"></div>
+                        </div>
+                    </div>
+                    <div class="lineage-body">
+                        <div class="lineage-label">Alexander McQueen</div>
+                        <div class="lineage-title">"No. 13" — the spraying dress</div>
+                        <div class="lineage-year">SS 1999 · London</div>
+                        <div class="lineage-desc">Shalom Harlow in a white dress, two car-paint robots spraying her on a slow-rotating turntable. Twenty-five years old and still the moment where everyone understood making could be theatre.</div>
+                        <span class="lineage-link">Watch →</span>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=JjtNpz57fOI" target="_blank" class="lineage-card">
+                    <div class="lineage-visual coperni">
+                        <div class="coperni-spray left"></div>
+                        <div class="coperni-spray right"></div>
+                        <div class="coperni-nozzle left"></div>
+                        <div class="coperni-nozzle right"></div>
+                        <div class="coperni-figure"></div>
+                    </div>
+                    <div class="lineage-body">
+                        <div class="lineage-label">Coperni × Fabrican</div>
+                        <div class="lineage-title">Bella Hadid, sprayed into a dress</div>
+                        <div class="lineage-year">SS 2023 · Paris</div>
+                        <div class="lineage-desc">Nine minutes on stage, a liquid fibre sprayed onto her body by two technicians, hardening into a wearable dress in real time. The internet stopped moving. Craft became livestream.</div>
+                        <span class="lineage-link">Watch →</span>
+                    </div>
+                </a>
+
+                <div class="lineage-card" style="cursor: default; background: var(--highlight); border-color: var(--accent);">
+                    <div class="lineage-visual on">
+                        <div class="on-arm"></div>
+                        <div class="on-filament"></div>
+                        <div class="on-shoe">
+                            <svg viewBox="0 0 120 50" preserveAspectRatio="xMidYMid meet">
+                                <path d="M15,38 Q15,25 30,22 L55,12 Q85,8 100,18 Q112,26 110,35 L110,40 Q75,46 30,43 Q18,42 15,38 Z" />
+                                <path d="M28,40 Q60,45 102,40" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="lineage-body">
+                        <div class="lineage-label" style="color: var(--accent);">On · LightSpray</div>
+                        <div class="lineage-title">A shoe sprayed in 3 minutes. Every day.</div>
+                        <div class="lineage-year">2024–2026 · Zurich + Seoul</div>
+                        <div class="lineage-desc">32 robots, 1.5 km of filament, one continuous upper. What fashion used as spectacle twice in twenty-five years, On now does industrially — with room to turn it into experience.</div>
+                        <span class="lineage-link" style="color: var(--accent); border-color: var(--accent);">The opportunity</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="intersection-diagram">
+                <div class="intersection-label-top">Where the AI Lab should design</div>
+                <svg class="intersection-svg" viewBox="0 0 500 240">
+                    <circle cx="175" cy="120" r="95" fill="none" stroke="#111" stroke-width="1" opacity="0.5" />
+                    <circle cx="325" cy="120" r="95" fill="none" stroke="#111" stroke-width="1" opacity="0.5" />
+                    <ellipse cx="250" cy="120" rx="35" ry="60" fill="#FF4500" opacity="0.12" />
+                    <text x="100" y="40" font-family="Inter" font-size="9" letter-spacing="1.5" fill="#777" style="text-transform: uppercase; font-weight: 500;">High Fashion</text>
+                    <text x="88" y="55" font-family="Inter" font-size="8" fill="#999">Craft · Spectacle · Taste</text>
+                    <text x="318" y="40" font-family="Inter" font-size="9" letter-spacing="1.5" fill="#777" style="text-transform: uppercase; font-weight: 500;">High Performance</text>
+                    <text x="320" y="55" font-family="Inter" font-size="8" fill="#999">Data · Science · Craft</text>
+                    <text x="212" y="128" font-family="Playfair Display" font-size="11" font-style="italic" fill="#111" text-anchor="middle">The Lab</text>
+                    <text x="250" y="215" font-family="Inter" font-size="7" letter-spacing="2" fill="#999" text-anchor="middle" style="text-transform: uppercase;">making as intimacy, not spectacle</text>
+                </svg>
+                <div class="intersection-center">Intimacy is the new innovation.</div>
             </div>
         </section>
 
@@ -1754,6 +2204,11 @@
             <div class="insight">
                 <div class="insight-label">Prototype Hypothesis</div>
                 <div class="insight-body">"If we can make a 30-minute retail visit the highlight of someone's week, we've repositioned On stores from a place you shop to a place you go. That's a moat competitors can't copy."</div>
+            </div>
+
+            <div class="insight" style="border-left-color: #111; background: #F0EFEB;">
+                <div class="insight-label" style="color: #111;">Cultural Lineage</div>
+                <div class="insight-body" style="font-size: 1.1rem;">"What McQueen did in 9 minutes with two paint robots in 1999, and what Coperni did with Bella Hadid in 2022 — On can do every day, with a pair of shoes, in Zurich. The Atelier is that act turned into a regular ritual."</div>
             </div>
 
             <div class="metrics">
