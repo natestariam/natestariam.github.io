@@ -6,7 +6,7 @@
     <title>Natalia Kurakina — Vision for On AI Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,808 +18,561 @@
             --card: #FFFFFF;
             --highlight: #F0EFEB;
             --accent: #FF4500;
+            --accent-soft: rgba(255, 69, 0, 0.08);
         }
 
         html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        body.modal-open { overflow: hidden; }
 
         /* ─── Nav ─── */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            background-color: rgba(248, 247, 244, 0.9);
-        }
-
-        .nav-name {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .nav-meta {
-            font-size: 0.7rem;
-            color: var(--muted);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); background-color: rgba(248, 247, 244, 0.9); }
+        .nav-name { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+        .nav-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
 
         /* ─── Container ─── */
-        .container {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 0 2.5rem;
-        }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
 
         /* ─── Hero ─── */
-        .hero {
-            padding-top: 10rem;
-            padding-bottom: 6rem;
-        }
-
-        .hero-overline {
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-            color: var(--muted);
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 4rem;
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 2rem;
-        }
-
+        .hero { padding-top: 10rem; padding-bottom: 6rem; }
+        .hero-overline { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 2.5rem; color: var(--muted); }
+        .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 4rem; font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 2rem; }
         .hero h1 em { font-style: italic; }
-
-        .hero-sub {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--muted);
-            max-width: 600px;
-            font-weight: 300;
-        }
-
-        .hero-meta {
-            display: flex;
-            gap: 2.5rem;
-            margin-top: 4rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--border);
-            flex-wrap: wrap;
-        }
-
-        .meta-item-small {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .meta-item-small strong {
-            color: var(--text);
-            font-weight: 500;
-        }
+        .hero-sub { font-size: 1.1rem; line-height: 1.7; color: var(--muted); max-width: 600px; font-weight: 300; }
+        .hero-meta { display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+        .meta-item-small { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+        .meta-item-small strong { color: var(--text); font-weight: 500; }
 
         /* ─── Section ─── */
-        .section {
-            margin-bottom: 6rem;
-        }
-
-        .section-label {
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 3rem;
-            color: var(--muted);
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.4rem;
-            font-weight: 400;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
-
+        .section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 3rem; color: var(--muted); }
+        .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.4rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
         .section-title em { font-style: italic; }
-
-        .section-body {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #333;
-            font-weight: 300;
-        }
-
+        .section-body { font-size: 1rem; line-height: 1.8; color: #333; font-weight: 300; }
         .section-body p { margin-bottom: 1.25rem; }
 
         /* ─── Divider ─── */
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 5rem 0;
-        }
+        .divider { height: 1px; background: var(--border); margin: 5rem 0; }
 
         /* ─── Pull quote ─── */
-        .pull {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.8rem;
-            line-height: 1.4;
-            font-style: italic;
-            font-weight: 400;
-            padding: 2rem 0;
-            max-width: 700px;
-            color: var(--text);
-        }
+        .pull { font-family: 'Playfair Display', Georgia, serif; font-size: 1.8rem; line-height: 1.4; font-style: italic; font-weight: 400; padding: 2rem 0; max-width: 700px; color: var(--text); }
 
-        /* ─── Pillars ─── */
-        .pillars {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+        /* ─── Pillars (clickable cards) ─── */
+        .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 
         .pillar {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 2.5rem;
             padding: 2rem;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 2px;
-            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             overflow: hidden;
         }
 
-        .pillar-visual {
-            height: 180px;
+        .pillar:hover {
+            transform: translateY(-3px);
+            border-color: var(--text);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.12);
+        }
+
+        .pillar::after {
+            content: 'Explore journey →';
+            position: absolute;
+            bottom: 1.25rem;
+            right: 1.5rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pillar:hover::after { opacity: 1; }
+
+        .pillar-preview {
+            height: 120px;
+            margin-bottom: 1.5rem;
             background: #F5F4F0;
             border-radius: 2px;
             position: relative;
             overflow: hidden;
         }
 
-        .pillar-content {
-            padding-right: 0.5rem;
+        .pillar-number { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.8rem; color: var(--muted); }
+        .pillar-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .pillar-body { font-size: 0.82rem; line-height: 1.65; color: var(--muted); font-weight: 300; padding-right: 3rem; }
+
+        /* ── Pillar preview animations ── */
+        /* P01: breathing waveform */
+        .preview-running svg { width: 100%; height: 100%; }
+        .preview-running .wave { stroke: var(--text); stroke-width: 1.5; fill: none; stroke-linecap: round; animation: wave-pulse 4s ease-in-out infinite; }
+        .preview-running .glow { fill: var(--accent); opacity: 0.1; animation: glow-breath 4s ease-in-out infinite; transform-origin: center; }
+        @keyframes wave-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+        @keyframes glow-breath { 0%,100% { transform: scale(0.8); opacity: 0.08; } 50% { transform: scale(1.3); opacity: 0.2; } }
+
+        /* P02: spray forming */
+        .preview-loop { position: relative; }
+        .preview-loop::before {
+            content: ''; position: absolute; inset: 30% 20%;
+            background: repeating-linear-gradient(85deg, transparent, transparent 3px, rgba(17,17,17,0.35) 3px, rgba(17,17,17,0.35) 3.5px);
+            mask: radial-gradient(ellipse at center, black 50%, transparent 100%);
+            -webkit-mask: radial-gradient(ellipse at center, black 50%, transparent 100%);
+            animation: spray-breathe 4s ease-in-out infinite;
         }
-
-        .pillar-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 1;
-            margin-bottom: 0.8rem;
-            color: var(--muted);
+        .preview-loop::after {
+            content: ''; position: absolute; top: 15%; left: 50%; width: 2px; height: 20%;
+            background: linear-gradient(180deg, var(--accent), transparent);
+            animation: drop-move 3.5s ease-in-out infinite;
         }
+        @keyframes spray-breathe { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+        @keyframes drop-move { 0% { opacity: 0; transform: translateX(-40px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateX(40px); } }
 
-        .pillar-title {
-            font-size: 1.15rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
+        /* P03: memory dots */
+        .preview-retail { position: relative; }
+        .preview-retail .dot { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--text); opacity: 0; animation: dot-fade 6s ease-in-out infinite; }
+        .preview-retail .dot:nth-child(1) { top: 25%; left: 20%; }
+        .preview-retail .dot:nth-child(2) { top: 55%; left: 45%; background: var(--accent); width: 10px; height: 10px; animation-delay: 0.6s; }
+        .preview-retail .dot:nth-child(3) { top: 35%; left: 70%; animation-delay: 1.2s; }
+        .preview-retail .dot:nth-child(4) { top: 65%; left: 80%; animation-delay: 1.8s; }
+        .preview-retail .dot:nth-child(5) { top: 20%; left: 50%; animation-delay: 2.4s; }
+        @keyframes dot-fade { 0%,100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1); } }
 
-        .pillar-body {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        /* ── Visual 1: The Running Self — pulsing waveform ── */
-        .viz-running-self {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .viz-running-self svg {
-            width: 80%;
-            height: auto;
-        }
-
-        .viz-running-self .wave-path {
-            stroke: var(--text);
-            stroke-width: 1.5;
-            fill: none;
-            stroke-linecap: round;
-            animation: pulse-wave 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse-wave {
-            0%, 100% { opacity: 0.3; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        .viz-running-self .breath-circle {
-            fill: var(--accent);
-            opacity: 0.15;
-            animation: breath 5s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes breath {
-            0%, 100% { transform: scale(0.6); opacity: 0.08; }
-            50% { transform: scale(1.2); opacity: 0.18; }
-        }
-
-        /* ── Visual 2: Physical-Digital Loop — spray forming shoe ── */
-        .viz-loop {
-            position: relative;
-        }
-
-        .viz-loop::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 50px;
-            transform: translate(-50%, -50%);
-            background:
-                repeating-linear-gradient(85deg, transparent 0px, transparent 3px, rgba(17,17,17,0.3) 3px, rgba(17,17,17,0.3) 3.5px);
-            mask: radial-gradient(ellipse 80px 30px at center, black 60%, transparent 100%);
-            -webkit-mask: radial-gradient(ellipse 80px 30px at center, black 60%, transparent 100%);
-            animation: spray-fill 4s ease-in-out infinite;
-        }
-
-        .viz-loop::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            width: 1px;
-            height: 25%;
-            background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
-            transform: translateX(-50%);
-            animation: spray-drop 4s ease-in-out infinite;
-        }
-
-        @keyframes spray-fill {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes spray-drop {
-            0% { opacity: 0; transform: translateX(-30px) translateY(-20px); }
-            30% { opacity: 1; }
-            50% { opacity: 1; transform: translateX(0) translateY(10px); }
-            70% { opacity: 1; transform: translateX(30px) translateY(-20px); }
-            100% { opacity: 0; transform: translateX(60px) translateY(0); }
-        }
-
-        /* ── Visual 3: Retail as a Stage — memory dots ── */
-        .viz-retail {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .retail-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text);
-            opacity: 0;
-            animation: dot-appear 6s ease-in-out infinite;
-        }
-
-        .retail-dot:nth-child(1) { top: 30%; left: 25%; animation-delay: 0s; }
-        .retail-dot:nth-child(2) { top: 60%; left: 40%; animation-delay: 0.5s; width: 12px; height: 12px; background: var(--accent); }
-        .retail-dot:nth-child(3) { top: 40%; left: 60%; animation-delay: 1s; }
-        .retail-dot:nth-child(4) { top: 70%; left: 75%; animation-delay: 1.5s; }
-        .retail-dot:nth-child(5) { top: 20%; left: 80%; animation-delay: 2s; }
-        .retail-dot:nth-child(6) { top: 50%; left: 15%; animation-delay: 2.5s; }
-
-        .retail-dot::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 30px;
-            height: 30px;
-            border: 1px solid currentColor;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.3;
-            animation: ripple 3s ease-out infinite;
-        }
-
-        @keyframes dot-appear {
-            0% { opacity: 0; transform: scale(0.3); }
-            20% { opacity: 1; transform: scale(1); }
-            60% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.3); }
-        }
-
-        @keyframes ripple {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
-        }
-
-        /* ── Visual 4: The Quiet Layer — soft breath ── */
-        .viz-quiet {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .quiet-ring {
-            position: absolute;
-            border: 1px solid var(--text);
-            border-radius: 50%;
-            opacity: 0;
-        }
-
-        .quiet-ring:nth-child(1) { width: 40px; height: 40px; animation: quiet-expand 5s ease-out infinite; animation-delay: 0s; }
-        .quiet-ring:nth-child(2) { width: 40px; height: 40px; animation: quiet-expand 5s ease-out infinite; animation-delay: 1.6s; }
-        .quiet-ring:nth-child(3) { width: 40px; height: 40px; animation: quiet-expand 5s ease-out infinite; animation-delay: 3.2s; }
-
-        .quiet-center {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--text);
-            z-index: 2;
-        }
-
-        @keyframes quiet-expand {
-            0% { width: 6px; height: 6px; opacity: 0.5; }
-            100% { width: 140px; height: 140px; opacity: 0; }
-        }
+        /* P04: quiet rings */
+        .preview-quiet { display: flex; align-items: center; justify-content: center; position: relative; }
+        .preview-quiet .ring { position: absolute; border: 1px solid var(--text); border-radius: 50%; opacity: 0; }
+        .preview-quiet .ring:nth-child(1) { animation: ring-expand 5s ease-out infinite; }
+        .preview-quiet .ring:nth-child(2) { animation: ring-expand 5s ease-out infinite; animation-delay: 1.6s; }
+        .preview-quiet .ring:nth-child(3) { animation: ring-expand 5s ease-out infinite; animation-delay: 3.2s; }
+        .preview-quiet .center { width: 5px; height: 5px; border-radius: 50%; background: var(--text); }
+        @keyframes ring-expand { 0% { width: 5px; height: 5px; opacity: 0.6; } 100% { width: 110px; height: 110px; opacity: 0; } }
 
         /* ─── Prototype concepts ─── */
-        .concepts {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+        .concepts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 
         .concept {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 2px;
-            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            position: relative;
         }
 
         .concept:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             border-color: var(--text);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.12);
         }
 
         .concept-visual {
-            height: 180px;
+            height: 160px;
             background: linear-gradient(135deg, #F5F4F0 0%, #EDEBE5 100%);
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
 
-        .concept-body {
-            padding: 1.75rem;
-        }
+        .concept-body { padding: 1.5rem; padding-bottom: 2.5rem; }
 
-        .concept-tag {
+        .concept::after {
+            content: 'Open canvas →';
+            position: absolute;
+            bottom: 1rem;
+            right: 1.25rem;
             font-size: 0.6rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .concept-name {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-        }
-
-        .concept-desc {
-            font-size: 0.85rem;
-            line-height: 1.65;
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        /* ── Concept 1: The Second Pair — data transfer between shoes ── */
-        .viz-second-pair {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 0 2rem;
-        }
-
-        .shoe-icon {
-            width: 60px;
-            height: 60px;
-            position: relative;
-        }
-
-        .shoe-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .shoe-icon.shoe-1 path {
-            fill: none;
-            stroke: var(--muted);
-            stroke-width: 1.5;
-        }
-
-        .shoe-icon.shoe-2 path {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 1.5;
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
-            animation: draw-shoe 3s ease-in-out infinite;
-        }
-
-        @keyframes draw-shoe {
-            0% { stroke-dashoffset: 100; }
-            50%, 100% { stroke-dashoffset: 0; }
-        }
-
-        .data-flow {
-            flex: 1;
-            height: 2px;
-            margin: 0 1rem;
-            position: relative;
-            background: linear-gradient(90deg, var(--muted) 0%, transparent 50%, var(--accent) 100%);
-            opacity: 0.3;
-        }
-
-        .data-flow::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 0;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: flow-particle 3s linear infinite;
-        }
-
-        @keyframes flow-particle {
-            0% { left: 0; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
-        }
-
-        .shoe-label {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            white-space: nowrap;
-        }
-
-        /* ── Concept 2: The Quiet Run — timeline with minimal interventions ── */
-        .viz-quiet-run {
-            padding: 0 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .run-timeline {
-            position: relative;
-            height: 2px;
-            background: var(--border);
-            margin: 3rem 0;
-        }
-
-        .run-marker {
-            position: absolute;
-            top: -4px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-            transform: translateX(-50%);
-            animation: marker-pulse 4s ease-in-out infinite;
-        }
-
-        .run-marker:nth-child(1) { left: 20%; animation-delay: 0s; }
-        .run-marker:nth-child(2) { left: 58%; animation-delay: 1.3s; }
-        .run-marker:nth-child(3) { left: 85%; animation-delay: 2.6s; }
-
-        .run-marker::before {
-            content: 'check in';
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text);
-            white-space: nowrap;
             opacity: 0;
-            animation: label-fade 4s ease-in-out infinite;
+            transition: opacity 0.3s;
         }
 
-        .run-marker:nth-child(1)::before { animation-delay: 0s; }
-        .run-marker:nth-child(2)::before { content: 'pace'; animation-delay: 1.3s; }
-        .run-marker:nth-child(3)::before { content: 'recovery'; animation-delay: 2.6s; }
+        .concept:hover::after { opacity: 1; }
 
-        @keyframes marker-pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.3); }
-            50% { transform: translateX(-50%) scale(1.3); box-shadow: 0 0 0 8px rgba(255, 69, 0, 0); }
-        }
+        .concept-tag { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+        .concept-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.6rem; }
+        .concept-desc { font-size: 0.82rem; line-height: 1.6; color: var(--muted); font-weight: 300; }
 
-        @keyframes label-fade {
-            0%, 30%, 70%, 100% { opacity: 0; }
-            10%, 50% { opacity: 1; }
-        }
+        /* Concept preview animations */
+        .preview-second-pair { display: flex; align-items: center; justify-content: space-around; padding: 0 1.5rem; height: 100%; }
+        .shoe-mini { width: 50px; height: 50px; }
+        .shoe-mini svg { width: 100%; height: 100%; fill: none; stroke-width: 1.5; }
+        .shoe-mini.first svg { stroke: var(--muted); }
+        .shoe-mini.second svg { stroke: var(--accent); stroke-dasharray: 120; stroke-dashoffset: 120; animation: draw 3s ease-in-out infinite; }
+        @keyframes draw { 0% { stroke-dashoffset: 120; } 50%,100% { stroke-dashoffset: 0; } }
+        .flow-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--muted), transparent 50%, var(--accent)); margin: 0 0.8rem; position: relative; opacity: 0.4; }
+        .flow-line::after { content: ''; position: absolute; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: flow 3s linear infinite; }
+        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
-        .quiet-silence {
-            position: absolute;
-            top: -6px;
-            height: 14px;
-            background: linear-gradient(90deg, transparent, rgba(17,17,17,0.03), transparent);
-        }
+        .preview-quiet-run { padding: 0 1.5rem; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .run-line { position: relative; height: 1px; background: var(--border); margin: 2rem 0; }
+        .run-pulse { position: absolute; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); transform: translateX(-50%); animation: pulse-mark 4s ease-in-out infinite; }
+        .run-pulse:nth-child(1) { left: 22%; }
+        .run-pulse:nth-child(2) { left: 58%; animation-delay: 1.3s; }
+        .run-pulse:nth-child(3) { left: 86%; animation-delay: 2.6s; }
+        @keyframes pulse-mark { 0%,100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255,69,0,0.4); } 50% { transform: translateX(-50%) scale(1.4); box-shadow: 0 0 0 10px rgba(255,69,0,0); } }
 
-        .quiet-silence:nth-of-type(1) { left: 0; width: 18%; }
-        .quiet-silence:nth-of-type(2) { left: 22%; width: 34%; }
-        .quiet-silence:nth-of-type(3) { left: 60%; width: 23%; }
-        .quiet-silence:nth-of-type(4) { left: 87%; width: 13%; }
+        .preview-atelier { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0 1rem; height: 100%; }
+        .stage-mini { flex: 1; height: 70px; background: var(--card); border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; animation: stage-glow 6s ease-in-out infinite; }
+        .stage-mini:nth-child(1) { animation-delay: 0s; }
+        .stage-mini:nth-child(3) { animation-delay: 2s; }
+        .stage-mini:nth-child(5) { animation-delay: 4s; }
+        .stage-mini svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 1.5; }
+        .stage-arrow { color: var(--muted); opacity: 0.5; }
+        @keyframes stage-glow { 0%,100% { border-color: var(--border); } 33% { border-color: var(--accent); background: var(--accent-soft); } }
 
-        /* ── Concept 3: The Atelier — three stages ── */
-        .viz-atelier {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            padding: 0 1.5rem;
-        }
-
-        .stage {
-            flex: 1;
-            height: 100px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            position: relative;
-            animation: stage-highlight 6s ease-in-out infinite;
-        }
-
-        .stage:nth-child(1) { animation-delay: 0s; }
-        .stage:nth-child(3) { animation-delay: 2s; }
-        .stage:nth-child(5) { animation-delay: 4s; }
-
-        @keyframes stage-highlight {
-            0%, 100% { border-color: var(--border); }
-            33% { border-color: var(--accent); }
-        }
-
-        .stage-icon {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text);
-            stroke-width: 1.5;
-            fill: none;
-        }
-
-        .stage-label {
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .stage-arrow {
-            color: var(--muted);
-            font-size: 1rem;
-            opacity: 0.5;
-        }
-
-        /* ── Concept 4: Community Signal — constellation ── */
-        .viz-community {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .community-svg {
-            width: 80%;
-            height: 80%;
-        }
-
-        .community-node {
-            fill: var(--text);
-            opacity: 0;
-            animation: node-appear 6s ease-in-out infinite;
-        }
-
-        .community-line {
-            stroke: var(--text);
-            stroke-width: 0.5;
-            opacity: 0;
-            animation: line-appear 6s ease-in-out infinite;
-        }
-
-        .community-center {
-            fill: var(--accent);
-            animation: center-pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes node-appear {
-            0% { opacity: 0; }
-            20%, 80% { opacity: 0.6; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes line-appear {
-            0% { opacity: 0; }
-            30%, 70% { opacity: 0.3; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes center-pulse {
-            0%, 100% { r: 4; opacity: 0.7; }
-            50% { r: 7; opacity: 1; }
-        }
+        .preview-community { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; }
+        .preview-community svg { width: 75%; height: 75%; }
+        .community-node-mini { fill: var(--text); opacity: 0; animation: node-fade 6s ease-in-out infinite; }
+        .community-line-mini { stroke: var(--text); stroke-width: 0.4; opacity: 0; animation: line-fade 6s ease-in-out infinite; }
+        .community-center-mini { fill: var(--accent); animation: center-p 3s ease-in-out infinite; }
+        @keyframes node-fade { 0%,100% { opacity: 0; } 20%,80% { opacity: 0.6; } }
+        @keyframes line-fade { 0%,100% { opacity: 0; } 30%,70% { opacity: 0.3; } }
+        @keyframes center-p { 0%,100% { r: 3; opacity: 0.7; } 50% { r: 6; opacity: 1; } }
 
         /* ─── Timeline ─── */
-        .timeline {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem 2rem;
-            margin-top: 2rem;
+        .timeline { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2rem; margin-top: 2rem; }
+        .timeline-horizon { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500; color: var(--muted); padding-top: 0.5rem; white-space: nowrap; }
+        .timeline-content { padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .timeline-row:last-child .timeline-content { border-bottom: none; padding-bottom: 0; }
+        .timeline-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .timeline-desc { font-size: 0.9rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+        /* ─── About ─── */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .about-block p { font-size: 0.95rem; line-height: 1.75; color: #333; font-weight: 300; margin-bottom: 1rem; }
+        .about-block strong { color: var(--text); font-weight: 500; }
+
+        /* ─── Footer ─── */
+        .footer { padding: 6rem 0 5rem; text-align: center; }
+        .footer-cta { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; line-height: 1.5; max-width: 600px; margin: 0 auto 2.5rem; color: var(--text); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; }
+        .footer-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; text-decoration: none; color: var(--text); padding-bottom: 2px; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+        .footer-link:hover { border-color: var(--text); }
+
+        /* ─── Reveal ─── */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════════════ MODAL / CANVAS ═══════════════ */
+        .canvas-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(248, 247, 244, 0.98);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
         }
 
-        .timeline-horizon {
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            font-weight: 500;
-            color: var(--muted);
-            padding-top: 0.5rem;
-            white-space: nowrap;
+        .canvas-modal.open {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .timeline-content {
-            padding-bottom: 2rem;
+        .canvas-close {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 210;
+            background: var(--card);
+            border: 1px solid var(--border);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .canvas-close:hover { transform: rotate(90deg); border-color: var(--text); }
+
+        .canvas-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 3rem 6rem;
+        }
+
+        .canvas-header {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
             border-bottom: 1px solid var(--border);
         }
 
-        .timeline-row:last-child .timeline-content {
-            border-bottom: none;
-            padding-bottom: 0;
+        .canvas-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
 
-        .timeline-title {
+        .canvas-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .canvas-title em { font-style: italic; }
+
+        .canvas-lede {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            font-weight: 300;
+            max-width: 700px;
+        }
+
+        /* Canvas journey */
+        .journey { margin-bottom: 4rem; }
+
+        .journey-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .journey-steps::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), var(--accent), var(--border));
+        }
+
+        .journey-step {
+            position: relative;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .step-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .journey-step.active .step-dot,
+        .journey-step:hover .step-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .step-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+
+        .step-sub {
+            font-size: 0.7rem;
+            color: var(--muted);
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        /* Scenes / Screens */
+        .scenes {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .scene {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .scene-canvas {
+            aspect-ratio: 1 / 1.2;
+            background: linear-gradient(135deg, #F5F4F0, #E8E5DE);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-body {
+            padding: 1.25rem;
+        }
+
+        .scene-tag {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-title {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 400;
             margin-bottom: 0.5rem;
         }
 
-        .timeline-desc {
-            font-size: 0.9rem;
-            line-height: 1.7;
+        .scene-desc {
+            font-size: 0.78rem;
+            line-height: 1.6;
             color: var(--muted);
             font-weight: 300;
         }
 
-        /* ─── About ─── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        /* Mock UI screens inside scenes */
+        .ui-screen {
+            position: absolute;
+            inset: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-size: 0.6rem;
         }
 
-        .about-block p {
-            font-size: 0.95rem;
-            line-height: 1.75;
-            color: #333;
-            font-weight: 300;
-            margin-bottom: 1rem;
+        .ui-dot { width: 4px; height: 4px; border-radius: 50%; display: inline-block; }
+        .ui-dot.green { background: #22C55E; }
+        .ui-dot.orange { background: var(--accent); }
+        .ui-dot.grey { background: #bbb; }
+
+        .ui-h { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #999; font-weight: 500; }
+        .ui-title { font-size: 0.75rem; font-weight: 600; color: var(--text); }
+        .ui-meta { font-size: 0.55rem; color: #999; font-weight: 400; }
+        .ui-bar { height: 3px; border-radius: 2px; background: #EEE; position: relative; overflow: hidden; }
+        .ui-bar-fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--accent); border-radius: 2px; }
+        .ui-stat { display: flex; justify-content: space-between; font-size: 0.6rem; }
+        .ui-stat-label { color: #999; }
+        .ui-stat-value { color: var(--text); font-weight: 500; }
+        .ui-divider { height: 1px; background: #EEE; margin: 0.3rem 0; }
+        .ui-notif { background: var(--accent-soft); padding: 0.5rem; border-radius: 4px; border-left: 2px solid var(--accent); font-size: 0.58rem; color: var(--text); }
+
+        /* Floor plan for retail */
+        .floor-plan { position: absolute; inset: 0; background: #F0EEE8; }
+        .floor-plan svg { width: 100%; height: 100%; }
+
+        /* Key insight */
+        .insight {
+            margin: 4rem 0;
+            padding: 2.5rem 2.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 2px;
         }
 
-        .about-block strong {
-            color: var(--text);
+        .insight-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
             font-weight: 500;
         }
 
-        /* ─── Footer ─── */
-        .footer {
-            padding: 6rem 0 5rem;
-            text-align: center;
-        }
-
-        .footer-cta {
+        .insight-body {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             line-height: 1.5;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
             color: var(--text);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .footer-link {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
             font-weight: 400;
-            text-decoration: none;
-            color: var(--text);
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
         }
 
-        .footer-link:hover { border-color: var(--text); }
-
-        /* ─── Reveal ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 4rem;
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .metric { text-align: left; padding: 0 1.5rem; border-right: 1px solid var(--border); }
+        .metric:last-child { border-right: none; }
+        .metric-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 0.4rem; }
+        .metric-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
 
         /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .pillars { grid-template-columns: 1fr; }
+            .concepts { grid-template-columns: 1fr; }
+            .journey-steps { grid-template-columns: repeat(5, 1fr); font-size: 0.8rem; }
+            .scenes { grid-template-columns: 1fr; }
+            .metrics { grid-template-columns: 1fr 1fr; }
+            .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .section-title { font-size: 1.8rem; }
+            .canvas-title { font-size: 2.2rem; }
             .pull { font-size: 1.3rem; }
-            .concepts { grid-template-columns: 1fr; }
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
             .container { padding: 0 1.5rem; }
+            .canvas-inner { padding: 5rem 1.5rem 4rem; }
             .nav { padding: 1rem 1.5rem; }
             .timeline { grid-template-columns: 1fr; gap: 0.5rem 0; }
             .hero-meta { gap: 1.5rem; }
-            .pillar { grid-template-columns: 1fr; gap: 1.5rem; }
-            .pillar-visual { height: 140px; }
+            .journey-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .journey-steps::before { display: none; }
+            .pillar-body { padding-right: 0; }
         }
     </style>
 </head>
@@ -837,7 +590,7 @@
             <div class="hero-overline">For On · Head of Experience Design · AI Lab</div>
             <h1>Designing how<br>On <em>feels</em>,<br>not just how<br>it runs.</h1>
             <p class="hero-sub">
-                A perspective on what the AI Lab could become, how the work should be scoped, and why I believe I'm the right person to shape it. Prepared for the second-round conversation.
+                A perspective on what the AI Lab could become, how the work should be scoped, and why I believe I'm the right person to shape it. Click into any pillar or prototype to explore the journey in detail.
             </p>
             <div class="hero-meta">
                 <span class="meta-item-small"><strong>Natalia Kurakina</strong></span>
@@ -848,7 +601,7 @@
 
         <div class="divider"></div>
 
-        <!-- ─── How I See On ─── -->
+        <!-- How I see On -->
         <section class="section reveal">
             <div class="section-label">01 · How I see On</div>
             <h2 class="section-title">A brand that already <em>runs</em><br>on craft. AI should make it<br><em>feel inevitable</em>.</h2>
@@ -860,11 +613,8 @@
 
         <div class="divider"></div>
 
-        <!-- ─── The Pull Quote ─── -->
         <section class="section reveal" style="margin-bottom: 4rem;">
-            <p class="pull">
-                "The best AI products don't feel like AI. They feel like the brand, turned up. That's what the Lab should be aiming for — not innovation as novelty, but innovation as intimacy."
-            </p>
+            <p class="pull">"The best AI products don't feel like AI. They feel like the brand, turned up. That's what the Lab should be aiming for — not innovation as novelty, but innovation as intimacy."</p>
         </section>
 
         <div class="divider"></div>
@@ -873,59 +623,47 @@
         <section class="section reveal">
             <div class="section-label">02 · Four pillars of the Lab's work</div>
             <h2 class="section-title">Where AI should<br>earn its place.</h2>
+            <div class="section-body" style="margin-bottom: 2rem;">
+                <p style="font-size: 0.9rem; color: var(--muted);">Click any pillar to explore the full journey, customer experience, and scenes behind it.</p>
+            </div>
             <div class="pillars">
 
-                <div class="pillar">
-                    <div class="pillar-visual viz-running-self">
+                <div class="pillar" onclick="openCanvas('pillar-1')">
+                    <div class="pillar-preview preview-running">
                         <svg viewBox="0 0 200 80" preserveAspectRatio="xMidYMid meet">
-                            <circle class="breath-circle" cx="100" cy="40" r="30" />
-                            <path class="wave-path" d="M10,40 Q25,20 40,40 T70,40 Q85,10 100,40 T130,40 Q145,25 160,40 T190,40" />
+                            <circle class="glow" cx="100" cy="40" r="28" />
+                            <path class="wave" d="M10,40 Q25,20 40,40 T70,40 Q85,10 100,40 T130,40 Q145,25 160,40 T190,40" />
                         </svg>
                     </div>
-                    <div class="pillar-content">
-                        <div class="pillar-number">01</div>
-                        <div class="pillar-title">The Running Self</div>
-                        <div class="pillar-body">AI as a mirror for the runner. Not a coach barking metrics, but a quiet reflective layer that helps a runner understand their own patterns, recovery, and progression — and adapts the product experience (fit, cushioning, route recommendations) to who they are today, not who they were last week. The nuance is in restraint: when not to speak.</div>
-                    </div>
+                    <div class="pillar-number">01</div>
+                    <div class="pillar-title">The Running Self</div>
+                    <div class="pillar-body">AI as a mirror for the runner. Not a coach barking metrics, but a quiet reflective layer that adapts to who you are today.</div>
                 </div>
 
-                <div class="pillar">
-                    <div class="pillar-visual viz-loop"></div>
-                    <div class="pillar-content">
-                        <div class="pillar-number">02</div>
-                        <div class="pillar-title">The Physical-Digital Loop</div>
-                        <div class="pillar-body">LightSpray makes it possible to manufacture an upper in three minutes. That's a design opportunity most brands don't have. The Lab should prototype what customisation means when production is that fast — in-store experiences where a scan of the foot leads to a shoe sprayed on-demand, with a digital record that evolves with the runner's data over time.</div>
-                    </div>
+                <div class="pillar" onclick="openCanvas('pillar-2')">
+                    <div class="pillar-preview preview-loop"></div>
+                    <div class="pillar-number">02</div>
+                    <div class="pillar-title">The Physical-Digital Loop</div>
+                    <div class="pillar-body">LightSpray makes manufacturing a design decision. In-store scan, shoe sprayed in three minutes, digital twin that evolves with you.</div>
                 </div>
 
-                <div class="pillar">
-                    <div class="pillar-visual viz-retail">
-                        <div class="retail-dot"></div>
-                        <div class="retail-dot"></div>
-                        <div class="retail-dot"></div>
-                        <div class="retail-dot"></div>
-                        <div class="retail-dot"></div>
-                        <div class="retail-dot"></div>
+                <div class="pillar" onclick="openCanvas('pillar-3')">
+                    <div class="pillar-preview preview-retail">
+                        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
                     </div>
-                    <div class="pillar-content">
-                        <div class="pillar-number">03</div>
-                        <div class="pillar-title">Retail as a Stage</div>
-                        <div class="pillar-body">On's stores are already beautiful. The Lab should design what happens when they become intelligent — ambient AI that knows regulars, remembers past conversations with staff, and turns the fitting experience into something closer to a made-to-measure appointment. Physical craft meets digital memory.</div>
-                    </div>
+                    <div class="pillar-number">03</div>
+                    <div class="pillar-title">Retail as a Stage</div>
+                    <div class="pillar-body">Ambient AI that knows regulars, remembers conversations, and turns fitting into something closer to a made-to-measure appointment.</div>
                 </div>
 
-                <div class="pillar">
-                    <div class="pillar-visual viz-quiet">
-                        <div class="quiet-ring"></div>
-                        <div class="quiet-ring"></div>
-                        <div class="quiet-ring"></div>
-                        <div class="quiet-center"></div>
+                <div class="pillar" onclick="openCanvas('pillar-4')">
+                    <div class="pillar-preview preview-quiet">
+                        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+                        <div class="center"></div>
                     </div>
-                    <div class="pillar-content">
-                        <div class="pillar-number">04</div>
-                        <div class="pillar-title">The Quiet Layer</div>
-                        <div class="pillar-body">Most AI-driven products are noisy. On's opportunity is to be the opposite — to use AI to remove friction, reduce cognitive load, and give back time. Re-ordering the right pair automatically. Sensing when a runner is injured and proactively offering a lower-impact alternative. The Lab should set the tone: AI as craft, not as spectacle.</div>
-                    </div>
+                    <div class="pillar-number">04</div>
+                    <div class="pillar-title">The Quiet Layer</div>
+                    <div class="pillar-body">AI that removes friction and gives back time. Re-orders automatically. Proactively notices injury. Craft, not spectacle.</div>
                 </div>
 
             </div>
@@ -933,111 +671,82 @@
 
         <div class="divider"></div>
 
-        <!-- ─── Concrete Prototypes ─── -->
+        <!-- ─── Prototypes ─── -->
         <section class="section reveal">
             <div class="section-label">03 · Three prototypes I'd scope in the first 90 days</div>
             <h2 class="section-title">From theory<br>to artefact.</h2>
-            <div class="section-body">
-                <p>Strategy is only credible if it leads to something you can touch. These are the three directions I'd want to turn into small, testable prototypes in the first three months — each scoped to validate a different hypothesis about AI's role at On.</p>
+            <div class="section-body" style="margin-bottom: 2rem;">
+                <p>Strategy is only credible if it leads to something you can touch. These are the directions I'd turn into small, testable prototypes in the first three months. Click any prototype to open its canvas.</p>
             </div>
             <div class="concepts">
 
-                <div class="concept">
-                    <div class="concept-visual viz-second-pair">
-                        <div class="shoe-icon shoe-1">
-                            <svg viewBox="0 0 60 60">
-                                <path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" />
-                                <path d="M18,42 Q30,46 48,42" />
-                            </svg>
-                            <span class="shoe-label">First Pair</span>
+                <div class="concept" onclick="openCanvas('proto-1')">
+                    <div class="concept-visual preview-second-pair">
+                        <div class="shoe-mini first">
+                            <svg viewBox="0 0 60 60"><path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" /><path d="M18,42 Q30,46 48,42" /></svg>
                         </div>
-                        <div class="data-flow"></div>
-                        <div class="shoe-icon shoe-2">
-                            <svg viewBox="0 0 60 60">
-                                <path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" />
-                                <path d="M18,42 Q30,46 48,42" />
-                                <path d="M20,32 L48,28 M22,36 L46,32" stroke-dasharray="2 2" />
-                            </svg>
-                            <span class="shoe-label">Personalised</span>
+                        <div class="flow-line"></div>
+                        <div class="shoe-mini second">
+                            <svg viewBox="0 0 60 60"><path d="M8,40 Q8,30 18,28 L30,20 Q40,16 48,22 Q54,28 52,38 L52,42 Q40,46 20,44 Q10,44 8,40 Z" /><path d="M18,42 Q30,46 48,42" /></svg>
                         </div>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 01</div>
                         <div class="concept-name">The Second Pair</div>
-                        <div class="concept-desc">An AI companion that learns a runner's patterns over the life of their first shoe, and designs the spec of their second — not by recommending a SKU, but by generating the actual LightSpray pattern tailored to the wear data of the first pair. Manufacturing becomes the final design decision, not the first.</div>
+                        <div class="concept-desc">An AI companion that learns from your first shoe and designs the spec of your next. Manufacturing as the final design decision.</div>
                     </div>
                 </div>
 
-                <div class="concept">
-                    <div class="concept-visual viz-quiet-run">
-                        <div class="run-timeline">
-                            <div class="quiet-silence"></div>
-                            <div class="quiet-silence"></div>
-                            <div class="quiet-silence"></div>
-                            <div class="quiet-silence"></div>
-                            <div class="run-marker"></div>
-                            <div class="run-marker"></div>
-                            <div class="run-marker"></div>
+                <div class="concept" onclick="openCanvas('proto-2')">
+                    <div class="concept-visual preview-quiet-run">
+                        <div class="run-line">
+                            <div class="run-pulse"></div><div class="run-pulse"></div><div class="run-pulse"></div>
                         </div>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 02</div>
                         <div class="concept-name">The Quiet Run</div>
-                        <div class="concept-desc">A companion app experiment that deliberately says less, not more. Uses real-time sensor data to detect stress, form breakdown, and recovery debt — but only surfaces insight at the moment it's actionable. Tests whether AI can feel restorative rather than demanding.</div>
+                        <div class="concept-desc">A companion app experiment that deliberately says less, not more. Insight only when it's actionable.</div>
                     </div>
                 </div>
 
-                <div class="concept">
-                    <div class="concept-visual viz-atelier">
-                        <div class="stage">
-                            <svg class="stage-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6,20 Q6,14 12,14 Q18,14 18,20"/></svg>
-                            <span class="stage-label">Arrive</span>
-                        </div>
+                <div class="concept" onclick="openCanvas('proto-3')">
+                    <div class="concept-visual preview-atelier">
+                        <div class="stage-mini"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6,20 Q6,14 12,14 Q18,14 18,20"/></svg></div>
                         <div class="stage-arrow">→</div>
-                        <div class="stage">
-                            <svg class="stage-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="5"/><path d="M14,14 L19,19"/></svg>
-                            <span class="stage-label">Scan</span>
-                        </div>
+                        <div class="stage-mini"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5"/><path d="M14,14 L19,19"/></svg></div>
                         <div class="stage-arrow">→</div>
-                        <div class="stage">
-                            <svg class="stage-icon" viewBox="0 0 24 24"><path d="M4,14 Q4,10 10,9 L16,6 Q20,5 22,8 L22,14 Q14,16 6,15 Z"/></svg>
-                            <span class="stage-label">Spray</span>
-                        </div>
+                        <div class="stage-mini"><svg viewBox="0 0 24 24"><path d="M4,14 Q4,10 10,9 L16,6 Q20,5 22,8 L22,14 Q14,16 6,15 Z"/></svg></div>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 03</div>
                         <div class="concept-name">The Atelier</div>
-                        <div class="concept-desc">A single flagship retail concept: one store, one quarter. Runners walk in, the store knows who they are, a staff member has context on their last run, and by the end of the visit they leave with a shoe sprayed in front of them. Tests the full physical-digital loop as one continuous journey.</div>
+                        <div class="concept-desc">One store, one quarter. Arrival to shoe sprayed in front of you. Tests the full physical-digital loop as one journey.</div>
                     </div>
                 </div>
 
-                <div class="concept">
-                    <div class="concept-visual viz-community">
-                        <svg class="community-svg" viewBox="0 0 200 160">
-                            <!-- Lines connecting nodes to center -->
-                            <line class="community-line" x1="40" y1="30" x2="100" y2="80" style="animation-delay: 0.5s" />
-                            <line class="community-line" x1="160" y1="30" x2="100" y2="80" style="animation-delay: 0.8s" />
-                            <line class="community-line" x1="30" y1="80" x2="100" y2="80" style="animation-delay: 1.1s" />
-                            <line class="community-line" x1="170" y1="80" x2="100" y2="80" style="animation-delay: 1.4s" />
-                            <line class="community-line" x1="40" y1="130" x2="100" y2="80" style="animation-delay: 1.7s" />
-                            <line class="community-line" x1="160" y1="130" x2="100" y2="80" style="animation-delay: 2s" />
-                            <line class="community-line" x1="100" y1="130" x2="100" y2="80" style="animation-delay: 2.3s" />
-                            <!-- Peripheral nodes (community) -->
-                            <circle class="community-node" cx="40" cy="30" r="3" style="animation-delay: 0s" />
-                            <circle class="community-node" cx="160" cy="30" r="3" style="animation-delay: 0.3s" />
-                            <circle class="community-node" cx="30" cy="80" r="3" style="animation-delay: 0.6s" />
-                            <circle class="community-node" cx="170" cy="80" r="3" style="animation-delay: 0.9s" />
-                            <circle class="community-node" cx="40" cy="130" r="3" style="animation-delay: 1.2s" />
-                            <circle class="community-node" cx="160" cy="130" r="3" style="animation-delay: 1.5s" />
-                            <circle class="community-node" cx="100" cy="130" r="3" style="animation-delay: 1.8s" />
-                            <!-- Center node (Lab/R&D) -->
-                            <circle class="community-center" cx="100" cy="80" r="5" />
+                <div class="concept" onclick="openCanvas('proto-4')">
+                    <div class="concept-visual preview-community">
+                        <svg viewBox="0 0 200 160">
+                            <line class="community-line-mini" x1="40" y1="30" x2="100" y2="80" style="animation-delay: 0.5s" />
+                            <line class="community-line-mini" x1="160" y1="30" x2="100" y2="80" style="animation-delay: 0.8s" />
+                            <line class="community-line-mini" x1="30" y1="80" x2="100" y2="80" style="animation-delay: 1.1s" />
+                            <line class="community-line-mini" x1="170" y1="80" x2="100" y2="80" style="animation-delay: 1.4s" />
+                            <line class="community-line-mini" x1="40" y1="130" x2="100" y2="80" style="animation-delay: 1.7s" />
+                            <line class="community-line-mini" x1="160" y1="130" x2="100" y2="80" style="animation-delay: 2s" />
+                            <circle class="community-node-mini" cx="40" cy="30" r="3" style="animation-delay: 0s" />
+                            <circle class="community-node-mini" cx="160" cy="30" r="3" style="animation-delay: 0.3s" />
+                            <circle class="community-node-mini" cx="30" cy="80" r="3" style="animation-delay: 0.6s" />
+                            <circle class="community-node-mini" cx="170" cy="80" r="3" style="animation-delay: 0.9s" />
+                            <circle class="community-node-mini" cx="40" cy="130" r="3" style="animation-delay: 1.2s" />
+                            <circle class="community-node-mini" cx="160" cy="130" r="3" style="animation-delay: 1.5s" />
+                            <circle class="community-center-mini" cx="100" cy="80" r="4" />
                         </svg>
                     </div>
                     <div class="concept-body">
                         <div class="concept-tag">Prototype 04</div>
                         <div class="concept-name">The Community Signal</div>
-                        <div class="concept-desc">A tool for On's community managers and OAC athletes that turns community conversation, race data, and product feedback into early signals for R&D. The Lab becomes an insight engine for the rest of the company — not just a prototyping arm.</div>
+                        <div class="concept-desc">Turns community conversation, race data, and product feedback into early R&D signals. The Lab as insight engine.</div>
                     </div>
                 </div>
 
@@ -1046,7 +755,7 @@
 
         <div class="divider"></div>
 
-        <!-- ─── Horizons ─── -->
+        <!-- Horizons -->
         <section class="section reveal">
             <div class="section-label">04 · The horizons</div>
             <h2 class="section-title">How I'd structure<br>the <em>18+ month</em> bet.</h2>
@@ -1054,7 +763,6 @@
                 <p>The Lab's mandate is to look 18+ months ahead. That's both a gift and a trap — too far out and the work becomes abstract; too close and it collides with the core roadmap. Here's how I'd split the work across horizons.</p>
             </div>
             <div class="timeline">
-
                 <div class="timeline-row" style="display: contents;">
                     <div class="timeline-horizon">0 – 6 months</div>
                     <div class="timeline-content">
@@ -1062,7 +770,6 @@
                         <div class="timeline-desc">Build the Lab's operating system. Map the existing journey across product, digital, retail, and service. Identify the three most promising intersections where AI actually earns its place. Ship the first testable prototype.</div>
                     </div>
                 </div>
-
                 <div class="timeline-row" style="display: contents;">
                     <div class="timeline-horizon">6 – 12 months</div>
                     <div class="timeline-content">
@@ -1070,7 +777,6 @@
                         <div class="timeline-desc">Run the flagship Atelier pilot. Start feeding Lab insight back into the core roadmap quarterly. Establish the Lab as an insight engine — not a tech showroom.</div>
                     </div>
                 </div>
-
                 <div class="timeline-row" style="display: contents;">
                     <div class="timeline-horizon">12 – 18 months</div>
                     <div class="timeline-content">
@@ -1078,7 +784,6 @@
                         <div class="timeline-desc">Promote validated prototypes into core product or retail pipelines. Kill what doesn't resonate. Publish the Lab's first public POV — a signal to the industry and to On's own community.</div>
                     </div>
                 </div>
-
                 <div class="timeline-row" style="display: contents;">
                     <div class="timeline-horizon">18+ months</div>
                     <div class="timeline-content">
@@ -1086,25 +791,22 @@
                         <div class="timeline-desc">The Lab becomes a recognised voice inside and outside On. Not a department that produces AI — a way of working that other departments borrow.</div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <div class="divider"></div>
 
-        <!-- ─── Why Me ─── -->
+        <!-- Why Me -->
         <section class="section reveal">
             <div class="section-label">05 · Why me</div>
             <h2 class="section-title">The rare overlap<br>of three worlds.</h2>
-
             <div class="about-grid" style="margin-top: 2rem;">
                 <div class="about-block">
                     <p><strong>AI-native product leadership.</strong> I've spent the last three years leading design across seven AI platforms at QuantumBlack (McKinsey AI) — agent runtimes, workflow orchestration, ML tooling. I design AI products and I build with AI tools (Claude, Cursor, Figma Make) every day. I know what works and, more importantly, what doesn't.</p>
                     <p><strong>Consulting-level strategic influence.</strong> At McKinsey I've been the key client contact on 17+ engagements, advising senior leaders and partners. I know how to land strategy in rooms where half the audience is sceptical. The Lab will need this muscle.</p>
                 </div>
-
                 <div class="about-block">
-                    <p><strong>Sport, craft, and taste — personally.</strong> I'm a competitive show jumper at British Novice level. I understand performance sport from the inside — the discipline, the gear obsession, the tiny details that matter. I'm also an art collector with a Christie's Education and a foundation in graphic design. I know how craft decisions compound.</p>
+                    <p><strong>Sport, craft, and taste — personally.</strong> I'm a competitive show jumper at British Novice level. I understand performance sport from the inside — the discipline, the gear obsession, the tiny details that matter. I'm also an art collector with a Christie's Education and a foundation in graphic design.</p>
                     <p><strong>Brand and retail experience.</strong> Before consulting, I worked as an Account Manager at Matthew Williamson in London. I know what it takes to build a brand experience that feels coherent across every touchpoint — and why the details that look small from outside are everything from inside.</p>
                 </div>
             </div>
@@ -1112,7 +814,6 @@
 
         <div class="divider"></div>
 
-        <!-- ─── Questions ─── -->
         <section class="section reveal">
             <div class="section-label">06 · Questions I'd want to ask</div>
             <h2 class="section-title">What I'm<br>curious about.</h2>
@@ -1125,7 +826,6 @@
             </div>
         </section>
 
-        <!-- ─── Footer ─── -->
         <footer class="footer reveal">
             <p class="footer-cta">Thank you for the time, and for the invitation to the second round. I'd be proud to help shape this.</p>
             <div class="footer-links">
@@ -1137,13 +837,1108 @@
 
     </div>
 
+    <!-- ═══════════════ CANVASES (MODALS) ═══════════════ -->
+
+    <!-- ─── CANVAS: PILLAR 01 — The Running Self ─── -->
+    <div class="canvas-modal" id="canvas-pillar-1">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Pillar 01 · Expanded Journey</div>
+                <h1 class="canvas-title">The Running <em>Self</em></h1>
+                <p class="canvas-lede">AI as a mirror, not a coach. We follow a runner — Maya, 34, Zurich — across a single day, to understand how ambient intelligence can reflect her state back to her without demanding her attention.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">A day with the Running Self</div>
+                <div class="journey-steps">
+                    <div class="journey-step active">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">06:42</div>
+                        <div class="step-title">Wake</div>
+                        <div class="step-sub">HRV reads tired. System stays quiet.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">07:15</div>
+                        <div class="step-title">Consider</div>
+                        <div class="step-sub">Morning plan suggests shorter loop.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">07:45</div>
+                        <div class="step-title">Run</div>
+                        <div class="step-sub">Cushioning subtly increased for today.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">08:30</div>
+                        <div class="step-title">Reflect</div>
+                        <div class="step-sub">Post-run summary: felt stronger than data said.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">22:10</div>
+                        <div class="step-title">Recover</div>
+                        <div class="step-sub">Evening nudge: hydrate, rest. No alarm tomorrow.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Morning</div>
+                            <div class="ui-title">Take it easy today.</div>
+                            <div class="ui-meta">HRV −12% · Sleep 6h 18m</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Readiness</span><span class="ui-stat-value">62</span></div>
+                            <div class="ui-bar"><div class="ui-bar-fill" style="width: 62%;"></div></div>
+                            <div class="ui-meta" style="margin-top: 0.4rem;">Suggested: Cloudmonster 3, 5km easy loop.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Morning</div>
+                        <div class="scene-title">The suggestion, not the instruction.</div>
+                        <div class="scene-desc">No alarm, no push notification. Just a softer version of today's plan, waiting for her when she opens the app. She's free to override it.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">During Run · km 3.2</div>
+                            <div class="ui-stat"><span class="ui-stat-label">Pace</span><span class="ui-stat-value">5:48</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">HR</span><span class="ui-stat-value">142</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Cadence</span><span class="ui-stat-value">176</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic; color: var(--muted);">(silent)</div>
+                            <div class="ui-meta" style="margin-top: auto;">Left foot landing softer than right. Noted for next fitting.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — During the run</div>
+                        <div class="scene-title">Watching, not talking.</div>
+                        <div class="scene-desc">The app says nothing. It observes form breakdown, left/right asymmetry, and fatigue — and stores it for later. The run stays hers.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">After Run</div>
+                            <div class="ui-title">Stronger than expected.</div>
+                            <div class="ui-meta">5.2km · 29m 34s · Easy</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-notif">Your body said tired. Your run said ready. Tomorrow may be a good speed day.</div>
+                            <div class="ui-meta" style="margin-top: 0.4rem;">Pattern noted — the model learns you override often in spring.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — After</div>
+                        <div class="scene-title">The mirror speaks.</div>
+                        <div class="scene-desc">Now it reflects what it saw. Not "you burned X calories" — but how her performance compared to her readiness, and what that means for tomorrow.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Design Principle</div>
+                <div class="insight-body">"Every data point On collects is a choice about whether to speak. The Running Self defaults to silence, and earns the right to be heard only when what it has to say is actionable — and kind."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">&lt; 3</div>
+                    <div class="metric-label">Proactive<br>notifications per day</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">80%</div>
+                    <div class="metric-label">Of insight<br>requested, not pushed</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">4wk</div>
+                    <div class="metric-label">Model learns<br>your override patterns</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1:1</div>
+                    <div class="metric-label">Personalised cushioning<br>tuned per run</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PILLAR 02 — The Physical-Digital Loop ─── -->
+    <div class="canvas-modal" id="canvas-pillar-2">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Pillar 02 · Expanded Journey</div>
+                <h1 class="canvas-title">The <em>Physical-Digital</em> Loop</h1>
+                <p class="canvas-lede">Three minutes is a design opportunity. When manufacturing becomes this fast, customisation stops being a marketing word and starts being a feature. Here's what the loop looks like when it's closed.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">From scan to spray to data</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">00:00</div>
+                        <div class="step-title">Scan</div>
+                        <div class="step-sub">Foot, gait, wear pattern of current shoe.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">00:30</div>
+                        <div class="step-title">Generate</div>
+                        <div class="step-sub">AI composes LightSpray pattern tuned to data.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">01:00</div>
+                        <div class="step-title">Review</div>
+                        <div class="step-sub">Runner sees and approves the spec in-store.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">01:30</div>
+                        <div class="step-title">Spray</div>
+                        <div class="step-sub">Robots manufacture the upper in 3 minutes.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">04:30</div>
+                        <div class="step-title">Loop</div>
+                        <div class="step-sub">Digital twin starts learning from first step.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Foot Scan</div>
+                            <div class="ui-title">Measuring 12 pressure points</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Arch</span><span class="ui-stat-value">Medium-high</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Pronation</span><span class="ui-stat-value">Neutral</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Toe-off angle</span><span class="ui-stat-value">14°</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">Compared with 847 runs logged in previous pair.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Scan</div>
+                        <div class="scene-title">The body becomes the brief.</div>
+                        <div class="scene-desc">A 30-second scan reads the foot's present — and pulls the wear data from the runner's previous pair. Both become inputs to the design.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">AI Composition</div>
+                            <div class="ui-title">Pattern v3 of 5</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Upper density</span><span class="ui-stat-value">+8% forefoot</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Medial support</span><span class="ui-stat-value">Reinforced</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Weight est.</span><span class="ui-stat-value">199g</span></div>
+                            <div class="ui-bar" style="margin-top: 0.4rem;"><div class="ui-bar-fill" style="width: 78%;"></div></div>
+                            <div class="ui-meta">Fit confidence: 94%</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Generate</div>
+                        <div class="scene-title">The pattern writes itself.</div>
+                        <div class="scene-desc">Five candidate patterns proposed in seconds. The runner sees weights, structure, support — and chooses. The AI explains why each one exists.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas" style="background: linear-gradient(135deg, #1a1a1a, #333); color: #fff;">
+                        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: white;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; opacity: 0.5;">SPRAY IN PROGRESS</div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400;">02:14</div>
+                            <div style="width: 80%; height: 1px; background: rgba(255,255,255,0.2); position: relative;">
+                                <div style="position: absolute; top: 0; left: 0; height: 1px; background: var(--accent); width: 74%;"></div>
+                            </div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.15em; opacity: 0.4;">1.5KM FILAMENT · 32 ROBOTS · ZERO WASTE</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Spray</div>
+                        <div class="scene-title">The theatre of making.</div>
+                        <div class="scene-desc">The runner watches their shoe being sprayed. In three minutes, a single-piece upper is made. It's performance, manufacturing, and trust in one moment.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Design Principle</div>
+                <div class="insight-body">"When production time drops to three minutes, customisation stops being an offer and becomes a default. Every pair On makes is already personal — we just have to let the runner see it."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">3 min</div>
+                    <div class="metric-label">Upper production<br>per pair</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Manufacturing<br>waste per shoe</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">∞</div>
+                    <div class="metric-label">Pattern variations<br>per runner</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1→N</div>
+                    <div class="metric-label">Digital twin<br>evolves with wear</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PILLAR 03 — Retail as a Stage ─── -->
+    <div class="canvas-modal" id="canvas-pillar-3">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Pillar 03 · Expanded Journey</div>
+                <h1 class="canvas-title">Retail as a <em>Stage</em></h1>
+                <p class="canvas-lede">On's stores are already some of the most beautiful in sport. The Lab should design what happens when they become intelligent — not by adding screens, but by giving staff and runners shared memory.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">A returning customer, recognised and remembered</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">Arrival</div>
+                        <div class="step-title">Approach</div>
+                        <div class="step-sub">Opted-in app signals incoming regular.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">+30s</div>
+                        <div class="step-title">Brief</div>
+                        <div class="step-sub">Staff tablet shows context, not a dossier.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">Fitting</div>
+                        <div class="step-sub">Made-to-measure, not transactional.</div>
+                        <div class="step-title">Consult</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">Spray</div>
+                        <div class="step-title">Make</div>
+                        <div class="step-sub">Shoe produced in front of her.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">Leave</div>
+                        <div class="step-title">Note</div>
+                        <div class="step-sub">Staff adds one line to her profile.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Staff Tablet</div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;"><div class="ui-dot orange"></div><div class="ui-title">Maya, returning</div></div>
+                            <div class="ui-meta">Last visit 4 months ago · 3rd pair</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic; color: var(--text);">"Mentioned marathon training. Knee concern on left. Loves the Cloud X 4."</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">847 km</span><span class="ui-stat-value">logged</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Left foot</span><span class="ui-stat-value">softer landing</span></div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Brief</div>
+                        <div class="scene-title">Context, not surveillance.</div>
+                        <div class="scene-desc">The staff member sees a single card: who she is, what she said last time, what her body has done since. Not 30 data points — just the ones that make the conversation warmer.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="floor-plan">
+                            <svg viewBox="0 0 200 160" style="padding: 1.5rem;">
+                                <rect x="20" y="20" width="160" height="120" fill="none" stroke="#999" stroke-width="0.5" />
+                                <rect x="30" y="30" width="40" height="30" fill="#fff" stroke="#ccc" stroke-width="0.5" />
+                                <rect x="80" y="30" width="40" height="30" fill="#fff" stroke="#ccc" stroke-width="0.5" />
+                                <rect x="130" y="30" width="40" height="30" fill="#fff" stroke="#ccc" stroke-width="0.5" />
+                                <rect x="30" y="90" width="50" height="40" fill="#fff" stroke="#ccc" stroke-width="0.5" />
+                                <rect x="100" y="90" width="70" height="40" fill="#fff" stroke="#ccc" stroke-width="0.5" />
+                                <path d="M 100 150 L 100 120 L 60 100 L 60 60 L 100 45" stroke="var(--accent)" stroke-width="1" fill="none" stroke-dasharray="2 2" />
+                                <circle cx="100" cy="150" r="3" fill="var(--accent)" />
+                                <circle cx="60" cy="100" r="2" fill="var(--accent)" opacity="0.4" />
+                                <circle cx="60" cy="60" r="2" fill="var(--accent)" opacity="0.4" />
+                                <circle cx="100" cy="45" r="2" fill="var(--accent)" opacity="0.4" />
+                                <text x="34" y="45" font-size="5" fill="#666">Run</text>
+                                <text x="88" y="45" font-size="5" fill="#666">Fit</text>
+                                <text x="138" y="45" font-size="5" fill="#666">New</text>
+                                <text x="37" y="105" font-size="5" fill="#666">Spray</text>
+                                <text x="110" y="105" font-size="5" fill="#666">Café</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Path</div>
+                        <div class="scene-title">The store as a journey.</div>
+                        <div class="scene-desc">Her route through the space is intentional — from entry to fitting to spray to café. The design of the store supports the design of the moment.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">After she leaves</div>
+                            <div class="ui-title">Add one note</div>
+                            <div class="ui-meta">Optional · shared with her profile</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="color: var(--text); font-style: italic;">"Ran her marathon in 4:02. Knee is better. Wants something lighter for track sessions."</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">This note will greet whichever staff member meets her next time.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Memory</div>
+                        <div class="scene-title">The note is the system.</div>
+                        <div class="scene-desc">Staff add one handwritten note per visit. That's the AI's input — human context, not clickstream. The next person reads what the last one saw.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Design Principle</div>
+                <div class="insight-body">"The best retail experience feels like your favourite café — the staff know your order, but they don't make a show of it. AI should serve that memory, not replace the human who holds it."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">1 card</div>
+                    <div class="metric-label">Of context per<br>returning customer</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">Opt-in</div>
+                    <div class="metric-label">Recognition always<br>consent-based</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">&lt; 30s</div>
+                    <div class="metric-label">Staff briefing<br>before approach</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1 note</div>
+                    <div class="metric-label">Added per visit<br>by hand</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PILLAR 04 — The Quiet Layer ─── -->
+    <div class="canvas-modal" id="canvas-pillar-4">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Pillar 04 · Expanded Journey</div>
+                <h1 class="canvas-title">The <em>Quiet</em> Layer</h1>
+                <p class="canvas-lede">Most AI products are loud. On's opportunity is to be the opposite — to use AI to reduce friction, preempt problems, and give runners back their attention. Most of the work is invisible. That's the point.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">Six weeks of barely being noticed</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">Week 1</div>
+                        <div class="step-title">Detect</div>
+                        <div class="step-sub">Subtle asymmetry forming on left.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">Week 2</div>
+                        <div class="step-title">Wait</div>
+                        <div class="step-sub">Pattern confirmed across 8 runs.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">Week 3</div>
+                        <div class="step-title">Whisper</div>
+                        <div class="step-sub">One gentle message. No alarm.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">Week 4</div>
+                        <div class="step-title">Adjust</div>
+                        <div class="step-sub">Next shoe arrives with reinforced support.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">Week 6</div>
+                        <div class="step-title">Resolve</div>
+                        <div class="step-sub">Asymmetry gone. System returns to quiet.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Internal · Not shown to runner</div>
+                            <div class="ui-title">Asymmetry detected</div>
+                            <div class="ui-meta">Left foot landing 8% softer than right</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Confidence</span><span class="ui-stat-value">61%</span></div>
+                            <div class="ui-bar"><div class="ui-bar-fill" style="width: 61%; background: #bbb;"></div></div>
+                            <div class="ui-meta" style="margin-top: 0.4rem; font-style: italic;">Below threshold — don't surface yet.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Observe</div>
+                        <div class="scene-title">The thing no one sees.</div>
+                        <div class="scene-desc">Week one: the model notices something, but isn't certain. No notification, no dashboard widget. Just a quiet flag for itself to keep watching.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Week 3 · Gentle nudge</div>
+                            <div class="ui-notif">You've been landing softer on the left. It's small, but it's consistent. Worth mentioning to your physio?</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">Sent once. Not repeated. Dismissible.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">If she dismisses, the system waits another 14 days.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Whisper</div>
+                        <div class="scene-title">One message, earned.</div>
+                        <div class="scene-desc">By week three the confidence is high enough. The message is gentle, optional, and never repeats. Respect is encoded in the design.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Order confirmation</div>
+                            <div class="ui-title">Your next pair ships Tuesday.</div>
+                            <div class="ui-meta">Cloudmonster 3 · Auto-reordered</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Medial support</span><span class="ui-stat-value">+12%</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Previous wear</span><span class="ui-stat-value">612 km</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">Based on what we learned from your last six weeks.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Act</div>
+                        <div class="scene-title">Quiet action.</div>
+                        <div class="scene-desc">The next pair arrives adjusted — automatically. She didn't reorder, didn't choose, didn't have to. The system did what a good partner would: anticipated the need, and moved.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Design Principle</div>
+                <div class="insight-body">"The most expensive thing a runner has is attention. The Quiet Layer treats it with the same care On treats a gram of weight. Silence is a feature. Restraint is craft."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">1</div>
+                    <div class="metric-label">Proactive message<br>in 6 weeks</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">&gt;85%</div>
+                    <div class="metric-label">Confidence required<br>to surface insight</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">14d</div>
+                    <div class="metric-label">Silence after<br>a dismissal</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">Auto</div>
+                    <div class="metric-label">Re-order timed to<br>shoe lifecycle</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PROTOTYPE 01 — The Second Pair ─── -->
+    <div class="canvas-modal" id="canvas-proto-1">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Prototype 01 · 90-Day Build</div>
+                <h1 class="canvas-title">The <em>Second</em> Pair</h1>
+                <p class="canvas-lede">What if your next pair is designed by the one you just wore? A six-week prototype where the first shoe becomes the brief for the second — and manufacturing becomes the last design decision, not the first.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">The first pair teaches the next one</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">Day 0</div>
+                        <div class="step-title">First Pair</div>
+                        <div class="step-sub">Standard shoe, off the shelf. Sensors active.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">200 km</div>
+                        <div class="step-title">Wear Map</div>
+                        <div class="step-sub">Pressure, flex, asymmetry mapped.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">400 km</div>
+                        <div class="step-title">Compose</div>
+                        <div class="step-sub">AI generates next spec based on wear data.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">500 km</div>
+                        <div class="step-title">Approve</div>
+                        <div class="step-sub">Runner reviews. Accepts or tweaks.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">Arrival</div>
+                        <div class="step-title">Second Pair</div>
+                        <div class="step-sub">Sprayed to personal spec. Loop begins again.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Wear Map · 412 km</div>
+                            <svg viewBox="0 0 120 80" style="margin: 0.4rem 0;">
+                                <path d="M10,50 Q10,35 25,30 L50,20 Q75,15 95,22 Q110,30 108,45 L108,55 Q80,65 30,60 Q15,58 10,50 Z" fill="none" stroke="#ccc" stroke-width="0.5" />
+                                <circle cx="90" cy="45" r="8" fill="var(--accent)" opacity="0.5"/>
+                                <circle cx="75" cy="50" r="5" fill="var(--accent)" opacity="0.3"/>
+                                <circle cx="30" cy="45" r="4" fill="var(--accent)" opacity="0.2"/>
+                            </svg>
+                            <div class="ui-meta">Forefoot wear +34% · Medial wear +22%</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Runs</span><span class="ui-stat-value">58</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Avg pace</span><span class="ui-stat-value">5:42</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Surface mix</span><span class="ui-stat-value">70% road</span></div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Wear Map</div>
+                        <div class="scene-title">The first shoe writes its diary.</div>
+                        <div class="scene-desc">Over 400km the shoe records how it was actually used — pressure points, gait, surface, weather. It's not telemetry for its own sake. It's the design brief for the next one.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Your Next Pair · v2</div>
+                            <div class="ui-title">Tuned to how you actually run.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Forefoot density</span><span class="ui-stat-value">+12%</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Medial reinforcement</span><span class="ui-stat-value">Added</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Weight</span><span class="ui-stat-value">−8g vs v1</span></div>
+                            <div class="ui-bar"><div class="ui-bar-fill" style="width: 91%;"></div></div>
+                            <div class="ui-meta">Fit prediction: 91%</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">Or: see three other patterns the AI considered.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Composition</div>
+                        <div class="scene-title">The AI's proposal.</div>
+                        <div class="scene-desc">The runner receives one primary recommendation and three alternatives. Every decision is traced back to her own data — so it feels like argument, not magic.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas" style="background: linear-gradient(180deg, #1a1a1a, #333); color: #fff;">
+                        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.3em; opacity: 0.5; color: #fff;">PRODUCTION · SEOUL</div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: #fff; margin: 1rem 0;">02:47</div>
+                            <div style="width: 80%; height: 1px; background: rgba(255,255,255,0.2); position: relative;">
+                                <div style="position: absolute; top: 0; left: 0; height: 1px; background: var(--accent); width: 92%;"></div>
+                            </div>
+                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5); margin-top: 1rem;">Upper spray · Assembly · Boxing</div>
+                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.7); margin-top: 0.5rem; letter-spacing: 0.15em;">SHIPS TOMORROW</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Manufacture</div>
+                        <div class="scene-title">Made to her run.</div>
+                        <div class="scene-desc">The pattern goes to the Seoul factory. Three minutes later, a one-piece upper exists. The loop closes — and immediately starts again, because the new pair has sensors too.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Prototype Hypothesis</div>
+                <div class="insight-body">"If the second pair is measurably better-fitted than the first, we've proven that wear data is the most honest brief a shoe can have. The runner's body becomes the designer."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">90 days</div>
+                    <div class="metric-label">Prototype<br>build cycle</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">20</div>
+                    <div class="metric-label">Test runners<br>(OAC + community)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">2×</div>
+                    <div class="metric-label">Full wear<br>cycles observed</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">NPS +30</div>
+                    <div class="metric-label">Target uplift vs<br>standard fitting</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PROTOTYPE 02 — The Quiet Run ─── -->
+    <div class="canvas-modal" id="canvas-proto-2">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Prototype 02 · 60-Day Build</div>
+                <h1 class="canvas-title">The <em>Quiet</em> Run</h1>
+                <p class="canvas-lede">A companion app experiment designed around a radical idea: the app says nothing unless it has something worth saying. We test whether AI can feel restorative — not demanding — in the moment of the run itself.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">What happens during 45 minutes of running</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">00:00</div>
+                        <div class="step-title">Start</div>
+                        <div class="step-sub">One tap. No announcements.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">00-15m</div>
+                        <div class="step-title">Observe</div>
+                        <div class="step-sub">Sensors stream. App is silent.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">18:30</div>
+                        <div class="step-title">Speak</div>
+                        <div class="step-sub">One cue: form breakdown detected.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">18-45m</div>
+                        <div class="step-title">Return to silence</div>
+                        <div class="step-sub">App is quiet again.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">Finish</div>
+                        <div class="step-title">Reflect</div>
+                        <div class="step-sub">Two sentences. Not a dashboard.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen" style="justify-content: center; align-items: center; text-align: center;">
+                            <div class="ui-h">Running · 12:42</div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; margin: 0.6rem 0;">5.4 km</div>
+                            <div class="ui-meta">That's it. That's the whole screen.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — During</div>
+                        <div class="scene-title">The UI of silence.</div>
+                        <div class="scene-desc">No heart rate. No cadence. No pace bar. Just distance and time, because she glances down once per kilometre. Everything else is recorded and shown after.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">18:30 · First intervention</div>
+                            <div class="ui-notif">Your left knee is rotating slightly. You usually run cleaner than this.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">Spoken aloud, once. Then gone.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">Pattern learned: she runs cleaner when she thinks about it. One cue is enough.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Moment of truth</div>
+                        <div class="scene-title">The one intervention.</div>
+                        <div class="scene-desc">The app has been watching for 18 minutes. When it finally speaks, it's specific, short, and useful. Most runs will have zero interventions. That's the point.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Post-run · two sentences</div>
+                            <div class="ui-title">You ran strong today.</div>
+                            <div class="ui-meta" style="line-height: 1.5;">Form broke slightly at 18:30 — you corrected within a minute. Recovery score up from last week.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic; color: var(--muted);">See full data</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — After</div>
+                        <div class="scene-title">Summary, not dashboard.</div>
+                        <div class="scene-desc">Two sentences replace 12 metrics. The dashboard is one tap away — but most runners never tap. The summary is what they'll tell their friends about the app.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Prototype Hypothesis</div>
+                <div class="insight-body">"If we reduce interventions by 90% and increase perceived usefulness, we've proven that attention is the premium sport app design hasn't yet priced in."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">60 days</div>
+                    <div class="metric-label">Closed beta<br>with OAC</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">&lt; 1</div>
+                    <div class="metric-label">Avg interventions<br>per run</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">2 sentences</div>
+                    <div class="metric-label">Post-run summary<br>hard limit</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">Qualitative</div>
+                    <div class="metric-label">Success measured<br>in felt experience</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PROTOTYPE 03 — The Atelier ─── -->
+    <div class="canvas-modal" id="canvas-proto-3">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Prototype 03 · One Store, One Quarter</div>
+                <h1 class="canvas-title">The <em>Atelier</em></h1>
+                <p class="canvas-lede">A single flagship store becomes the Lab's stage. For one quarter, we test what happens when arrival, consultation, design, and manufacturing all happen in one continuous thirty-minute experience — with the runner at the centre of it.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">30 minutes, start to finish</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">00:00</div>
+                        <div class="step-title">Booking</div>
+                        <div class="step-sub">Appointment, like a tailor.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">05:00</div>
+                        <div class="step-title">Arrive</div>
+                        <div class="step-sub">Recognised. Greeted by name.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">10:00</div>
+                        <div class="step-title">Consult</div>
+                        <div class="step-sub">Staff walks through gait, past data.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">15:00</div>
+                        <div class="step-title">Design</div>
+                        <div class="step-sub">She approves the spec together with staff.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">25:00</div>
+                        <div class="step-title">Spray</div>
+                        <div class="step-sub">Shoe made in front of her. Fitted live.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Atelier · Zurich · Booking</div>
+                            <div class="ui-title">Saturday, 11:30</div>
+                            <div class="ui-meta">45 minutes · Maya + Stefan</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">"Stefan fitted you last time. He's ready for the conversation about your marathon."</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Your last pair</span><span class="ui-stat-value">847 km</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Last visit</span><span class="ui-stat-value">4 months ago</span></div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Booking</div>
+                        <div class="scene-title">A tailor, not a shop.</div>
+                        <div class="scene-desc">The booking itself sets the tone. Staff is named, the context is warm, and the visit feels like a conversation you're already part of.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="floor-plan">
+                            <svg viewBox="0 0 200 160" style="padding: 1.5rem;">
+                                <rect x="20" y="20" width="160" height="120" fill="none" stroke="#bbb" stroke-width="0.5" />
+                                <rect x="35" y="35" width="50" height="35" fill="#fff" stroke="#ddd" stroke-width="0.4" />
+                                <text x="42" y="55" font-size="5" fill="#888">Lounge</text>
+                                <rect x="105" y="35" width="50" height="35" fill="#fff" stroke="#ddd" stroke-width="0.4" />
+                                <text x="115" y="55" font-size="5" fill="#888">Gait Lab</text>
+                                <rect x="35" y="95" width="55" height="40" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="0.6" />
+                                <text x="45" y="118" font-size="5" fill="var(--accent)" font-weight="bold">Spray Theatre</text>
+                                <rect x="110" y="95" width="50" height="40" fill="#fff" stroke="#ddd" stroke-width="0.4" />
+                                <text x="120" y="118" font-size="5" fill="#888">Café</text>
+                                <path d="M 120 150 L 120 130 L 60 130 L 60 95 L 100 70 L 130 70 L 130 95 L 85 95 L 70 120" stroke="var(--accent)" stroke-width="1" fill="none" stroke-dasharray="2 2" opacity="0.7" />
+                                <circle cx="120" cy="150" r="3" fill="var(--accent)" />
+                                <circle cx="60" cy="115" r="2.5" fill="var(--accent)" opacity="0.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — The Path</div>
+                        <div class="scene-title">The store is choreographed.</div>
+                        <div class="scene-desc">Lounge → Gait Lab → Spray Theatre → Café. Every zone is designed for one part of the 30-minute journey. The spray theatre is the pivot — everything leads to and from it.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas" style="background: linear-gradient(135deg, #111, #222);">
+                        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; color: #fff;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.3em; opacity: 0.4;">SPRAY THEATRE · LIVE</div>
+                            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; font-weight: 400;">Maya's left shoe</div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400;">02:04</div>
+                            <div style="width: 60%; height: 1px; background: rgba(255,255,255,0.15); position: relative;">
+                                <div style="position: absolute; top: 0; left: 0; height: 1px; background: var(--accent); width: 66%;"></div>
+                            </div>
+                            <div style="font-size: 0.55rem; opacity: 0.4; letter-spacing: 0.1em; margin-top: 0.5rem;">UPPER · FRONT REINFORCEMENT · FINISH</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Spray Theatre</div>
+                        <div class="scene-title">The shoe is the show.</div>
+                        <div class="scene-desc">The spray machine is visible from the lounge. Runners watch their own shoe being made — not as a gimmick, but as the most memorable moment in sport retail today.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Prototype Hypothesis</div>
+                <div class="insight-body">"If we can make a 30-minute retail visit the highlight of someone's week, we've repositioned On stores from a place you shop to a place you go. That's a moat competitors can't copy."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">1 store</div>
+                    <div class="metric-label">Flagship pilot,<br>Zurich or London</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">12 wks</div>
+                    <div class="metric-label">Test duration<br>end-to-end</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">200</div>
+                    <div class="metric-label">Invited runners,<br>mixed segments</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">3×</div>
+                    <div class="metric-label">Target LTV uplift<br>vs standard retail</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CANVAS: PROTOTYPE 04 — The Community Signal ─── -->
+    <div class="canvas-modal" id="canvas-proto-4">
+        <button class="canvas-close" onclick="closeCanvas()">✕</button>
+        <div class="canvas-inner">
+            <div class="canvas-header">
+                <div class="canvas-tag">Prototype 04 · Insight Engine</div>
+                <h1 class="canvas-title">The <em>Community</em> Signal</h1>
+                <p class="canvas-lede">On's community — OAC athletes, run clubs, customers — is already having the conversation. The Lab's job is to listen. This prototype turns community signal into early R&D direction, without turning the community into a focus group.</p>
+            </div>
+
+            <div class="journey">
+                <div class="journey-label">From conversation to insight to product</div>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-dot">01</div>
+                        <div class="step-time">Source</div>
+                        <div class="step-title">Listen</div>
+                        <div class="step-sub">OAC notes, community channels, race data.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">02</div>
+                        <div class="step-time">Ingest</div>
+                        <div class="step-title">Aggregate</div>
+                        <div class="step-sub">AI clusters signals, ignores noise.</div>
+                    </div>
+                    <div class="journey-step active">
+                        <div class="step-dot">03</div>
+                        <div class="step-time">Weekly</div>
+                        <div class="step-title">Digest</div>
+                        <div class="step-sub">One page. Patterns, not datapoints.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">04</div>
+                        <div class="step-time">Quarterly</div>
+                        <div class="step-title">Brief</div>
+                        <div class="step-sub">R&D receives prioritised product questions.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-dot">05</div>
+                        <div class="step-time">Release</div>
+                        <div class="step-title">Credit</div>
+                        <div class="step-sub">Community knows their signal shaped it.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenes">
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Listening · Last 7 days</div>
+                            <div class="ui-stat"><span class="ui-stat-label">OAC notes</span><span class="ui-stat-value">34</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Run club signals</span><span class="ui-stat-value">218</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Race data points</span><span class="ui-stat-value">4,102</span></div>
+                            <div class="ui-stat"><span class="ui-stat-label">Reviews</span><span class="ui-stat-value">612</span></div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic;">Opt-in only. Every source is consented.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 01 — Source</div>
+                        <div class="scene-title">The inputs are plural.</div>
+                        <div class="scene-desc">Not a single "voice of the customer." The signal comes from elite athletes, weekend runners, sales data, race results, and review text — weighted differently, but all heard.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Weekly Digest · W12</div>
+                            <div class="ui-title">Three patterns worth attention</div>
+                            <div class="ui-divider"></div>
+                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot orange" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">Trail runners want lower stack.</div><div class="ui-meta">12 signals across 3 continents.</div></div></div>
+                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot grey" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">Cloud X 4 tongue pressure.</div><div class="ui-meta">8 notes, one fix tested.</div></div></div>
+                            <div style="display: flex; gap: 0.4rem; align-items: start;"><div class="ui-dot green" style="margin-top: 5px;"></div><div><div style="font-size: 0.62rem; font-weight: 600;">LightSpray colour curiosity.</div><div class="ui-meta">Opportunity, not a problem.</div></div></div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 02 — Digest</div>
+                        <div class="scene-title">One page a week.</div>
+                        <div class="scene-desc">Every Friday, a single page lands in the inboxes of R&D, product, and design leadership. Three patterns, ranked. Signal, not dashboard.</div>
+                    </div>
+                </div>
+
+                <div class="scene">
+                    <div class="scene-canvas">
+                        <div class="ui-screen">
+                            <div class="ui-h">Release note · Cloudmonster 4</div>
+                            <div class="ui-title">A thank you, not a feature list.</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta" style="font-style: italic; line-height: 1.5;">"After hearing from 34 OAC athletes and 200+ of you who run trails on weekends, we tested a lower stack version. It ships next month."</div>
+                            <div class="ui-divider"></div>
+                            <div class="ui-meta">The community sees their influence directly in the release. Trust compounds.</div>
+                        </div>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-tag">Scene 03 — Credit</div>
+                        <div class="scene-title">The loop closes publicly.</div>
+                        <div class="scene-desc">When a release ships, the community sees which signal inspired it. It's not "we listened" — it's "here's what we heard, and here's what we made." That's how listening becomes a brand value.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight">
+                <div class="insight-label">Prototype Hypothesis</div>
+                <div class="insight-body">"If the Lab can turn community signal into a weekly insight page that R&D actually reads, we've made the AI Lab useful to the whole company — not a side project, but a central nervous system."</div>
+            </div>
+
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">1 page</div>
+                    <div class="metric-label">Weekly digest<br>length cap</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">Patterns surfaced<br>per week</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">Consent</div>
+                    <div class="metric-label">Every signal source<br>opted in</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">Credited</div>
+                    <div class="metric-label">Community sees<br>their influence</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal controls
+        function openCanvas(id) {
+            const modal = document.getElementById('canvas-' + id);
+            if (!modal) return;
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+            modal.scrollTop = 0;
+        }
+
+        function closeCanvas() {
+            document.querySelectorAll('.canvas-modal.open').forEach(m => m.classList.remove('open'));
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCanvas();
+        });
+
+        // Close on background click
+        document.querySelectorAll('.canvas-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeCanvas();
+            });
+        });
+
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
