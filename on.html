@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Kurakina — Vision for On AI Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F8F7F4;
+            --text: #111111;
+            --muted: #777777;
+            --border: #E0DEDA;
+            --card: #FFFFFF;
+            --highlight: #F0EFEB;
+            --accent: #FF4500;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* ─── Nav ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            background-color: rgba(248, 247, 244, 0.9);
+        }
+
+        .nav-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav-meta {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* ─── Container ─── */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+        }
+
+        .hero-overline {
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            color: var(--muted);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 em { font-style: italic; }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item-small {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .meta-item-small strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ─── Section ─── */
+        .section {
+            margin-bottom: 6rem;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em { font-style: italic; }
+
+        .section-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+            font-weight: 300;
+        }
+
+        .section-body p { margin-bottom: 1.25rem; }
+
+        /* ─── Divider ─── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 5rem 0;
+        }
+
+        /* ─── Pull quote ─── */
+        .pull {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            font-style: italic;
+            font-weight: 400;
+            padding: 2rem 0;
+            max-width: 700px;
+            color: var(--text);
+        }
+
+        /* ─── Pillars ─── */
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .pillar {
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+        }
+
+        .pillar-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--muted);
+        }
+
+        .pillar-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-body {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ─── Prototype concepts ─── */
+        .concepts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept {
+            padding: 1.75rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .concept:hover {
+            transform: translateY(-2px);
+            border-color: var(--text);
+        }
+
+        .concept-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .concept-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .concept-desc {
+            font-size: 0.85rem;
+            line-height: 1.65;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ─── Timeline ─── */
+        .timeline {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-horizon {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--muted);
+            padding-top: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .timeline-content {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-row:last-child .timeline-content {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ─── About ─── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-block p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #333;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .about-block strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            padding: 6rem 0 5rem;
+            text-align: center;
+        }
+
+        .footer-cta {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--text);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 400;
+            text-decoration: none;
+            color: var(--text);
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .footer-link:hover { border-color: var(--text); }
+
+        /* ─── Reveal ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .pull { font-size: 1.3rem; }
+            .concepts { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .container { padding: 0 1.5rem; }
+            .nav { padding: 1rem 1.5rem; }
+            .timeline { grid-template-columns: 1fr; gap: 0.5rem 0; }
+            .hero-meta { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-name">Natalia Kurakina</div>
+        <div class="nav-meta">Vision · On AI Lab</div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ─── Hero ─── -->
+        <section class="hero">
+            <div class="hero-overline">For On · Head of Experience Design · AI Lab</div>
+            <h1>Designing how<br>On <em>feels</em>,<br>not just how<br>it runs.</h1>
+            <p class="hero-sub">
+                A perspective on what the AI Lab could become, how the work should be scoped, and why I believe I'm the right person to shape it. Prepared for the second-round conversation.
+            </p>
+            <div class="hero-meta">
+                <span class="meta-item-small"><strong>Natalia Kurakina</strong></span>
+                <span class="meta-item-small">Design Director, QuantumBlack</span>
+                <span class="meta-item-small">London</span>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── How I See On ─── -->
+        <section class="section reveal">
+            <div class="section-label">01 · How I see On</div>
+            <h2 class="section-title">A brand that already <em>runs</em><br>on craft. AI should make it<br><em>feel inevitable</em>.</h2>
+            <div class="section-body">
+                <p>On isn't a tech company trying to add craft. It's a craft company that has quietly built one of the most technically ambitious supply chains in sportswear — LightSpray, CloudTec, 32 robots spraying a shoe upper in three minutes. The story is already radical. The question is what AI changes about how runners, retail partners, and the wider community experience it.</p>
+                <p>I believe the AI Lab's role isn't to layer AI features onto the product roadmap. It's to protect On's most valuable asset — its sense of taste — while using AI to deepen the relationship between the brand and its community at every touchpoint: the run, the store, the website, the recovery, the next pair.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── The Pull Quote ─── -->
+        <section class="section reveal" style="margin-bottom: 4rem;">
+            <p class="pull">
+                "The best AI products don't feel like AI. They feel like the brand, turned up. That's what the Lab should be aiming for — not innovation as novelty, but innovation as intimacy."
+            </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Four Pillars ─── -->
+        <section class="section reveal">
+            <div class="section-label">02 · Four pillars of the Lab's work</div>
+            <h2 class="section-title">Where AI should<br>earn its place.</h2>
+            <div class="pillars">
+
+                <div class="pillar">
+                    <div class="pillar-number">01</div>
+                    <div class="pillar-title">The Running Self</div>
+                    <div class="pillar-body">AI as a mirror for the runner. Not a coach barking metrics, but a quiet reflective layer that helps a runner understand their own patterns, recovery, and progression — and adapts the product experience (fit, cushioning, route recommendations) to who they are today, not who they were last week. The nuance is in restraint: when not to speak.</div>
+                </div>
+
+                <div class="pillar">
+                    <div class="pillar-number">02</div>
+                    <div class="pillar-title">The Physical-Digital Loop</div>
+                    <div class="pillar-body">LightSpray makes it possible to manufacture an upper in three minutes. That's a design opportunity most brands don't have. The Lab should prototype what customisation means when production is that fast — in-store experiences where a scan of the foot leads to a shoe sprayed on-demand, with a digital record that evolves with the runner's data over time.</div>
+                </div>
+
+                <div class="pillar">
+                    <div class="pillar-number">03</div>
+                    <div class="pillar-title">Retail as a Stage</div>
+                    <div class="pillar-body">On's stores are already beautiful. The Lab should design what happens when they become intelligent — ambient AI that knows regulars, remembers past conversations with staff, and turns the fitting experience into something closer to a made-to-measure appointment. Physical craft meets digital memory.</div>
+                </div>
+
+                <div class="pillar">
+                    <div class="pillar-number">04</div>
+                    <div class="pillar-title">The Quiet Layer</div>
+                    <div class="pillar-body">Most AI-driven products are noisy. On's opportunity is to be the opposite — to use AI to remove friction, reduce cognitive load, and give back time. Re-ordering the right pair automatically. Sensing when a runner is injured and proactively offering a lower-impact alternative. The Lab should set the tone: AI as craft, not as spectacle.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Concrete Prototypes ─── -->
+        <section class="section reveal">
+            <div class="section-label">03 · Three prototypes I'd scope in the first 90 days</div>
+            <h2 class="section-title">From theory<br>to artefact.</h2>
+            <div class="section-body">
+                <p>Strategy is only credible if it leads to something you can touch. These are the three directions I'd want to turn into small, testable prototypes in the first three months — each scoped to validate a different hypothesis about AI's role at On.</p>
+            </div>
+            <div class="concepts">
+
+                <div class="concept">
+                    <div class="concept-tag">Prototype 01</div>
+                    <div class="concept-name">The Second Pair</div>
+                    <div class="concept-desc">An AI companion that learns a runner's patterns over the life of their first shoe, and designs the spec of their second — not by recommending a SKU, but by generating the actual LightSpray pattern tailored to the wear data of the first pair. Manufacturing becomes the final design decision, not the first.</div>
+                </div>
+
+                <div class="concept">
+                    <div class="concept-tag">Prototype 02</div>
+                    <div class="concept-name">The Quiet Run</div>
+                    <div class="concept-desc">A companion app experiment that deliberately says less, not more. Uses real-time sensor data to detect stress, form breakdown, and recovery debt — but only surfaces insight at the moment it's actionable. Tests whether AI can feel restorative rather than demanding.</div>
+                </div>
+
+                <div class="concept">
+                    <div class="concept-tag">Prototype 03</div>
+                    <div class="concept-name">The Atelier</div>
+                    <div class="concept-desc">A single flagship retail concept: one store, one quarter. Runners walk in, the store knows who they are, a staff member has context on their last run, and by the end of the visit they leave with a shoe sprayed in front of them. Tests the full physical-digital loop as one continuous journey.</div>
+                </div>
+
+                <div class="concept">
+                    <div class="concept-tag">Prototype 04</div>
+                    <div class="concept-name">The Community Signal</div>
+                    <div class="concept-desc">A tool for On's community managers and OAC athletes that turns community conversation, race data, and product feedback into early signals for R&D. The Lab becomes an insight engine for the rest of the company — not just a prototyping arm.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Horizons ─── -->
+        <section class="section reveal">
+            <div class="section-label">04 · The horizons</div>
+            <h2 class="section-title">How I'd structure<br>the <em>18+ month</em> bet.</h2>
+            <div class="section-body">
+                <p>The Lab's mandate is to look 18+ months ahead. That's both a gift and a trap — too far out and the work becomes abstract; too close and it collides with the core roadmap. Here's how I'd split the work across horizons.</p>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-row" style="display: contents;">
+                    <div class="timeline-horizon">0 – 6 months</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Foundation</div>
+                        <div class="timeline-desc">Build the Lab's operating system. Map the existing journey across product, digital, retail, and service. Identify the three most promising intersections where AI actually earns its place. Ship the first testable prototype.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-row" style="display: contents;">
+                    <div class="timeline-horizon">6 – 12 months</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Prove the loop</div>
+                        <div class="timeline-desc">Run the flagship Atelier pilot. Start feeding Lab insight back into the core roadmap quarterly. Establish the Lab as an insight engine — not a tech showroom.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-row" style="display: contents;">
+                    <div class="timeline-horizon">12 – 18 months</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Scale what sticks</div>
+                        <div class="timeline-desc">Promote validated prototypes into core product or retail pipelines. Kill what doesn't resonate. Publish the Lab's first public POV — a signal to the industry and to On's own community.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-row" style="display: contents;">
+                    <div class="timeline-horizon">18+ months</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">The compounding effect</div>
+                        <div class="timeline-desc">The Lab becomes a recognised voice inside and outside On. Not a department that produces AI — a way of working that other departments borrow.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Why Me ─── -->
+        <section class="section reveal">
+            <div class="section-label">05 · Why me</div>
+            <h2 class="section-title">The rare overlap<br>of three worlds.</h2>
+
+            <div class="about-grid" style="margin-top: 2rem;">
+                <div class="about-block">
+                    <p><strong>AI-native product leadership.</strong> I've spent the last three years leading design across seven AI platforms at QuantumBlack (McKinsey AI) — agent runtimes, workflow orchestration, ML tooling. I design AI products and I build with AI tools (Claude, Cursor, Figma Make) every day. I know what works and, more importantly, what doesn't.</p>
+                    <p><strong>Consulting-level strategic influence.</strong> At McKinsey I've been the key client contact on 17+ engagements, advising senior leaders and partners. I know how to land strategy in rooms where half the audience is sceptical. The Lab will need this muscle.</p>
+                </div>
+
+                <div class="about-block">
+                    <p><strong>Sport, craft, and taste — personally.</strong> I'm a competitive show jumper at British Novice level. I understand performance sport from the inside — the discipline, the gear obsession, the tiny details that matter. I'm also an art collector with a Christie's Education and a foundation in graphic design. I know how craft decisions compound.</p>
+                    <p><strong>Brand and retail experience.</strong> Before consulting, I worked as an Account Manager at Matthew Williamson in London. I know what it takes to build a brand experience that feels coherent across every touchpoint — and why the details that look small from outside are everything from inside.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── Questions ─── -->
+        <section class="section reveal">
+            <div class="section-label">06 · Questions I'd want to ask</div>
+            <h2 class="section-title">What I'm<br>curious about.</h2>
+            <div class="section-body">
+                <p>I'd rather spend part of the conversation exploring, not just presenting. A few of the things I'd want to understand better:</p>
+                <p>— How does the Lab measure success when horizons are 18+ months out? What does a good quarterly review look like?</p>
+                <p>— What's the intended rhythm between the Lab and core product? Quarterly hand-offs, continuous feedback, or something else?</p>
+                <p>— Who does this role report to, and how often will I be in rooms with the founders?</p>
+                <p>— What signals from the Lab's first six months would make you feel confident this is working?</p>
+            </div>
+        </section>
+
+        <!-- ─── Footer ─── -->
+        <footer class="footer reveal">
+            <p class="footer-cta">Thank you for the time, and for the invitation to the second round. I'd be proud to help shape this.</p>
+            <div class="footer-links">
+                <a href="https://natestariam.github.io" class="footer-link" target="_blank">CV & Portfolio</a>
+                <a href="https://www.linkedin.com/in/natalia-kurakina-73b0912b" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="mailto:natestar.iam@gmail.com" class="footer-link">Email</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
