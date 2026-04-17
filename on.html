@@ -1772,6 +1772,210 @@
             color: var(--text);
         }
 
+        /* ─── The Taste Reset ─── */
+        .diagnosis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-top: 2.5rem;
+        }
+
+        .symptom {
+            padding: 1.5rem 1.25rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .symptom-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.55rem;
+            color: rgba(230, 80, 80, 0.8);
+            letter-spacing: 0.25em;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .symptom-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .symptom-body {
+            font-size: 0.72rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .symptom-evidence {
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(17,17,17,0.35);
+            padding-top: 0.6rem;
+            margin-top: 0.6rem;
+            border-top: 1px solid rgba(230, 80, 80, 0.15);
+            letter-spacing: 0.08em;
+            font-style: italic;
+        }
+
+        /* Stop / Start list */
+        .stop-start {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .action-list {
+            padding: 2rem;
+            border-radius: 2px;
+        }
+
+        .action-list.stop {
+            background: #1a0a0a;
+            color: white;
+            border: 1px solid rgba(230, 80, 80, 0.3);
+        }
+
+        .action-list.start {
+            background: #0a1a0a;
+            color: white;
+            border: 1px solid rgba(90, 180, 120, 0.3);
+        }
+
+        .action-header {
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .action-list.stop .action-header { color: rgba(255, 130, 130, 0.9); }
+        .action-list.start .action-header { color: rgba(130, 220, 160, 0.9); }
+
+        .action-item {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: start;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.75);
+            font-weight: 300;
+        }
+
+        .action-item:not(:last-child) {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .action-marker {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            margin-top: 0.2rem;
+        }
+
+        .action-list.stop .action-marker {
+            background: rgba(230, 80, 80, 0.2);
+            color: rgba(255, 130, 130, 1);
+            border: 1px solid rgba(230, 80, 80, 0.4);
+        }
+
+        .action-list.start .action-marker {
+            background: rgba(90, 180, 120, 0.2);
+            color: rgba(130, 220, 160, 1);
+            border: 1px solid rgba(90, 180, 120, 0.4);
+        }
+
+        .action-item strong { color: white; font-weight: 500; }
+
+        /* Five moves */
+        .moves {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .move {
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .move:hover {
+            border-color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .move.feature {
+            grid-column: span 2;
+            background: #0a0a0a;
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .move.feature .move-number { color: var(--accent); }
+        .move.feature .move-name { color: white; }
+        .move.feature .move-body { color: rgba(255,255,255,0.7); }
+        .move.feature .move-ref { color: rgba(255,255,255,0.4); border-top-color: rgba(255,255,255,0.1); }
+
+        .move-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--muted);
+        }
+
+        .move-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .move-body {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+        }
+
+        .move-ref {
+            font-size: 0.58rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--muted);
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--border);
+        }
+
         /* ─── The Athlete Protocol ─── */
         .athlete-hero {
             margin-top: 3rem;
@@ -1969,6 +2173,10 @@
             .athlete-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
             .protocols { grid-template-columns: 1fr; }
             .tennis-opp { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+            .diagnosis { grid-template-columns: 1fr 1fr; }
+            .stop-start { grid-template-columns: 1fr; }
+            .moves { grid-template-columns: 1fr; }
+            .move.feature { grid-column: span 1; }
         }
 
         @media (max-width: 768px) {
@@ -3379,6 +3587,166 @@
                 <div class="reframe-label">The proposition for the AI Lab</div>
                 <div class="reframe-quote">Marketing sells <em>stories about athletes</em>.<br>The Lab should build <em>products informed by athletes</em>.</div>
                 <p class="reframe-body">The distinction is everything. Stories live on billboards for a month. Products informed by athletes live on feet for years — and pay dividends in trust, authenticity, and the one thing On has more of than any competitor: credible sporting lineage. The Head of Experience Design's remit is to turn that lineage into an architectural feature of the product ecosystem, not a marketing asset. That's what separates the Lab from the brand team.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── The Taste Reset ─── -->
+        <section class="section reveal">
+            <div class="section-label">The uncomfortable truth · The Taste Reset</div>
+            <h2 class="section-title">On has a <em>perception</em><br>problem. Not a<br><em>product</em> problem.</h2>
+            <div class="section-body">
+                <p>There's a pattern worth saying aloud because most of the room will already feel it: <strong>On's cultural stock has slipped</strong>. The Zendaya × Challengers commercial felt like a brand borrowing taste it hadn't earned. The Cloud X is now so ubiquitous it's become the shoe of choice for people the fashion crowd specifically wants to not be mistaken for. And the most telling signal: among fashion-literate buyers, <em>On's apparel is doing the heavy cultural lifting</em> — the footwear is being tolerated, not celebrated.</p>
+                <p>This isn't a brand team problem. You can't fix it with better ads. It's a product, ritual, and distribution problem — which means it's <strong>exactly where the Lab should step in</strong>. The way out is to design the objects, moments, and access points that re-earn credibility from the people who set taste for everyone else.</p>
+            </div>
+
+            <!-- Diagnosis: 4 symptoms -->
+            <div style="margin-top: 3rem;">
+                <div class="section-label">Four symptoms, named honestly</div>
+            </div>
+
+            <div class="diagnosis">
+                <div class="symptom">
+                    <div class="symptom-number">SYMPTOM 01</div>
+                    <div class="symptom-title">The Zendaya era</div>
+                    <div class="symptom-body">A-list celebrity marketing to fashion buyers who can smell it. Borrowed credibility landed as desperation, not cultural alignment. The Challengers tie-in read as a brand trying to be where taste is, not a brand that is.</div>
+                    <div class="symptom-evidence">Signal: fashion press went quiet. Stan Twitter didn't bite.</div>
+                </div>
+
+                <div class="symptom">
+                    <div class="symptom-number">SYMPTOM 02</div>
+                    <div class="symptom-title">Cloud saturation</div>
+                    <div class="symptom-body">The Cloud and Cloud X are now the default comfort shoe of the mass affluent. When everyone in the airport lounge is wearing the same thing, the people who notice will start looking elsewhere. Ubiquity has outpaced intent.</div>
+                    <div class="symptom-evidence">Signal: "the new white sneaker that isn't cool anymore."</div>
+                </div>
+
+                <div class="symptom">
+                    <div class="symptom-number">SYMPTOM 03</div>
+                    <div class="symptom-title">Apparel carries water</div>
+                    <div class="symptom-body">The most fashion-credible thing about On right now is the clothing, not the footwear. That's a product priority tell. Fashion buyers want the brand for reasons the brand isn't leading with.</div>
+                    <div class="symptom-evidence">Signal: resale markups on apparel outpace shoes on secondary.</div>
+                </div>
+
+                <div class="symptom">
+                    <div class="symptom-number">SYMPTOM 04</div>
+                    <div class="symptom-title">The "knowing" is gone</div>
+                    <div class="symptom-body">On used to be an inside bet — the shoe taste-makers quietly wore before it was a thing. That signalling premium has dissolved. Without scarcity or in-the-know entry points, the cultural gatekeepers have no reason to stay.</div>
+                    <div class="symptom-evidence">Signal: the brand isn't in the group chats anymore.</div>
+                </div>
+            </div>
+
+            <!-- Core reframe -->
+            <div class="insight" style="margin-top: 3rem;">
+                <div class="insight-label">The reframe</div>
+                <div class="insight-body">"You can't fix brand perception with better ads. You fix it with better <em>objects</em>, better <em>rituals</em>, and better <em>access</em>. The Lab's remit is perception-through-product — exactly what marketing can't touch."</div>
+            </div>
+
+            <!-- Stop / Start list -->
+            <div class="stop-start">
+                <div class="action-list stop">
+                    <div class="action-header">Stop</div>
+                    <div class="action-item">
+                        <span class="action-marker">✕</span>
+                        <div><strong>Celebrity-as-borrowed-taste campaigns.</strong> The Zendaya Challengers moment was expensive and cultural-credibility-negative. Do it less.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✕</span>
+                        <div><strong>Mass-market everywhere distribution.</strong> Every additional retailer dilutes the cultural premium further. The maths works against you.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✕</span>
+                        <div><strong>Announcing every product launch.</strong> Every press release is a nail in the coffin of the "inside bet" feeling.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✕</span>
+                        <div><strong>Positioning the shoe as the hero.</strong> For the fashion cohort, apparel is the entry point. Quit forcing the shoes to carry the brand alone.</div>
+                    </div>
+                </div>
+
+                <div class="action-list start">
+                    <div class="action-header">Start</div>
+                    <div class="action-item">
+                        <span class="action-marker">✓</span>
+                        <div><strong>Product-led credibility.</strong> Make objects that critics want to write about because they're beautiful, not because a movie is releasing alongside them.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✓</span>
+                        <div><strong>Designed scarcity.</strong> An Unlisted Tier — not in stores, not on the site. Only accessible through ritual (Atelier, OAC, invitation). Hermès logic applied to sportswear.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✓</span>
+                        <div><strong>Silent drops.</strong> The fashion cohort finds things. Stop announcing, start placing. Let people discover.</div>
+                    </div>
+                    <div class="action-item">
+                        <span class="action-marker">✓</span>
+                        <div><strong>Apparel-first cohort entry.</strong> For fashion-forward buyers, lead with apparel, let the shoe follow once they're already inside.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Five Lab moves -->
+            <div style="margin-top: 4rem;">
+                <div class="section-label">Five Lab-owned moves to rebuild it</div>
+            </div>
+
+            <div class="moves">
+                <!-- Move 01 - Feature card -->
+                <div class="move feature">
+                    <div class="move-number">01</div>
+                    <div>
+                        <div class="move-name">The Unlisted Line</div>
+                        <div class="move-body">A permanent tier of On product that exists outside the public catalogue. Not marketed. Not on the website. Only accessible through a named invitation, an Atelier visit, or direct OAC connection. Different materials, restrained silhouettes, small runs. This isn't about price — it's about designed scarcity as a signal. The Hermès Birkin principle applied to craft sportswear. Restores the "knowing" by making something worth knowing about.</div>
+                        <div class="move-ref">Cultural lineage → Hermès · Loewe Paula's Ibiza · Aimé Leon Dore early drops</div>
+                    </div>
+                </div>
+
+                <!-- Move 02 -->
+                <div class="move">
+                    <div class="move-number">02</div>
+                    <div>
+                        <div class="move-name">Silent drops</div>
+                        <div class="move-body">Products that arrive without announcement. A new style simply appears in an Atelier on a Tuesday. No Instagram reel, no press release, no Zendaya. The fashion cohort finds it. By the time mass marketing would have picked it up, the story has already been told by the right people.</div>
+                        <div class="move-ref">Extends → The Living Atelier · 2028</div>
+                    </div>
+                </div>
+
+                <!-- Move 03 -->
+                <div class="move">
+                    <div class="move-number">03</div>
+                    <div>
+                        <div class="move-name">Apparel-first entry</div>
+                        <div class="move-body">For the fashion cohort, lead with clothing — the thing they already like most. Scope a clothing-forward capsule, let the footwear appear alongside as companion, not hero. Reorder the product narrative so shoes ride in on apparel credibility, not the other way around.</div>
+                        <div class="move-ref">Extends → Beyond the Run · On Off vertical</div>
+                    </div>
+                </div>
+
+                <!-- Move 04 -->
+                <div class="move">
+                    <div class="move-number">04</div>
+                    <div>
+                        <div class="move-name">Residencies, not collabs</div>
+                        <div class="move-body">Swap transactional collabs (where a name is stamped on the product) for long residencies. A designer, artist, or architect spends 6–12 months with the Lab. The outcome isn't guaranteed — it might be a shoe, a store, an object, a film. The process itself becomes the content.</div>
+                        <div class="move-ref">Precedent → Prada's Rem Koolhaas residency · Miyake's research studio</div>
+                    </div>
+                </div>
+
+                <!-- Move 05 -->
+                <div class="move">
+                    <div class="move-number">05</div>
+                    <div>
+                        <div class="move-name">Hero the athletes, not the celebrities</div>
+                        <div class="move-body">The casting is the strategy. Zendaya is fashion celebrity borrowing sport. Kipchoge, Obiri, Federer in their actual environments read as earned, not borrowed. The Lab's cultural output should centre the people whose sporting authority is the brand's one true moat.</div>
+                        <div class="move-ref">Extends → The Athlete Protocol</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final reframe -->
+            <div class="reframe-block" style="margin-top: 3rem;">
+                <div class="reframe-label">The design principle</div>
+                <div class="reframe-quote">The fashion cohort doesn't want to be sold to.<br>They want to <em>discover</em> something worth keeping.</div>
+                <p class="reframe-body">Every fix above is a variation on one idea: give the taste-makers something to find, rather than something shouted at them. Restraint, scarcity, craft, and silence aren't abstract values — they're the design language of the cultural class On needs to win back. The Lab's job isn't to fix the perception with more noise. It's to design less, better, and more quietly — until the right people start talking about On again without being asked to.</p>
             </div>
         </section>
 
