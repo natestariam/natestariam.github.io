@@ -1911,6 +1911,643 @@
             line-height: 1.5;
         }
 
+        /* ═══════════════ VIDEO EXPERIENCE ═══════════════ */
+
+        /* YouTube-style video player */
+        .yt-wrapper {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            font-family: 'Roboto', 'Inter', sans-serif;
+            color: #0f0f0f;
+        }
+
+        .yt-player {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.35);
+            cursor: pointer;
+        }
+
+        /* Video scenes */
+        .yt-scenes {
+            position: absolute;
+            inset: 0;
+            background: #000;
+        }
+
+        .yt-scene {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            animation: sceneCycle 28s infinite;
+        }
+
+        .yt-scene:nth-child(1) { animation-delay: 0s; }
+        .yt-scene:nth-child(2) { animation-delay: 4s; }
+        .yt-scene:nth-child(3) { animation-delay: 8s; }
+        .yt-scene:nth-child(4) { animation-delay: 12s; }
+        .yt-scene:nth-child(5) { animation-delay: 16s; }
+        .yt-scene:nth-child(6) { animation-delay: 20s; }
+        .yt-scene:nth-child(7) { animation-delay: 24s; }
+
+        @keyframes sceneCycle {
+            0%, 14.28% { opacity: 1; }
+            17.85%, 100% { opacity: 0; }
+        }
+
+        .yt-scene-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            animation: sceneZoom 28s infinite;
+        }
+
+        .yt-scene:nth-child(1) .yt-scene-bg { animation-delay: 0s; }
+        .yt-scene:nth-child(2) .yt-scene-bg { animation-delay: 4s; }
+        .yt-scene:nth-child(3) .yt-scene-bg { animation-delay: 8s; }
+        .yt-scene:nth-child(4) .yt-scene-bg { animation-delay: 12s; }
+        .yt-scene:nth-child(5) .yt-scene-bg { animation-delay: 16s; }
+        .yt-scene:nth-child(6) .yt-scene-bg { animation-delay: 20s; }
+        .yt-scene:nth-child(7) .yt-scene-bg { animation-delay: 24s; }
+
+        @keyframes sceneZoom {
+            0% { transform: scale(1); }
+            17.85% { transform: scale(1.08); }
+            100% { transform: scale(1.08); }
+        }
+
+        .yt-scene-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .yt-caption {
+            position: absolute;
+            bottom: 25%;
+            left: 8%;
+            right: 8%;
+            color: white;
+            z-index: 2;
+        }
+
+        .yt-caption-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .yt-caption-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 700px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .yt-caption-title em {
+            font-style: italic;
+        }
+
+        .yt-caption-sub {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.8);
+            max-width: 500px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        /* Player controls */
+        .yt-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem 1.2rem 1rem;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+            z-index: 5;
+        }
+
+        .yt-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+        }
+
+        .yt-progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: #ff0000;
+            border-radius: 2px;
+            animation: ytProgress 28s linear infinite;
+        }
+
+        .yt-progress-chapters {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .yt-progress-chapters::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        @keyframes ytProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .yt-controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .yt-controls-left, .yt-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .yt-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            opacity: 0.95;
+        }
+
+        .yt-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .yt-time {
+            font-family: 'Roboto', 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: white;
+            margin-left: 0.5rem;
+            font-feature-settings: "tnum";
+        }
+
+        .yt-time-current {
+            animation: ytTime 28s linear infinite;
+        }
+
+        @keyframes ytTime {
+            0% { content: "0:00"; }
+            100% { content: "0:28"; }
+        }
+
+        /* Play/pause center button */
+        .yt-center-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 48px;
+            background: rgba(0,0,0,0.75);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 4;
+        }
+
+        .yt-player:hover .yt-center-play {
+            opacity: 1;
+        }
+
+        .yt-center-play::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 18px solid white;
+            border-top: 11px solid transparent;
+            border-bottom: 11px solid transparent;
+            margin-left: 4px;
+        }
+
+        /* Video metadata below player */
+        .yt-meta {
+            padding: 1.25rem 0;
+        }
+
+        .yt-video-title {
+            font-family: 'Roboto', 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #0f0f0f;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .yt-video-stats {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: #606060;
+            margin-bottom: 1rem;
+        }
+
+        .yt-video-stats span::before { content: '·'; margin: 0 0.5rem; color: #aaa; }
+        .yt-video-stats span:first-child::before { display: none; margin: 0; }
+
+        .yt-creator-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .yt-creator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .yt-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: white;
+            font-size: 0.85rem;
+            letter-spacing: -0.02em;
+        }
+
+        .yt-creator-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .yt-creator-name {
+            font-weight: 500;
+            color: #0f0f0f;
+            font-size: 0.88rem;
+        }
+
+        .yt-creator-subs {
+            font-size: 0.72rem;
+            color: #606060;
+        }
+
+        .yt-subscribe {
+            padding: 0.55rem 1.1rem;
+            background: #0f0f0f;
+            color: white;
+            font-weight: 500;
+            font-size: 0.82rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .yt-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .yt-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 0.9rem;
+            background: #f2f2f2;
+            border: none;
+            border-radius: 18px;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #0f0f0f;
+            cursor: pointer;
+        }
+
+        .yt-action svg {
+            width: 14px;
+            height: 14px;
+            fill: #0f0f0f;
+        }
+
+        .yt-description {
+            margin-top: 1rem;
+            padding: 1rem 1.25rem;
+            background: #f2f2f2;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: #0f0f0f;
+        }
+
+        .yt-desc-top {
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+        }
+
+        .yt-desc-stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .yt-desc-body {
+            color: #0f0f0f;
+            line-height: 1.55;
+            font-weight: 300;
+        }
+
+        .yt-hashtag {
+            color: #065fd4;
+            font-weight: 500;
+        }
+
+        .yt-chapters {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .yt-chapters-title {
+            font-weight: 500;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .yt-chapter {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0.35rem 0;
+            font-size: 0.78rem;
+            color: #606060;
+        }
+
+        .yt-chapter-time {
+            color: #065fd4;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.72rem;
+            min-width: 40px;
+        }
+
+        .yt-comments {
+            padding-top: 2rem;
+        }
+
+        .yt-comments-title {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #0f0f0f;
+            margin-bottom: 1.25rem;
+        }
+
+        .yt-comment {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 0.9rem;
+            padding: 0.8rem 0;
+        }
+
+        .yt-comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .yt-comment-avatar.a { background: #ed6c30; }
+        .yt-comment-avatar.b { background: #4285f4; }
+        .yt-comment-avatar.c { background: #34a853; }
+        .yt-comment-avatar.d { background: #673ab7; }
+
+        .yt-comment-head {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .yt-comment-name {
+            font-weight: 500;
+            font-size: 0.78rem;
+            color: #0f0f0f;
+        }
+
+        .yt-comment-time {
+            font-size: 0.72rem;
+            color: #606060;
+        }
+
+        .yt-comment-body {
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: #0f0f0f;
+            font-weight: 300;
+        }
+
+        .yt-comment-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.72rem;
+            color: #606060;
+        }
+
+        /* Scene-specific gradient backgrounds for placeholder imagery */
+        .yt-scene-1-bg {
+            background:
+                linear-gradient(180deg, rgba(255,140,80,0.15) 0%, rgba(255,90,60,0.3) 50%, rgba(40,20,30,0.6) 100%),
+                radial-gradient(ellipse at 70% 20%, rgba(255,180,100,0.5) 0%, transparent 50%),
+                linear-gradient(135deg, #2a1a1e 0%, #4e2c2f 40%, #7a4233 70%, #cd7043 100%);
+        }
+
+        .yt-scene-2-bg {
+            background-color: #1a1a1a;
+            background-image:
+                linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%),
+                url('https://cdn.uc.assets.prezly.com/b8365d7d-daa4-4ec7-88c2-c09c14880a36/-/crop/1024x603/0,270/-/preview/');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .yt-scene-3-bg {
+            background: radial-gradient(ellipse at center, #0a1a2a 0%, #000 100%);
+        }
+
+        .yt-scene-4-bg {
+            background-color: #0a0a0a;
+            background-image:
+                linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%),
+                url('https://cdn.uc.assets.prezly.com/0882176c-caa6-4b1d-9feb-12df4d1315d3/-/preview/1000x1500/-/format/auto/on_lightspray-factory-busan-20_feb_2026-08.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .yt-scene-5-bg {
+            background-color: #f0edd9;
+            background-image:
+                linear-gradient(180deg, rgba(240,237,217,0) 30%, rgba(20,20,20,0.6) 100%),
+                url('https://cdn.uc.assets.prezly.com/998a2bbc-56de-4e1e-9676-84db707125ad/-/crop/3671x1915/276,333/-/preview/');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .yt-scene-6-bg {
+            background:
+                linear-gradient(180deg, rgba(30,40,60,0) 0%, rgba(10,15,25,0.7) 100%),
+                radial-gradient(ellipse at 30% 40%, rgba(255,200,100,0.15) 0%, transparent 50%),
+                linear-gradient(160deg, #142235 0%, #1f3048 40%, #38506b 70%, #7b97b3 100%);
+        }
+
+        .yt-scene-7-bg {
+            background:
+                linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%),
+                radial-gradient(ellipse at center, #1a0f05 0%, #000 100%);
+        }
+
+        /* Scene-specific animated overlays */
+        .yt-runner-silhouette {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24%;
+            height: 55%;
+            opacity: 0.85;
+        }
+
+        .yt-runner-silhouette svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .yt-heat-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .yt-heat-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,69,0,0.6), rgba(255,69,0,0));
+            animation: heatPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heatPulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .yt-ai-mesh {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(255,69,0,0.15), transparent 60%);
+        }
+
+        /* Playback badges */
+        .yt-quality-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 3;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .yt-live-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 3;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .yt-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ff0000;
+            animation: liveBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes liveBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @media (max-width: 768px) {
+            .yt-caption-title { font-size: 1.4rem; }
+            .yt-caption-sub { font-size: 0.85rem; }
+            .yt-video-title { font-size: 1.05rem; }
+            .yt-creator-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+
         /* ─── The Taste Reset ─── */
         .diagnosis {
             display: grid;
@@ -4427,6 +5064,300 @@
                 <p>— What signals from the Lab's first six months would make you feel confident this is working?</p>
             </div>
         </section>
+
+        <div class="divider"></div>
+
+        <!-- ═══════════════ VIDEO EXPERIENCE · THE SECOND PAIR ═══════════════ -->
+        <section class="section reveal" style="padding: 0; margin-bottom: 4rem;">
+            <div class="section-label" style="text-align: center;">A closing film · How it could feel</div>
+            <h2 class="section-title" style="text-align: center;">The <em>Second Pair</em>,<br>in motion.</h2>
+            <div class="section-body" style="max-width: 680px; margin: 0 auto; text-align: center;">
+                <p>Instead of closing with another slide, a visualisation — the Second Pair experience as it could feel, played as a short film. Auto-plays below. Imagine this as the anchor brand film the Lab would produce in year one.</p>
+            </div>
+
+            <div class="yt-wrapper">
+                <div class="yt-player">
+                    <div class="yt-live-badge"><span class="yt-live-dot"></span>Concept · Lab Film</div>
+                    <div class="yt-quality-badge">4K · HDR</div>
+                    <div class="yt-center-play"></div>
+
+                    <div class="yt-scenes">
+                        <!-- Scene 1: Dawn, the morning before -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-1-bg"></div>
+                            <!-- Runner silhouette on horizon -->
+                            <div class="yt-runner-silhouette" style="bottom: 18%; width: 14%; height: 40%;">
+                                <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
+                                    <g fill="#0a0508" opacity="0.92">
+                                        <circle cx="50" cy="30" r="12"/>
+                                        <path d="M38,42 L62,42 L66,110 L34,110 Z"/>
+                                        <path d="M38,46 L18,90 L24,95 L42,55 Z"/>
+                                        <path d="M62,46 L82,80 L76,88 L58,58 Z"/>
+                                        <path d="M38,110 L32,175 L44,175 L48,110 Z"/>
+                                        <path d="M62,110 L68,175 L56,175 L52,110 Z"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">01 · SUNRISE</div>
+                                <div class="yt-caption-title">After 847 kilometres,<br><em>she knows her shoe</em>.</div>
+                                <div class="yt-caption-sub">Six months of morning runs. The city, the bridge, the river path. Every step, quietly recorded.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 2: The worn shoe / LightSpray close-up with data overlay -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-2-bg"></div>
+                            <div class="yt-heat-overlay">
+                                <div class="yt-heat-dot" style="width: 80px; height: 80px; top: 35%; left: 62%; animation-delay: 0s;"></div>
+                                <div class="yt-heat-dot" style="width: 60px; height: 60px; top: 45%; left: 45%; animation-delay: 0.4s;"></div>
+                                <div class="yt-heat-dot" style="width: 50px; height: 50px; top: 40%; left: 30%; animation-delay: 0.8s;"></div>
+                            </div>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">02 · WEAR MAP</div>
+                                <div class="yt-caption-title">The shoe becomes <em>the brief</em>.</div>
+                                <div class="yt-caption-sub">Pressure, cadence, asymmetry, surface. Six months of her running, translated into a design input.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 3: AI generation / network -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-3-bg"></div>
+                            <div class="yt-ai-mesh"></div>
+                            <!-- Animated generation network -->
+                            <svg style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+                                <defs>
+                                    <radialGradient id="aiNode">
+                                        <stop offset="0%" stop-color="#ff4500" stop-opacity="1"/>
+                                        <stop offset="100%" stop-color="#ff4500" stop-opacity="0"/>
+                                    </radialGradient>
+                                </defs>
+                                <!-- Constellation of nodes -->
+                                <g opacity="0.85">
+                                    <circle cx="800" cy="450" r="12" fill="#ff4500">
+                                        <animate attributeName="r" values="10;16;10" dur="2.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="800" cy="450" r="60" fill="url(#aiNode)" opacity="0.6"/>
+                                    <circle cx="550" cy="300" r="4" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+                                    <circle cx="1100" cy="280" r="4" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/></circle>
+                                    <circle cx="400" cy="500" r="5" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1s" repeatCount="indefinite"/></circle>
+                                    <circle cx="1200" cy="560" r="4" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"/></circle>
+                                    <circle cx="620" cy="650" r="4" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.3s" repeatCount="indefinite"/></circle>
+                                    <circle cx="1000" cy="680" r="5" fill="rgba(255,255,255,0.7)"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"/></circle>
+                                    <!-- Connecting lines -->
+                                    <line x1="800" y1="450" x2="550" y2="300" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                    <line x1="800" y1="450" x2="1100" y2="280" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                    <line x1="800" y1="450" x2="400" y2="500" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                    <line x1="800" y1="450" x2="1200" y2="560" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                    <line x1="800" y1="450" x2="620" y2="650" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                    <line x1="800" y1="450" x2="1000" y2="680" stroke="rgba(255,69,0,0.4)" stroke-width="0.8"/>
+                                </g>
+                            </svg>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">03 · COMPOSITION</div>
+                                <div class="yt-caption-title">The AI <em>writes</em><br>her next pair.</div>
+                                <div class="yt-caption-sub">Fifteen seconds. Every decision — upper density, medial support, forefoot flex — traced back to her own data.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 4: LightSpray factory -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-4-bg"></div>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">04 · LIGHTSPRAY · BUSAN</div>
+                                <div class="yt-caption-title">Three minutes.<br><em>One upper.</em></div>
+                                <div class="yt-caption-sub">1.5 km of filament, sprayed to her exact spec. Zero waste. No two the same.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 5: The pair revealed -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-5-bg"></div>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">05 · ARRIVAL</div>
+                                <div class="yt-caption-title">Tuesday morning,<br><em>she opens the box</em>.</div>
+                                <div class="yt-caption-sub">Same shape. Same brand. Different shoe. Tuned to the person she has been for the last 847 kilometres.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 6: Running in the new pair -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-6-bg"></div>
+                            <div class="yt-runner-silhouette">
+                                <svg viewBox="0 0 100 200" preserveAspectRatio="xMidYMid meet">
+                                    <g fill="#0a1220" opacity="0.9">
+                                        <circle cx="50" cy="32" r="13"/>
+                                        <path d="M36,45 Q36,48 40,48 L60,48 Q64,48 64,45 L70,120 L30,120 Z"/>
+                                        <!-- Running pose - one leg forward -->
+                                        <path d="M36,48 L14,85 L20,92 L42,55 Z"/>
+                                        <path d="M64,48 L85,65 L78,72 L58,58 Z"/>
+                                        <path d="M36,120 L22,165 L34,170 L46,120 Z"/>
+                                        <path d="M64,120 L78,145 L65,158 L54,120 Z"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <!-- Motion blur streaks -->
+                            <div style="position: absolute; top: 60%; left: 10%; width: 20%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);"></div>
+                            <div style="position: absolute; top: 65%; left: 70%; width: 20%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);"></div>
+                            <div class="yt-scene-overlay"></div>
+                            <div class="yt-caption">
+                                <div class="yt-caption-number">06 · FIRST STRIDE</div>
+                                <div class="yt-caption-title">The shoe <em>knows</em><br>before she does.</div>
+                                <div class="yt-caption-sub">Softer under the left foot. A fraction more rebound at push-off. She doesn't think about any of it. That's the point.</div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 7: Closing logo / credit -->
+                        <div class="yt-scene">
+                            <div class="yt-scene-bg yt-scene-7-bg"></div>
+                            <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+                                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.4em; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem;">ON · AI LAB · CONCEPT FILM</div>
+                                <div style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3.6rem); font-weight: 400; color: white; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem;">The Second Pair</div>
+                                <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--accent); line-height: 1.4; max-width: 520px;">"The only brand where your first pair<br>is also your last."</div>
+                                <div style="margin-top: 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.35);">2027 · LICENSED LONGEVITY</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="yt-controls">
+                        <div class="yt-progress-bar">
+                            <div class="yt-progress-fill"></div>
+                        </div>
+                        <div class="yt-controls-row">
+                            <div class="yt-controls-left">
+                                <button class="yt-btn" aria-label="Pause"><svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg></button>
+                                <button class="yt-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M6 6l8 6-8 6V6zm10 12h2V6h-2v12z"/></svg></button>
+                                <button class="yt-btn" aria-label="Volume"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+                                <span class="yt-time">0:14 / 0:28</span>
+                            </div>
+                            <div class="yt-controls-right">
+                                <button class="yt-btn" aria-label="CC"><svg viewBox="0 0 24 24"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"/></svg></button>
+                                <button class="yt-btn" aria-label="Settings"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></button>
+                                <button class="yt-btn" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meta below player -->
+                <div class="yt-meta">
+                    <div class="yt-video-title">The Second Pair — Concept Film · On AI Lab</div>
+                    <div class="yt-video-stats">
+                        <span>847K views</span>
+                        <span>Premiered 2 hours ago</span>
+                        <span class="yt-hashtag">#OnAILab</span>
+                        <span class="yt-hashtag">#TheSecondPair</span>
+                        <span class="yt-hashtag">#LicensedLongevity</span>
+                    </div>
+
+                    <div class="yt-creator-row">
+                        <div class="yt-creator">
+                            <div class="yt-avatar">On</div>
+                            <div class="yt-creator-info">
+                                <span class="yt-creator-name">On · AI Lab</span>
+                                <span class="yt-creator-subs">2.4M subscribers</span>
+                            </div>
+                            <button class="yt-subscribe">Subscribed</button>
+                        </div>
+                        <div class="yt-actions">
+                            <button class="yt-action">
+                                <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                                187K
+                            </button>
+                            <button class="yt-action">
+                                <svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
+                            </button>
+                            <button class="yt-action">
+                                <svg viewBox="0 0 24 24"><path d="M14 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>
+                                Share
+                            </button>
+                            <button class="yt-action">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="yt-description">
+                        <div class="yt-desc-top">847K views · Premiered today</div>
+                        <div class="yt-desc-body">A closing concept film from the On AI Lab. <em>The Second Pair</em> imagines a world where your next pair is designed by the one you just wore — manufacturing becomes the final design decision, not the first. Featuring LightSpray, the Continuous Pair, and Licensed Longevity. Directed in-house. No footwear was wasted in the making of this concept.</div>
+
+                        <div class="yt-chapters">
+                            <div class="yt-chapters-title">Chapters</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:00</span>Sunrise · 847 km in</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:04</span>The shoe as brief</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:08</span>The AI composes</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:12</span>Three minutes in Busan</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:16</span>Tuesday morning</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:20</span>The first stride</div>
+                            <div class="yt-chapter"><span class="yt-chapter-time">0:24</span>Closing</div>
+                        </div>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="yt-comments">
+                        <div class="yt-comments-title">487 comments</div>
+
+                        <div class="yt-comment">
+                            <div class="yt-comment-avatar a">KT</div>
+                            <div>
+                                <div class="yt-comment-head">
+                                    <span class="yt-comment-name">@kiptum_k</span>
+                                    <span class="yt-comment-time">2 hours ago</span>
+                                </div>
+                                <div class="yt-comment-body">This is how a sport brand should be thinking about AI. Not shouted at me, not a gimmick. A shoe that actually evolves with the runner. Federer got this one right.</div>
+                                <div class="yt-comment-actions"><span>👍 12K</span><span>Reply</span></div>
+                            </div>
+                        </div>
+
+                        <div class="yt-comment">
+                            <div class="yt-comment-avatar b">IG</div>
+                            <div>
+                                <div class="yt-comment-head">
+                                    <span class="yt-comment-name">@ian.garland</span>
+                                    <span class="yt-comment-time">1 hour ago</span>
+                                </div>
+                                <div class="yt-comment-body">"The only brand where your first pair is also your last." That's a line. Took me out.</div>
+                                <div class="yt-comment-actions"><span>👍 3.2K</span><span>Reply</span></div>
+                            </div>
+                        </div>
+
+                        <div class="yt-comment">
+                            <div class="yt-comment-avatar c">HE</div>
+                            <div>
+                                <div class="yt-comment-head">
+                                    <span class="yt-comment-name">@hellen.obiri</span>
+                                    <span class="yt-comment-time">45 minutes ago</span>
+                                </div>
+                                <div class="yt-comment-body">Training in the next version of this on my morning run tomorrow. Full disclosure — my gait data literally shaped the pattern 😌</div>
+                                <div class="yt-comment-actions"><span>👍 24K</span><span>Reply</span></div>
+                            </div>
+                        </div>
+
+                        <div class="yt-comment">
+                            <div class="yt-comment-avatar d">AR</div>
+                            <div>
+                                <div class="yt-comment-head">
+                                    <span class="yt-comment-name">@arcadio.research</span>
+                                    <span class="yt-comment-time">22 minutes ago</span>
+                                </div>
+                                <div class="yt-comment-body">Subtle masterclass in restraint. No product hero-shot. No beats drop. Just the idea, told calmly. This is what Apple films used to feel like.</div>
+                                <div class="yt-comment-actions"><span>👍 1.8K</span><span>Reply</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
 
         <footer class="footer reveal">
             <p class="footer-cta">Thank you for the time, and for the invitation to the second round. I'd be proud to help shape this.</p>
