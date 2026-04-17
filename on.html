@@ -1772,6 +1772,180 @@
             color: var(--text);
         }
 
+        /* ─── The Athlete Protocol ─── */
+        .athlete-hero {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .athlete-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .athlete-tag {
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+
+        .athlete-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .athlete-title em { font-style: italic; }
+
+        .athlete-body {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .athlete-reframe {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            line-height: 1.4;
+        }
+
+        .athlete-reframe em {
+            font-style: normal;
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        /* Four concrete manifestations */
+        .protocols {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .protocol {
+            padding: 1.75rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .protocol:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .protocol-number {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+        }
+
+        .protocol-visual {
+            height: 90px;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, #F5F4F0, #EDEBE5);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .protocol-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        .protocol-body {
+            font-size: 0.82rem;
+            line-height: 1.65;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 0.9rem;
+        }
+
+        .protocol-ties {
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--border);
+            font-weight: 500;
+        }
+
+        /* Tennis opportunity block */
+        .tennis-opp {
+            margin-top: 2.5rem;
+            padding: 2.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 2px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .tennis-visual {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #F5F4F0, #EDEBE5);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tennis-content .athlete-tag { color: var(--muted); }
+
+        .tennis-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .tennis-title em { font-style: italic; }
+
+        .tennis-body {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .tennis-body strong { color: var(--text); font-weight: 500; }
+
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .pillars { grid-template-columns: 1fr; }
@@ -1792,6 +1966,9 @@
             .cohorts { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
             .verticals { grid-template-columns: 1fr 1fr; }
             .matrix-wrapper { padding: 2rem 1.5rem; }
+            .athlete-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .protocols { grid-template-columns: 1fr; }
+            .tennis-opp { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
         }
 
         @media (max-width: 768px) {
@@ -2947,6 +3124,261 @@
                 <div class="reframe-label">The strategic reframe</div>
                 <div class="reframe-quote">On isn't the Swiss Nike. It should become the <em>Loro Piana of moving bodies</em>.</div>
                 <p class="reframe-body">Quiet luxury brands own wardrobe ritual, material obsession, and generational wear. Technical brands own performance and specificity. On already has both instincts — LightSpray is craft-obsession at scale, CloudTec is technical specificity. The Lab's strategic job is to merge these into a clear positioning: sportswear that's worn with intent, not just aspiration. And to give the Coffee Runner a dedicated product line without apologising for it.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ─── The Athlete Protocol ─── -->
+        <section class="section reveal">
+            <div class="section-label">The sport-geek lever · The Athlete Protocol</div>
+            <h2 class="section-title">Stop using Federer<br>as a <em>face</em>.</h2>
+            <div class="section-body">
+                <p>On has something almost no other sportswear brand does: genuine, deep, ongoing relationships with elite athletes. Roger Federer as a co-founder. The entire OAC roster — Hellen Obiri, Yared Nuguse, George Beamish. Marathon winners wearing On at the Olympics. This is credibility most brands would spend a decade trying to manufacture.</p>
+                <p>And On markets it the way everyone else does. Billboards, hero films, Instagram. The Lab's opportunity is to turn these relationships into something that marketing can't touch — <strong>a layer of the product itself</strong>. Not "inspired by the pros." Literally configured by them. That's Experience Design, not brand.</p>
+            </div>
+
+            <!-- Hero reframe block -->
+            <div class="athlete-hero">
+                <div class="athlete-hero-grid">
+                    <div>
+                        <div class="athlete-tag">The reframe</div>
+                        <div class="athlete-title">Athletes aren't<br>ambassadors.<br>They're <em>source code</em>.</div>
+                        <p class="athlete-body">Federer's hands. Hellen Obiri's gait. Yared Nuguse's race-pace strategy. These aren't content. They're <em>inputs</em> — biomechanical, tactical, personal — that can flow directly into the product experience for everyone else. The athlete's expertise becomes infrastructure.</p>
+                        <div class="athlete-reframe">"Stop using Federer as a face. <em>Start using him as source code.</em>"</div>
+                    </div>
+                    <!-- Visual: athlete data flowing into product -->
+                    <div style="aspect-ratio: 1 / 0.95; background: radial-gradient(ellipse at center, #1a1a1a, #000); border-radius: 2px; position: relative; overflow: hidden;">
+                        <svg viewBox="0 0 320 300" style="width: 100%; height: 100%;">
+                            <defs>
+                                <radialGradient id="athleteGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="rgba(255,69,0,0.3)"/>
+                                    <stop offset="100%" stop-color="rgba(255,69,0,0)"/>
+                                </radialGradient>
+                            </defs>
+
+                            <!-- Top row: athletes -->
+                            <g transform="translate(40, 40)">
+                                <circle cx="0" cy="0" r="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                                <circle cx="0" cy="-3" r="5" fill="rgba(255,255,255,0.6)"/>
+                                <path d="M-7,12 Q-7,4 0,4 Q7,4 7,12" fill="rgba(255,255,255,0.4)"/>
+                                <text x="0" y="38" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1.2">FEDERER</text>
+                                <text x="0" y="48" font-family="Inter" font-size="4.5" fill="rgba(255,255,255,0.35)" text-anchor="middle">tennis biomechanics</text>
+                            </g>
+                            <g transform="translate(160, 40)">
+                                <circle cx="0" cy="0" r="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                                <circle cx="0" cy="-3" r="5" fill="rgba(255,255,255,0.6)"/>
+                                <path d="M-7,12 Q-7,4 0,4 Q7,4 7,12" fill="rgba(255,255,255,0.4)"/>
+                                <text x="0" y="38" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1.2">OBIRI</text>
+                                <text x="0" y="48" font-family="Inter" font-size="4.5" fill="rgba(255,255,255,0.35)" text-anchor="middle">marathon economy</text>
+                            </g>
+                            <g transform="translate(280, 40)">
+                                <circle cx="0" cy="0" r="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                                <circle cx="0" cy="-3" r="5" fill="rgba(255,255,255,0.6)"/>
+                                <path d="M-7,12 Q-7,4 0,4 Q7,4 7,12" fill="rgba(255,255,255,0.4)"/>
+                                <text x="0" y="38" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1.2">NUGUSE</text>
+                                <text x="0" y="48" font-family="Inter" font-size="4.5" fill="rgba(255,255,255,0.35)" text-anchor="middle">1500m strategy</text>
+                            </g>
+
+                            <!-- Data streams flowing down -->
+                            <line x1="40" y1="100" x2="160" y2="150" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.5"/>
+                            <line x1="160" y1="100" x2="160" y2="150" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.5"/>
+                            <line x1="280" y1="100" x2="160" y2="150" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.5"/>
+
+                            <!-- Animated data particles -->
+                            <circle cx="40" cy="60" r="2" fill="var(--accent)">
+                                <animate attributeName="cx" values="40;160" dur="3s" repeatCount="indefinite"/>
+                                <animate attributeName="cy" values="60;150" dur="3s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="160" cy="60" r="2" fill="var(--accent)">
+                                <animate attributeName="cy" values="60;150" dur="3s" begin="1s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="280" cy="60" r="2" fill="var(--accent)">
+                                <animate attributeName="cx" values="280;160" dur="3s" begin="2s" repeatCount="indefinite"/>
+                                <animate attributeName="cy" values="60;150" dur="3s" begin="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="2s" repeatCount="indefinite"/>
+                            </circle>
+
+                            <!-- Central "AI Model / Twin" -->
+                            <circle cx="160" cy="175" r="50" fill="url(#athleteGlow)"/>
+                            <circle cx="160" cy="175" r="22" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+                            <circle cx="160" cy="175" r="8" fill="var(--accent)">
+                                <animate attributeName="r" values="6;10;6" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="160" y="177" font-family="JetBrains Mono, monospace" font-size="5" fill="white" text-anchor="middle" letter-spacing="2">MODEL</text>
+                            <text x="160" y="213" font-family="Playfair Display, serif" font-style="italic" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Athlete data fuses into product model</text>
+
+                            <!-- Outputs flowing out -->
+                            <line x1="140" y1="210" x2="80" y2="260" stroke="rgba(255,255,255,0.2)" stroke-width="0.6" stroke-dasharray="2 2"/>
+                            <line x1="160" y1="225" x2="160" y2="260" stroke="rgba(255,255,255,0.2)" stroke-width="0.6" stroke-dasharray="2 2"/>
+                            <line x1="180" y1="210" x2="240" y2="260" stroke="rgba(255,255,255,0.2)" stroke-width="0.6" stroke-dasharray="2 2"/>
+
+                            <!-- Customer outputs (shoes for everyone else) -->
+                            <g transform="translate(60, 265)">
+                                <path d="M0,8 Q0,3 4,2 L14,0 Q24,0 28,3 L28,7 Q20,9 2,9 Q0,9 0,8 Z" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.8"/>
+                                <text x="14" y="22" font-family="Inter" font-size="4" fill="rgba(255,255,255,0.4)" text-anchor="middle">your shoe</text>
+                            </g>
+                            <g transform="translate(140, 265)">
+                                <path d="M0,8 Q0,3 4,2 L14,0 Q24,0 28,3 L28,7 Q20,9 2,9 Q0,9 0,8 Z" fill="var(--accent)" fill-opacity="0.3" stroke="var(--accent)" stroke-width="1"/>
+                                <text x="14" y="22" font-family="Inter" font-size="4" fill="rgba(255,255,255,0.4)" text-anchor="middle">your shoe</text>
+                            </g>
+                            <g transform="translate(220, 265)">
+                                <path d="M0,8 Q0,3 4,2 L14,0 Q24,0 28,3 L28,7 Q20,9 2,9 Q0,9 0,8 Z" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.6"/>
+                                <text x="14" y="22" font-family="Inter" font-size="4" fill="rgba(255,255,255,0.4)" text-anchor="middle">your shoe</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Four concrete protocols -->
+            <div style="margin-top: 3rem;">
+                <div class="section-label">Four ways this shows up in product</div>
+            </div>
+
+            <div class="protocols">
+                <!-- Protocol 01: Athlete-tuned AI -->
+                <div class="protocol">
+                    <span class="protocol-number">01</span>
+                    <div class="protocol-visual">
+                        <svg viewBox="0 0 280 90" style="width: 100%; height: 100%;">
+                            <!-- Dial/slider metaphor -->
+                            <line x1="30" y1="45" x2="250" y2="45" stroke="rgba(17,17,17,0.2)" stroke-width="0.8"/>
+                            <circle cx="40" cy="45" r="3" fill="rgba(17,17,17,0.3)"/>
+                            <text x="40" y="65" font-family="Inter" font-size="6" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="1">YOU</text>
+                            <circle cx="115" cy="45" r="3" fill="rgba(17,17,17,0.3)"/>
+                            <text x="115" y="65" font-family="Inter" font-size="6" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="1">OBIRI 30%</text>
+                            <circle cx="175" cy="45" r="5" fill="var(--accent)">
+                                <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="175" y="30" font-family="Inter" font-size="6" fill="var(--accent)" text-anchor="middle" letter-spacing="1" font-weight="600">OBIRI 60%</text>
+                            <circle cx="240" cy="45" r="3" fill="rgba(17,17,17,0.3)"/>
+                            <text x="240" y="65" font-family="Inter" font-size="6" fill="rgba(17,17,17,0.4)" text-anchor="middle" letter-spacing="1">OBIRI</text>
+                        </svg>
+                    </div>
+                    <div class="protocol-name">Athlete-tuned tuning</div>
+                    <div class="protocol-body">Your twin gets a dial: "tune my shoe closer to [athlete]." Hellen Obiri's forefoot strike pattern, Yared Nuguse's cadence economy, Kipchoge's stride mechanics. Not a gimmick — a real configuration of the LightSpray pattern based on biomechanical overlap.</div>
+                    <div class="protocol-ties">Extends → Hyperpersonalisation</div>
+                </div>
+
+                <!-- Protocol 02: Ghost training partners -->
+                <div class="protocol">
+                    <span class="protocol-number">02</span>
+                    <div class="protocol-visual">
+                        <svg viewBox="0 0 280 90" style="width: 100%; height: 100%;">
+                            <!-- Two runners side by side, one solid one ghost -->
+                            <g transform="translate(70, 20)">
+                                <!-- Runner 1 (you) -->
+                                <circle cx="0" cy="0" r="6" fill="rgba(17,17,17,0.7)"/>
+                                <path d="M-6,8 L-4,35 L4,35 L6,8 Z" fill="rgba(17,17,17,0.7)"/>
+                                <line x1="-4" y1="35" x2="-8" y2="50" stroke="rgba(17,17,17,0.7)" stroke-width="2"/>
+                                <line x1="4" y1="35" x2="8" y2="50" stroke="rgba(17,17,17,0.7)" stroke-width="2"/>
+                            </g>
+                            <!-- Runner 2 (ghost athlete) -->
+                            <g transform="translate(170, 20)" opacity="0.45">
+                                <circle cx="0" cy="0" r="6" fill="var(--accent)" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 1.5"/>
+                                <path d="M-6,8 L-4,35 L4,35 L6,8 Z" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 1.5"/>
+                                <line x1="-4" y1="35" x2="-8" y2="50" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+                                <line x1="4" y1="35" x2="8" y2="50" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+                            </g>
+                            <!-- Sync line between -->
+                            <line x1="80" y1="45" x2="160" y2="45" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="1 2" opacity="0.6"/>
+                            <text x="120" y="78" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.45)" text-anchor="middle" letter-spacing="1.5">SHADOWING HELLEN · SPLIT 4:12</text>
+                        </svg>
+                    </div>
+                    <div class="protocol-name">Ghost training partners</div>
+                    <div class="protocol-body">A mode in the On app where you "shadow" a real OAC workout — their actual splits, HRV, cadence, recovery — from the same morning. You don't race them. You feel what they felt. Turns elite training data into a shared experience.</div>
+                    <div class="protocol-ties">Extends → The Quiet Run · Prototype 02</div>
+                </div>
+
+                <!-- Protocol 03: Athlete-signed LightSpray patterns -->
+                <div class="protocol">
+                    <span class="protocol-number">03</span>
+                    <div class="protocol-visual">
+                        <svg viewBox="0 0 280 90" style="width: 100%; height: 100%;">
+                            <!-- Shoe with signature pattern -->
+                            <g transform="translate(80, 20)">
+                                <path d="M10,35 Q10,22 24,19 L55,10 Q88,5 105,14 Q117,23 115,32 L115,38 Q85,44 25,41 Q12,40 10,35 Z" fill="white" stroke="rgba(17,17,17,0.5)" stroke-width="1"/>
+                                <!-- Signature spray pattern (unique) -->
+                                <path d="M18,22 Q35,14 50,20 Q68,12 85,18" stroke="var(--accent)" stroke-width="0.8" fill="none" opacity="0.8"/>
+                                <path d="M20,30 Q40,25 60,28 Q78,25 100,30" stroke="var(--accent)" stroke-width="0.6" fill="none" opacity="0.5"/>
+                                <circle cx="85" cy="22" r="3" fill="var(--accent)" opacity="0.7"/>
+                                <circle cx="55" cy="30" r="2" fill="var(--accent)" opacity="0.5"/>
+                                <!-- Signature text -->
+                                <text x="60" y="60" font-family="Playfair Display, serif" font-style="italic" font-size="7" fill="rgba(17,17,17,0.6)" text-anchor="middle">sprayed by Federer's pattern</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="protocol-name">Athlete-signed patterns</div>
+                    <div class="protocol-body">Limited LightSpray drops where the pattern <em>is</em> the athlete's biomechanics — not their colour pick. A Federer edition has different upper density, forefoot stability, and breathability zones because his tennis gait demands them. Wear what he literally runs in.</div>
+                    <div class="protocol-ties">Extends → The Continuous Pair · 18-month bet</div>
+                </div>
+
+                <!-- Protocol 04: The Field Notebook -->
+                <div class="protocol">
+                    <span class="protocol-number">04</span>
+                    <div class="protocol-visual">
+                        <svg viewBox="0 0 280 90" style="width: 100%; height: 100%;">
+                            <!-- Editorial-style page mock -->
+                            <g transform="translate(85, 10)">
+                                <rect x="0" y="0" width="110" height="70" fill="white" stroke="rgba(17,17,17,0.2)" stroke-width="0.6"/>
+                                <rect x="8" y="8" width="45" height="25" fill="rgba(17,17,17,0.08)"/>
+                                <rect x="8" y="36" width="25" height="3" fill="rgba(17,17,17,0.3)"/>
+                                <rect x="8" y="42" width="45" height="2" fill="rgba(17,17,17,0.15)"/>
+                                <rect x="8" y="46" width="40" height="2" fill="rgba(17,17,17,0.15)"/>
+                                <rect x="8" y="50" width="42" height="2" fill="rgba(17,17,17,0.15)"/>
+                                <rect x="58" y="8" width="45" height="45" fill="none" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="2 2"/>
+                                <text x="80" y="32" font-family="JetBrains Mono, monospace" font-size="4" fill="var(--accent)" text-anchor="middle" letter-spacing="1">PACE</text>
+                                <text x="80" y="40" font-family="Playfair Display, serif" font-style="italic" font-size="7" fill="var(--text)" text-anchor="middle">4:12</text>
+                                <text x="8" y="65" font-family="JetBrains Mono, monospace" font-size="4" fill="rgba(17,17,17,0.4)" letter-spacing="1">ISSUE 12 · YARED NUGUSE</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="protocol-name">The Field Notebook</div>
+                    <div class="protocol-body">A quietly nerdy editorial product inside the On app — monthly, highly-crafted. Each issue unpacks one athlete's session or race in forensic detail: splits, biomechanics, shoe spec, fuelling, mindset. Strava meets Criterion Collection. Content that sport geeks can't ignore.</div>
+                    <div class="protocol-ties">Extends → Community Signal · OAC as content</div>
+                </div>
+            </div>
+
+            <!-- Tennis opportunity -->
+            <div class="tennis-opp">
+                <div class="tennis-visual">
+                    <svg viewBox="0 0 200 200" style="width: 100%; height: 100%;">
+                        <!-- Tennis court top-down -->
+                        <rect x="30" y="30" width="140" height="140" fill="rgba(17,17,17,0.04)" stroke="rgba(17,17,17,0.3)" stroke-width="0.8"/>
+                        <line x1="100" y1="30" x2="100" y2="170" stroke="rgba(17,17,17,0.3)" stroke-width="0.6"/>
+                        <line x1="30" y1="100" x2="170" y2="100" stroke="rgba(17,17,17,0.5)" stroke-width="1.2"/>
+                        <!-- Service lines -->
+                        <line x1="30" y1="70" x2="170" y2="70" stroke="rgba(17,17,17,0.25)" stroke-width="0.5"/>
+                        <line x1="30" y1="130" x2="170" y2="130" stroke="rgba(17,17,17,0.25)" stroke-width="0.5"/>
+                        <line x1="60" y1="70" x2="60" y2="130" stroke="rgba(17,17,17,0.25)" stroke-width="0.5"/>
+                        <line x1="140" y1="70" x2="140" y2="130" stroke="rgba(17,17,17,0.25)" stroke-width="0.5"/>
+                        <!-- Player position (Federer) -->
+                        <circle cx="100" cy="55" r="6" fill="var(--accent)">
+                            <animate attributeName="cx" values="100;70;130;100" dur="6s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- Player 2 -->
+                        <circle cx="100" cy="145" r="5" fill="rgba(17,17,17,0.5)"/>
+                        <!-- Ball trajectory -->
+                        <path d="M100,60 Q80,100 95,135" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2" fill="none" opacity="0.6"/>
+                        <!-- Label -->
+                        <text x="100" y="195" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(17,17,17,0.45)" text-anchor="middle" letter-spacing="2">THE EMPTY COURT</text>
+                    </svg>
+                </div>
+                <div class="tennis-content">
+                    <div class="athlete-tag">The adjacent vertical</div>
+                    <h3 class="tennis-title">Tennis is the<br>obvious <em>next door</em>.</h3>
+                    <p class="tennis-body">Federer isn't just a face — he's the most credible tennis voice alive, and On hasn't built a proper tennis product. On The Roger is a lifestyle sneaker, not a court shoe. Meanwhile <strong>the tennis footwear category is dominated by brands with half his credibility</strong>. The Lab's move: scope a real tennis line shaped by Federer's camp — court shoes, apparel, training tools — and design the experience around making his tactical intelligence available to amateur players through the app. Instant credibility, new vertical, real product.</p>
+                </div>
+            </div>
+
+            <!-- Strategic reframe -->
+            <div class="reframe-block" style="margin-top: 2.5rem;">
+                <div class="reframe-label">The proposition for the AI Lab</div>
+                <div class="reframe-quote">Marketing sells <em>stories about athletes</em>.<br>The Lab should build <em>products informed by athletes</em>.</div>
+                <p class="reframe-body">The distinction is everything. Stories live on billboards for a month. Products informed by athletes live on feet for years — and pay dividends in trust, authenticity, and the one thing On has more of than any competitor: credible sporting lineage. The Head of Experience Design's remit is to turn that lineage into an architectural feature of the product ecosystem, not a marketing asset. That's what separates the Lab from the brand team.</p>
             </div>
         </section>
 
