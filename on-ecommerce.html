@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Kurakina — The AI-Powered Funnel for On</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F8F7F4;
+            --text: #111111;
+            --muted: #777777;
+            --border: #E0DEDA;
+            --card: #FFFFFF;
+            --highlight: #F0EFEB;
+            --accent: #FF4500;
+            --accent-soft: rgba(255, 69, 0, 0.08);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* --- Nav --- */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); background-color: rgba(248, 247, 244, 0.9); }
+        .nav-name { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+        .nav-name a { text-decoration: none; color: var(--text); }
+        .nav-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+        .nav-meta a { text-decoration: none; color: var(--muted); transition: color 0.3s; }
+        .nav-meta a:hover { color: var(--text); }
+
+        /* --- Container --- */
+        .container { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+        .container-wide { max-width: 1060px; margin: 0 auto; padding: 0 2.5rem; }
+
+        /* --- Hero --- */
+        .hero { padding-top: 10rem; padding-bottom: 6rem; }
+        .hero-overline { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 2.5rem; color: var(--muted); }
+        .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 3.4rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 2rem; }
+        .hero h1 em { font-style: italic; }
+        .hero h1 .dot { color: var(--accent); }
+        .hero-sub { font-size: 1.1rem; line-height: 1.7; color: var(--muted); max-width: 620px; font-weight: 300; }
+        .hero-meta { display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+        .meta-item-small { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+        .meta-item-small strong { color: var(--text); font-weight: 500; }
+
+        /* --- Section --- */
+        .section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 3rem; color: var(--muted); }
+        .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.4rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .section-title em { font-style: italic; }
+        .section-body { font-size: 1rem; line-height: 1.8; color: #333; font-weight: 300; }
+        .section-body p { margin-bottom: 1.25rem; }
+
+        /* --- Divider --- */
+        .divider { height: 1px; background: var(--border); margin: 5rem 0; }
+
+        /* --- Pull quote --- */
+        .pull { font-family: 'Playfair Display', Georgia, serif; font-size: 1.8rem; line-height: 1.4; font-style: italic; font-weight: 400; padding: 2rem 0; max-width: 700px; color: var(--text); }
+
+        /* --- Reframe block --- */
+        .reframe-block { margin-top: 3rem; padding: 3rem 2.5rem; background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 2px; }
+        .reframe-label { font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+        .reframe-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; line-height: 1.45; color: var(--text); margin-bottom: 1.25rem; }
+        .reframe-quote em { font-style: normal; background: linear-gradient(transparent 60%, var(--accent-soft) 60%); }
+        .reframe-body { font-size: 0.9rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+        /* --- Reveal --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Footer --- */
+        .footer { padding: 6rem 0 5rem; text-align: center; }
+        .footer-cta { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; line-height: 1.5; max-width: 600px; margin: 0 auto 2.5rem; color: var(--text); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .footer-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; text-decoration: none; color: var(--text); padding-bottom: 2px; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+        .footer-link:hover { border-color: var(--text); }
+
+        /* ====== FUNNEL DIAGRAM ====== */
+        .funnel-wrap { margin: 3rem auto; max-width: 700px; }
+        .funnel-wrap svg { width: 100%; height: auto; }
+        .funnel-stage-shape { transition: opacity 0.3s; }
+        .funnel-stage-shape:hover { opacity: 0.85; }
+        .funnel-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; fill: #fff; font-weight: 500; }
+        .funnel-desc { font-family: 'Inter', sans-serif; font-size: 7.5px; fill: rgba(255,255,255,0.7); font-weight: 300; }
+        .funnel-ai { font-family: 'Inter', sans-serif; font-size: 7px; fill: var(--accent); font-weight: 500; }
+        .funnel-flow-dot { fill: var(--accent); }
+        @keyframes funnel-flow { 0% { cy: 20; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { cy: 430; opacity: 0; } }
+
+        /* ====== STAGE CARDS ====== */
+        .stage-card {
+            margin-bottom: 4rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .stage-header {
+            padding: 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .stage-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1;
+            color: var(--accent);
+            opacity: 0.25;
+            flex-shrink: 0;
+        }
+        .stage-header-text { flex: 1; }
+        .stage-tag {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .stage-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+        .stage-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* Mock UI inside stage card */
+        .stage-mock {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+        .stage-mock svg { width: 100%; height: 100%; }
+
+        .stage-content {
+            padding: 2.5rem;
+        }
+
+        .lever-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .lever {
+            padding: 1.25rem;
+            background: var(--highlight);
+            border-radius: 2px;
+            position: relative;
+        }
+        .lever-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 0.75rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lever-icon svg { width: 14px; height: 14px; }
+        .lever-title {
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+        .lever-desc {
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .stage-principle {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        /* ====== METRICS DASHBOARD ====== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .metric-card {
+            background: #0a0a0a;
+            border-radius: 2px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .metric-card:hover::before { opacity: 1; }
+        .metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 0.75rem;
+        }
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .metric-target {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .metric-driver {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        /* Animated bar inside metric */
+        .metric-bar {
+            margin-top: 1rem;
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .metric-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .metric-card.visible .metric-bar-fill { width: var(--fill); }
+
+        /* ====== DARK BAND ====== */
+        .dark-band {
+            background: #0a0a0a;
+            padding: 5rem 0;
+            margin: 5rem 0;
+        }
+        .dark-band .section-label { color: rgba(255,255,255,0.35); }
+        .dark-band .section-title { color: #fff; }
+        .dark-band .section-body { color: rgba(255,255,255,0.6); }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-sub { font-size: 1rem; }
+            .lever-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .stage-header { flex-direction: column; gap: 0.75rem; }
+            .container, .container-wide { padding: 0 1.5rem; }
+            .nav { padding: 1.25rem 1.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .stage-mock { height: 180px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-meta { gap: 1.5rem; }
+            .metric-value { font-size: 1.6rem; }
+        }
+
+        /* ====== MOCK UI ANIMATIONS ====== */
+        /* Discover - ad cohort targeting */
+        @keyframes float-card { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes pulse-ring { 0% { r: 8; opacity: 0.5; } 100% { r: 25; opacity: 0; } }
+
+        /* Land - dynamic hero */
+        @keyframes slide-hero { 0%, 30% { opacity: 1; } 33%, 63% { opacity: 0; } 66%, 96% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes weather-icon { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+        /* Browse - recommendation engine */
+        @keyframes product-slide { 0% { transform: translateX(100%); opacity: 0; } 20% { transform: translateX(0); opacity: 1; } 80% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(-100%); opacity: 0; } }
+
+        /* Convert - checkout flow */
+        @keyframes progress-fill { 0% { width: 0; } 100% { width: 100%; } }
+        @keyframes check-appear { 0% { transform: scale(0); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        /* Recover - whisper wave */
+        @keyframes whisper-wave { 0%, 100% { d: path("M0,60 Q75,40 150,60 Q225,80 300,60"); } 50% { d: path("M0,60 Q75,80 150,60 Q225,40 300,60"); } }
+        @keyframes envelope-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(2deg); } }
+
+        /* Retain - lifecycle orbit */
+        @keyframes orbit-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes data-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="nav-name"><a href="on.html">Natalia Kurakina</a></div>
+        <div class="nav-meta"><a href="on.html">Back to main presentation</a></div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero reveal">
+            <div class="hero-overline">For On &middot; AI Lab &middot; E-Commerce Experience</div>
+            <h1>The AI-Powered Funnel<span class="dot">&nbsp;&middot;&nbsp;</span><em>Turning browsers into runners</em></h1>
+            <p class="hero-sub">How AI should work at every stage of On's e-commerce experience &mdash; from first click to lifelong customer. Not a funnel that extracts. A funnel that understands.</p>
+            <div class="hero-meta">
+                <div class="meta-item-small"><strong>Scope</strong> Full e-commerce journey</div>
+                <div class="meta-item-small"><strong>Stages</strong> 6 AI-powered layers</div>
+                <div class="meta-item-small"><strong>Goal</strong> Relationship, not transaction</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Section 1: Full Funnel Overview -->
+    <div class="container">
+        <div class="section reveal">
+            <div class="section-label">01 &mdash; The Full Funnel</div>
+            <div class="section-title">Six stages<span class="dot">,</span> <em>one intelligence</em></div>
+            <div class="section-body">
+                <p>Most e-commerce funnels are a series of hand-offs: marketing acquires, the site converts, CRM retains. Each stage optimises for its own metric and no one owns the whole journey. On's AI Lab should change that. One model &mdash; the digital twin &mdash; threads through every stage, learning and adapting so the runner never feels a seam.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Funnel SVG -->
+    <div class="container-wide">
+        <div class="funnel-wrap reveal">
+            <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+                <!-- Funnel stages -->
+                <!-- DISCOVER -->
+                <polygon points="50,30 650,30 620,95 80,95" fill="#1a1a1a" class="funnel-stage-shape" opacity="0.95"/>
+                <text x="350" y="55" text-anchor="middle" class="funnel-label">Discover</text>
+                <text x="350" y="72" text-anchor="middle" class="funnel-desc">Getting them to On.com</text>
+                <text x="350" y="87" text-anchor="middle" class="funnel-ai">AI: Cohort targeting + predictive intent</text>
+
+                <!-- LAND -->
+                <polygon points="80,100 620,100 590,165 110,165" fill="#222" class="funnel-stage-shape" opacity="0.9"/>
+                <text x="350" y="125" text-anchor="middle" class="funnel-label">Land</text>
+                <text x="350" y="142" text-anchor="middle" class="funnel-desc">First 8 seconds on-site</text>
+                <text x="350" y="157" text-anchor="middle" class="funnel-ai">AI: Personalised landing + instant twin-seed</text>
+
+                <!-- BROWSE -->
+                <polygon points="110,170 590,170 555,235 145,235" fill="#2a2a2a" class="funnel-stage-shape" opacity="0.85"/>
+                <text x="350" y="195" text-anchor="middle" class="funnel-label">Browse</text>
+                <text x="350" y="212" text-anchor="middle" class="funnel-desc">From looking to wanting</text>
+                <text x="350" y="227" text-anchor="middle" class="funnel-ai">AI: Real-time recs + fit predictor + visual search</text>
+
+                <!-- CONVERT -->
+                <polygon points="145,240 555,240 520,305 180,305" fill="#333" class="funnel-stage-shape" opacity="0.8"/>
+                <text x="350" y="265" text-anchor="middle" class="funnel-label">Convert</text>
+                <text x="350" y="282" text-anchor="middle" class="funnel-desc">Basket to checkout</text>
+                <text x="350" y="297" text-anchor="middle" class="funnel-ai">AI: Smart upsell + twin as checkout companion</text>
+
+                <!-- RECOVER -->
+                <polygon points="180,310 520,310 490,375 210,375" fill="#3a3a3a" class="funnel-stage-shape" opacity="0.75"/>
+                <text x="350" y="335" text-anchor="middle" class="funnel-label">Recover</text>
+                <text x="350" y="352" text-anchor="middle" class="funnel-desc">When they don't convert</text>
+                <text x="350" y="367" text-anchor="middle" class="funnel-ai">AI: Intelligent abandonment + content-first recovery</text>
+
+                <!-- RETAIN -->
+                <polygon points="210,380 490,380 460,445 240,445" fill="#444" class="funnel-stage-shape" opacity="0.7"/>
+                <text x="350" y="405" text-anchor="middle" class="funnel-label">Retain</text>
+                <text x="350" y="422" text-anchor="middle" class="funnel-desc">Post-purchase to lifetime</text>
+                <text x="350" y="437" text-anchor="middle" class="funnel-ai">AI: Second Pair + Continuous Pair + twin as engine</text>
+
+                <!-- Flow dots -->
+                <circle r="3" class="funnel-flow-dot" opacity="0">
+                    <animate attributeName="cy" values="20;440" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="cx" values="350;345;355;350" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle r="2.5" class="funnel-flow-dot" opacity="0">
+                    <animate attributeName="cy" values="20;440" dur="4s" begin="1s" repeatCount="indefinite"/>
+                    <animate attributeName="cx" values="340;350;340;345" dur="4s" begin="1s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" begin="1s" repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" class="funnel-flow-dot" opacity="0">
+                    <animate attributeName="cy" values="20;440" dur="4s" begin="2s" repeatCount="indefinite"/>
+                    <animate attributeName="cx" values="360;355;350;355" dur="4s" begin="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" begin="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" class="funnel-flow-dot" opacity="0">
+                    <animate attributeName="cy" values="20;440" dur="4s" begin="3s" repeatCount="indefinite"/>
+                    <animate attributeName="cx" values="355;340;360;350" dur="4s" begin="3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" begin="3s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Side annotations -->
+                <line x1="40" y1="62" x2="40" y2="412" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+                <text x="36" y="240" text-anchor="end" transform="rotate(-90, 36, 240)" style="font-family: 'JetBrains Mono', monospace; font-size: 7px; fill: var(--accent); letter-spacing: 3px; text-transform: uppercase; opacity: 0.5;">Digital Twin Thread</text>
+
+                <line x1="660" y1="62" x2="660" y2="412" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+                <text x="664" y="240" text-anchor="start" transform="rotate(90, 664, 240)" style="font-family: 'JetBrains Mono', monospace; font-size: 7px; fill: rgba(100,100,100,0.6); letter-spacing: 3px; text-transform: uppercase;">Signal density increases</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Section 2: Stage-by-Stage Deep Dive -->
+    <div class="container">
+        <div class="section reveal">
+            <div class="section-label">02 &mdash; Stage-by-Stage Deep Dive</div>
+            <div class="section-title">What AI does <em>at every moment</em></div>
+            <div class="section-body">
+                <p>Each stage has its own intelligence layer, but they all feed the same model. The digital twin starts thin and grows richer with every interaction. Here's how each stage works &mdash; and what the runner actually experiences.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 1: DISCOVER -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">01</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Discover</div>
+                    <div class="stage-name">Getting them to On.com</div>
+                    <div class="stage-subtitle">AI-powered acquisition that speaks to who they are, not what they search for</div>
+                </div>
+            </div>
+            <!-- Mock UI: Ad targeting dashboard -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="240" fill="linear-gradient(135deg, #F5F4F0, #EDEBE5)"/>
+                    <defs>
+                        <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F5F4F0"/><stop offset="100%" stop-color="#EDEBE5"/></linearGradient>
+                    </defs>
+                    <rect width="600" height="240" fill="url(#bg1)"/>
+
+                    <!-- Cohort cards -->
+                    <g style="animation: float-card 3s ease-in-out infinite;">
+                        <rect x="30" y="40" width="100" height="70" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="80" y="62" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Coffee</text>
+                        <text x="80" y="78" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 11px; fill: #111;">Lifestyle</text>
+                        <text x="80" y="95" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Editorial + Social</text>
+                    </g>
+                    <g style="animation: float-card 3s ease-in-out infinite; animation-delay: 0.4s;">
+                        <rect x="145" y="40" width="100" height="70" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="195" y="62" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Monday</text>
+                        <text x="195" y="78" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 11px; fill: #111;">Performance</text>
+                        <text x="195" y="95" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Search + Retarget</text>
+                    </g>
+                    <g style="animation: float-card 3s ease-in-out infinite; animation-delay: 0.8s;">
+                        <rect x="260" y="40" width="100" height="70" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="310" y="62" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Studio</text>
+                        <text x="310" y="78" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 11px; fill: #111;">Hybrid</text>
+                        <text x="310" y="95" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Influencer + UGC</text>
+                    </g>
+                    <g style="animation: float-card 3s ease-in-out infinite; animation-delay: 1.2s;">
+                        <rect x="375" y="40" width="100" height="70" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="425" y="62" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Trail</text>
+                        <text x="425" y="78" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 11px; fill: #111;">Adventure</text>
+                        <text x="425" y="95" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Context + Weather</text>
+                    </g>
+                    <g style="animation: float-card 3s ease-in-out infinite; animation-delay: 1.6s;">
+                        <rect x="490" y="40" width="100" height="70" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="540" y="62" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Elite</text>
+                        <text x="540" y="78" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 11px; fill: #111;">Race data</text>
+                        <text x="540" y="95" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Wearable + Intent</text>
+                    </g>
+
+                    <!-- Connection lines with pulses -->
+                    <line x1="80" y1="115" x2="80" y2="160" stroke="#E0DEDA" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <line x1="195" y1="115" x2="195" y2="160" stroke="#E0DEDA" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <line x1="310" y1="115" x2="310" y2="160" stroke="#E0DEDA" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <line x1="425" y1="115" x2="425" y2="160" stroke="#E0DEDA" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <line x1="540" y1="115" x2="540" y2="160" stroke="#E0DEDA" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+                    <!-- Target node -->
+                    <circle cx="310" cy="185" r="18" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.3">
+                        <animate attributeName="r" values="18;28;18" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="310" cy="185" r="12" fill="none" stroke="var(--accent)" stroke-width="0.5" opacity="0.5"/>
+                    <circle cx="310" cy="185" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <text x="310" y="215" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 6px; fill: var(--muted); letter-spacing: 2px; text-transform: uppercase;">Lookalike Modelling</text>
+
+                    <!-- Pulse rings from cohort cards to centre -->
+                    <circle cx="80" cy="160" r="3" fill="var(--accent)" opacity="0">
+                        <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="195" cy="160" r="3" fill="var(--accent)" opacity="0">
+                        <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="425" cy="160" r="3" fill="var(--accent)" opacity="0">
+                        <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">Cohort-driven ad targeting</div>
+                        <div class="lever-desc">Five runner cohorts (Coffee, Monday, Studio, Trail, Elite) each receive different creative, messaging, and channel strategy. The Coffee Runner sees an editorial about morning ritual. The Elite sees race-day data.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">AI-generated content at scale</div>
+                        <div class="lever-desc">Social, search, and editorial content generated per cohort and per moment. Not one campaign for everyone &mdash; hundreds of micro-narratives, each tuned to a specific runner's context.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Lookalike modelling from twin data</div>
+                        <div class="lever-desc">The digital twin's data feeds back into acquisition. Every converted runner makes the next prospect's targeting more precise. The model compounds.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Predictive intent from wearables</div>
+                        <div class="lever-desc">Partnerships with watch and insole data providers surface intent signals before the runner even searches. Mileage thresholds, injury patterns, seasonal shifts &mdash; the AI knows when to reach out.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 2: LAND -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">02</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Land</div>
+                    <div class="stage-name">First 8 seconds on-site</div>
+                    <div class="stage-subtitle">Not a homepage. A mirror.</div>
+                </div>
+            </div>
+            <!-- Mock UI: Dynamic landing page -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EDEBE5"/><stop offset="100%" stop-color="#E5E2DA"/></linearGradient>
+                    </defs>
+                    <rect width="600" height="240" fill="url(#bg2)"/>
+
+                    <!-- Browser frame -->
+                    <rect x="80" y="20" width="440" height="200" rx="4" fill="white" stroke="#E0DEDA" stroke-width="1"/>
+                    <!-- Browser bar -->
+                    <rect x="80" y="20" width="440" height="22" rx="4" fill="#F5F4F0"/>
+                    <rect x="80" y="38" width="440" height="4" fill="#F5F4F0"/>
+                    <circle cx="96" cy="31" r="3.5" fill="#FF6B6B" opacity="0.6"/>
+                    <circle cx="108" cy="31" r="3.5" fill="#FFD93D" opacity="0.6"/>
+                    <circle cx="120" cy="31" r="3.5" fill="#6BCB77" opacity="0.6"/>
+                    <rect x="180" y="27" width="200" height="9" rx="4" fill="#EDEBE5"/>
+                    <text x="280" y="34" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: #999;">on.com/you</text>
+
+                    <!-- Dynamic content area - Layer 1 (Coffee Runner) -->
+                    <g opacity="1">
+                        <animate attributeName="opacity" values="1;1;0;0;0;0;1" dur="9s" repeatCount="indefinite"/>
+                        <rect x="100" y="55" width="180" height="100" rx="2" fill="#F0EDE5"/>
+                        <text x="120" y="80" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Cohort: Coffee Runner</text>
+                        <text x="120" y="100" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #111; font-style: italic;">Your morning ritual,</text>
+                        <text x="120" y="118" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #111; font-style: italic;">reimagined.</text>
+                        <text x="120" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Lifestyle imagery + editorial tone</text>
+                    </g>
+
+                    <!-- Dynamic content area - Layer 2 (Elite) -->
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0;0;1;1;0;0;0" dur="9s" repeatCount="indefinite"/>
+                        <rect x="100" y="55" width="180" height="100" rx="2" fill="#0a0a0a"/>
+                        <text x="120" y="80" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Cohort: Elite</text>
+                        <text x="120" y="100" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #fff; font-style: italic;">Your next PB</text>
+                        <text x="120" y="118" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #fff; font-style: italic;">starts here.</text>
+                        <text x="120" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #666;">Race data + performance metrics</text>
+                    </g>
+
+                    <!-- Dynamic content area - Layer 3 (Trail) -->
+                    <g opacity="0">
+                        <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="9s" repeatCount="indefinite"/>
+                        <rect x="100" y="55" width="180" height="100" rx="2" fill="#E8E4DC"/>
+                        <text x="120" y="80" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Cohort: Trail Seeker</text>
+                        <text x="120" y="100" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #111; font-style: italic;">Where does your</text>
+                        <text x="120" y="118" style="font-family: 'Playfair Display', serif; font-size: 14px; fill: #111; font-style: italic;">trail lead?</text>
+                        <text x="120" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #999;">Terrain + weather-responsive</text>
+                    </g>
+
+                    <!-- Context signals -->
+                    <g>
+                        <rect x="300" y="55" width="200" height="30" rx="2" fill="#F8F7F4" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="315" y="68" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted); letter-spacing: 1px;">CONTEXT SIGNALS</text>
+                        <text x="315" y="78" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #666;">Location: Zurich  |  Time: 7:14am  |  Weather: 8C Clear</text>
+                    </g>
+
+                    <!-- Twin seed indicator -->
+                    <g>
+                        <rect x="300" y="95" width="200" height="60" rx="2" fill="#F8F7F4" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="315" y="110" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1px;">PROVISIONAL TWIN</text>
+                        <circle cx="320" cy="128" r="8" fill="none" stroke="var(--accent)" stroke-width="0.5" opacity="0.5">
+                            <animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="320" cy="128" r="4" fill="var(--accent)" opacity="0.3"/>
+                        <text x="338" y="126" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #666;">Building profile...</text>
+                        <text x="338" y="136" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #999;">Device + location + source</text>
+                        <rect x="338" y="142" width="60" height="3" rx="1" fill="#E0DEDA"/>
+                        <rect x="338" y="142" width="15" height="3" rx="1" fill="var(--accent)" opacity="0.6">
+                            <animate attributeName="width" values="5;25;5" dur="4s" repeatCount="indefinite"/>
+                        </rect>
+                    </g>
+
+                    <!-- Referral source tag -->
+                    <rect x="300" y="165" width="200" height="25" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                    <text x="315" y="178" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted); letter-spacing: 1px;">SOURCE: Instagram Story Ad</text>
+                    <text x="315" y="186" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Content-matched landing variant deployed</text>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">Personalised landing per cohort</div>
+                        <div class="lever-desc">The Coffee Runner sees lifestyle imagery and editorial tone. The Elite sees race performance data. Same URL, completely different experience. The page becomes a mirror of the visitor.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Dynamic hero content</div>
+                        <div class="lever-desc">Hero imagery and messaging adapt to referral source, time of day, weather, and location. A rainy-morning visitor in London sees different content than a sunny-afternoon visitor in LA.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Instant twin-seed</div>
+                        <div class="lever-desc">Before login, before cookies, the AI starts building a provisional profile from device type, location, browsing pattern, and referral context. The twin is born on first click.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">"Not a homepage &mdash; a mirror"</div>
+                        <div class="lever-desc">The principle: every visitor should feel the site was built for them. Not personalisation-as-gimmick, but personalisation-as-architecture. The page structure itself adapts.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 3: BROWSE -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">03</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Browse</div>
+                    <div class="stage-name">From looking to wanting</div>
+                    <div class="stage-subtitle">The longer you browse, the more the site becomes yours</div>
+                </div>
+            </div>
+            <!-- Mock UI: Recommendation engine -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F5F4F0"/><stop offset="100%" stop-color="#EDEBE5"/></linearGradient>
+                    </defs>
+                    <rect width="600" height="240" fill="url(#bg3)"/>
+
+                    <!-- Product cards sliding -->
+                    <g>
+                        <!-- Card 1 -->
+                        <rect x="30" y="30" width="120" height="160" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5">
+                            <animate attributeName="x" values="30;30;-130" dur="8s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="1;1;0" dur="8s" repeatCount="indefinite"/>
+                        </rect>
+                        <rect x="40" y="40" width="100" height="80" rx="1" fill="#EDEBE5">
+                            <animate attributeName="x" values="40;40;-120" dur="8s" repeatCount="indefinite"/>
+                        </rect>
+                        <text x="90" y="85" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 8px; fill: #aaa; font-style: italic;">
+                            Cloudmonster 2
+                            <animate attributeName="x" values="90;90;-60" dur="8s" repeatCount="indefinite"/>
+                        </text>
+                        <text x="45" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #111; font-weight: 500;">Cloudmonster 2</text>
+                        <text x="45" y="152" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #999;">Based on your movement pattern</text>
+                        <rect x="45" y="160" width="40" height="3" rx="1" fill="var(--accent)" opacity="0.4"/>
+                        <text x="45" y="175" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent);">92% match</text>
+                    </g>
+
+                    <!-- Card 2 -->
+                    <g>
+                        <rect x="170" y="30" width="120" height="160" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <rect x="180" y="40" width="100" height="80" rx="1" fill="#E8E4DC"/>
+                        <text x="230" y="85" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 8px; fill: #aaa; font-style: italic;">Cloudflow 4</text>
+                        <text x="185" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #111; font-weight: 500;">Cloudflow 4</text>
+                        <text x="185" y="152" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #999;">Runners like you chose this</text>
+                        <rect x="185" y="160" width="35" height="3" rx="1" fill="var(--accent)" opacity="0.3"/>
+                        <text x="185" y="175" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent);">87% match</text>
+                    </g>
+
+                    <!-- Card 3 - Smart bundle -->
+                    <g>
+                        <rect x="310" y="30" width="120" height="160" rx="2" fill="white" stroke="var(--accent)" stroke-width="0.8"/>
+                        <rect x="310" y="30" width="120" height="18" rx="2" fill="var(--accent)" opacity="0.08"/>
+                        <text x="370" y="42" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Smart Bundle</text>
+                        <rect x="320" y="55" width="100" height="65" rx="1" fill="#F0EFEB"/>
+                        <text x="370" y="92" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 7px; fill: #aaa; font-style: italic;">Shoe + Sock + Insole</text>
+                        <text x="325" y="140" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #111; font-weight: 500;">Your Running Kit</text>
+                        <text x="325" y="152" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #999;">Matched to Coffee Runner profile</text>
+                        <text x="325" y="175" style="font-family: 'JetBrains Mono', monospace; font-size: 5px; fill: var(--accent);">Save 15% as bundle</text>
+                    </g>
+
+                    <!-- Right panel: Fit Predictor + Visual Search -->
+                    <g>
+                        <rect x="450" y="30" width="130" height="75" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="465" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Fit Predictor</text>
+                        <rect x="465" y="55" width="40" height="40" rx="20" fill="#F0EFEB" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="485" y="78" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 14px; fill: #ccc;">&#128065;</text>
+                        <text x="515" y="68" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">Phone camera</text>
+                        <text x="515" y="78" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">foot scan</text>
+                        <text x="515" y="92" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Size 42.5 EU</text>
+                    </g>
+                    <g>
+                        <rect x="450" y="115" width="130" height="75" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                        <text x="465" y="133" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Visual Search</text>
+                        <rect x="465" y="140" width="45" height="40" rx="2" fill="#E8E4DC"/>
+                        <text x="488" y="163" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 12px; fill: #ccc;">&#128247;</text>
+                        <text x="520" y="155" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">Upload scenario</text>
+                        <text x="520" y="165" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">get matched</text>
+                        <text x="520" y="178" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">3 products found</text>
+                    </g>
+
+                    <!-- Learning indicator -->
+                    <rect x="30" y="205" width="540" height="20" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                    <text x="45" y="218" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted); letter-spacing: 1px;">REAL-TIME LEARNING</text>
+                    <rect x="170" y="212" width="200" height="4" rx="2" fill="#F0EFEB"/>
+                    <rect x="170" y="212" width="80" height="4" rx="2" fill="var(--accent)" opacity="0.5">
+                        <animate attributeName="width" values="40;120;80" dur="6s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="380" y="218" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Site is adapting to your browse pattern...</text>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">Real-time recommendation engine</div>
+                        <div class="lever-desc">Not "people also bought" but "based on how you're moving through the site." The AI tracks dwell time, scroll depth, and click patterns to surface what matters to this specific runner, right now.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Visual search</div>
+                        <div class="lever-desc">Upload a photo of a running scenario &mdash; a muddy trail, a city street, a gym floor &mdash; and get matched products. The AI reads context, not just products.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">The Fit Predictor</div>
+                        <div class="lever-desc">AI-driven size and fit recommendation from a phone camera foot scan. No more size uncertainty, no more returns. Confidence converts.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Smart bundling by cohort</div>
+                        <div class="lever-desc">Suggest apparel + shoe combinations based on the runner's cohort and browsing behaviour. Not random upsells &mdash; contextual kits that make sense for how they actually run.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Content-commerce fusion</div>
+                        <div class="lever-desc">Editorial stories that are shoppable, surfaced by AI based on reading patterns. The boundary between content and catalogue dissolves. An article about trail running becomes a shop of relevant gear.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Progressive personalisation</div>
+                        <div class="lever-desc">"The longer you browse, the more the site becomes yours." Every scroll, every hover, every tap feeds the model. Five minutes in, the site feels different than it did at first arrival.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 4: CONVERT -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">04</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Convert</div>
+                    <div class="stage-name">Basket to checkout</div>
+                    <div class="stage-subtitle">The twin as checkout companion</div>
+                </div>
+            </div>
+            <!-- Mock UI: Checkout flow -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="240" fill="#0a0a0a"/>
+
+                    <!-- Checkout progress bar -->
+                    <rect x="80" y="25" width="440" height="3" rx="1" fill="rgba(255,255,255,0.08)"/>
+                    <rect x="80" y="25" width="0" height="3" rx="1" fill="var(--accent)">
+                        <animate attributeName="width" values="0;110;220;330;440" dur="6s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="80" y="18" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase;">Bag</text>
+                    <text x="190" y="18" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase;">Details</text>
+                    <text x="300" y="18" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase;">Pay</text>
+                    <text x="430" y="18" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase;">Confirm</text>
+
+                    <!-- Product in basket -->
+                    <rect x="80" y="45" width="260" height="80" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                    <rect x="90" y="55" width="60" height="60" rx="2" fill="rgba(255,255,255,0.06)"/>
+                    <text x="120" y="88" text-anchor="middle" style="font-family: 'Playfair Display', serif; font-size: 8px; fill: rgba(255,255,255,0.2); font-style: italic;">Cloud X 4</text>
+                    <text x="165" y="72" style="font-family: 'Inter', sans-serif; font-size: 7px; fill: #fff; font-weight: 500;">Cloud X 4</text>
+                    <text x="165" y="84" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.4);">Size 42.5 EU &middot; Black/White</text>
+                    <text x="165" y="97" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: var(--accent);">Your size ships tomorrow</text>
+                    <text x="165" y="110" style="font-family: 'Inter', sans-serif; font-size: 6px; fill: #fff; font-weight: 500;">CHF 169.95</text>
+
+                    <!-- Smart upsell panel -->
+                    <rect x="80" y="135" width="260" height="85" rx="2" fill="rgba(255,69,0,0.04)" stroke="rgba(255,69,0,0.15)" stroke-width="0.5"/>
+                    <text x="95" y="152" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Twin Suggests</text>
+                    <!-- Upsell items -->
+                    <rect x="95" y="160" width="70" height="45" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="130" y="180" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Performance</text>
+                    <text x="130" y="190" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Insole</text>
+                    <text x="130" y="200" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: var(--accent);">+ CHF 39</text>
+
+                    <rect x="175" y="160" width="70" height="45" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="210" y="180" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Running</text>
+                    <text x="210" y="190" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Socks</text>
+                    <text x="210" y="200" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: var(--accent);">+ CHF 29</text>
+
+                    <rect x="255" y="160" width="70" height="45" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="290" y="180" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Training</text>
+                    <text x="290" y="190" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">Plan</text>
+                    <text x="290" y="200" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: var(--accent);">Free</text>
+
+                    <!-- Right side: Twin companion -->
+                    <rect x="360" y="45" width="180" height="175" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="375" y="65" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Checkout Companion</text>
+
+                    <!-- Twin avatar -->
+                    <circle cx="395" cy="90" r="12" fill="rgba(255,69,0,0.08)" stroke="var(--accent)" stroke-width="0.5"/>
+                    <circle cx="395" cy="90" r="5" fill="var(--accent)" opacity="0.3">
+                        <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <text x="415" y="85" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #fff; font-weight: 400;">Your Digital Twin</text>
+                    <text x="415" y="96" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">Based on your last pair...</text>
+
+                    <!-- Recommendation messages -->
+                    <rect x="375" y="110" width="150" height="22" rx="8" fill="rgba(255,255,255,0.06)"/>
+                    <text x="385" y="123" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">"You ran 340km in your last Cloud X."</text>
+
+                    <rect x="375" y="138" width="150" height="22" rx="8" fill="rgba(255,255,255,0.06)"/>
+                    <text x="385" y="151" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.6);">"This colourway is trending in Zurich."</text>
+
+                    <rect x="375" y="166" width="150" height="22" rx="8" fill="rgba(255,69,0,0.06)"/>
+                    <text x="385" y="179" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: var(--accent);">"The insole pairs perfectly with this shoe."</text>
+
+                    <!-- Dynamic pricing signal -->
+                    <rect x="375" y="195" width="150" height="18" rx="2" fill="rgba(255,255,255,0.04)"/>
+                    <circle cx="385" cy="204" r="3" fill="#6BCB77" opacity="0.7"/>
+                    <text x="395" y="207" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: rgba(255,255,255,0.5);">In stock &middot; Ships tomorrow to 8001</text>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">AI-optimised checkout flow</div>
+                        <div class="lever-desc">Fewer steps for returning customers. The AI recognises intent velocity: a decisive buyer gets express checkout, a hesitant one gets reassurance and social proof.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Dynamic pricing signals</div>
+                        <div class="lever-desc">"This colourway is trending in your city" &mdash; social proof that feels local and relevant. Not manufactured urgency. Honest context.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Smart contextual upsell</div>
+                        <div class="lever-desc">The AI suggests the insole, the sock, the training plan &mdash; but only when it makes sense. Context, not cross-sell. The twin knows what complements this specific purchase.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Urgency without anxiety</div>
+                        <div class="lever-desc">"Your size ships tomorrow" not "ONLY 2 LEFT." On's checkout should feel like confidence, not pressure. Helpfulness converts better than fear.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">One-click reorder</div>
+                        <div class="lever-desc">Returning customers can reorder their exact configuration in a single tap. The twin remembers size, colour preference, shipping address &mdash; everything.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Twin as checkout companion</div>
+                        <div class="lever-desc">"Based on your last pair, we recommend..." The digital twin surfaces insights from past purchases, wear data, and running patterns to make the checkout feel conversational.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 5: RECOVER -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">05</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Recover</div>
+                    <div class="stage-name">When they don't convert</div>
+                    <div class="stage-subtitle">The whisper, not the shout</div>
+                </div>
+            </div>
+            <!-- Mock UI: Recovery signals -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8F7F4"/><stop offset="100%" stop-color="#F0EFEB"/></linearGradient>
+                    </defs>
+                    <rect width="600" height="240" fill="url(#bg5)"/>
+
+                    <!-- WHY they left analysis -->
+                    <rect x="30" y="25" width="180" height="190" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                    <text x="45" y="45" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Abandonment Analysis</text>
+
+                    <!-- Reason bars -->
+                    <text x="45" y="68" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #111;">Size uncertainty</text>
+                    <rect x="45" y="72" width="100" height="6" rx="1" fill="#F0EFEB"/>
+                    <rect x="45" y="72" width="72" height="6" rx="1" fill="var(--accent)" opacity="0.6"/>
+                    <text x="150" y="78" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent);">72%</text>
+
+                    <text x="45" y="95" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #111;">Just browsing</text>
+                    <rect x="45" y="99" width="100" height="6" rx="1" fill="#F0EFEB"/>
+                    <rect x="45" y="99" width="58" height="6" rx="1" fill="rgba(17,17,17,0.15)"/>
+                    <text x="150" y="105" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: #999;">58%</text>
+
+                    <text x="45" y="122" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #111;">Price hesitation</text>
+                    <rect x="45" y="126" width="100" height="6" rx="1" fill="#F0EFEB"/>
+                    <rect x="45" y="126" width="35" height="6" rx="1" fill="rgba(17,17,17,0.1)"/>
+                    <text x="150" y="132" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: #999;">35%</text>
+
+                    <text x="45" y="149" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: #111;">Comparison shopping</text>
+                    <rect x="45" y="153" width="100" height="6" rx="1" fill="#F0EFEB"/>
+                    <rect x="45" y="153" width="22" height="6" rx="1" fill="rgba(17,17,17,0.08)"/>
+                    <text x="150" y="159" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: #999;">22%</text>
+
+                    <text x="45" y="185" style="font-family: 'Inter', sans-serif; font-size: 5px; fill: var(--accent); font-weight: 500;">Response: Send Fit Predictor link</text>
+                    <text x="45" y="198" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Personalised timing: Tuesday 7:30am</text>
+
+                    <!-- Recovery timeline -->
+                    <rect x="230" y="25" width="340" height="190" rx="2" fill="white" stroke="#E0DEDA" stroke-width="0.5"/>
+                    <text x="245" y="45" style="font-family: 'JetBrains Mono', monospace; font-size: 4.5px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Recovery Sequence &mdash; The Whisper</text>
+
+                    <!-- Timeline -->
+                    <line x1="260" y1="60" x2="260" y2="200" stroke="#E0DEDA" stroke-width="1"/>
+
+                    <!-- Day 1 -->
+                    <circle cx="260" cy="75" r="4" fill="var(--accent)" opacity="0.6"/>
+                    <text x="275" y="72" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted);">DAY 1</text>
+                    <text x="275" y="82" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">Content, not discount</text>
+                    <text x="275" y="92" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">"How Coffee Runners choose their first pair" &mdash; article</text>
+
+                    <!-- Day 4 -->
+                    <circle cx="260" cy="115" r="3.5" fill="var(--accent)" opacity="0.4"/>
+                    <text x="275" y="112" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted);">DAY 4</text>
+                    <text x="275" y="122" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">Solve the blocker</text>
+                    <text x="275" y="132" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Fit Predictor invitation &mdash; personalised to browsed model</text>
+
+                    <!-- Day 10 -->
+                    <circle cx="260" cy="155" r="3" fill="var(--accent)" opacity="0.25"/>
+                    <text x="275" y="152" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted);">DAY 10</text>
+                    <text x="275" y="162" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 500;">Gentle reminder</text>
+                    <text x="275" y="172" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">"Your provisional twin is still here" &mdash; next visit picks up</text>
+
+                    <!-- Day 30 -->
+                    <circle cx="260" cy="192" r="2.5" fill="rgba(17,17,17,0.15)"/>
+                    <text x="275" y="189" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--muted);">DAY 30</text>
+                    <text x="275" y="199" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #111; font-weight: 400;">Silence</text>
+                    <text x="275" y="209" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: #999;">Gets quieter, not louder. Respects the runner's space.</text>
+
+                    <!-- Volume indicator -->
+                    <text x="540" y="75" text-anchor="end" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: rgba(17,17,17,0.08);">&#9607;&#9607;&#9607;&#9607;</text>
+                    <text x="540" y="115" text-anchor="end" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: rgba(17,17,17,0.06);">&#9607;&#9607;&#9607;</text>
+                    <text x="540" y="155" text-anchor="end" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: rgba(17,17,17,0.04);">&#9607;&#9607;</text>
+                    <text x="540" y="192" text-anchor="end" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: rgba(17,17,17,0.02);">&#9607;</text>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">Intelligent abandonment analysis</div>
+                        <div class="lever-desc">AI determines WHY they left &mdash; price? size uncertainty? just browsing? &mdash; and tailors the follow-up accordingly. Not one recovery email for everyone. Hundreds of variants, each matched to the reason.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Personalised re-engagement timing</div>
+                        <div class="lever-desc">Not 1 hour later for everyone. AI learns when each person is most responsive. Morning person gets a Tuesday 7am nudge. Night owl gets a Thursday 9pm article. Timing is a feature.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Content-first recovery</div>
+                        <div class="lever-desc">Send them an article about their cohort's running style, not a discount code. The first touchpoint after abandonment should add value, not apply pressure. Earn the return visit.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Smart retargeting that fades</div>
+                        <div class="lever-desc">The whisper, not the shout. On's recovery should feel helpful, not desperate. Retargeting gets quieter over time, not louder. Respect builds trust. Trust converts.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Win-back through the twin</div>
+                        <div class="lever-desc">If they visited once and left, the provisional twin remembers. The next visit picks up where they left off &mdash; same products, same context, same progress. No starting over.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Solve, don't sell</div>
+                        <div class="lever-desc">If size uncertainty caused the abandonment, send the Fit Predictor. If price, wait for a natural moment (birthday, season change). Match the solution to the blocker, not the product to the person.</div>
+                    </div>
+                </div>
+                <div class="stage-principle">"On's recovery should feel like a friend who remembers what you were looking at &mdash; not a salesperson who followed you out of the store."</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 6: RETAIN -->
+    <div class="container-wide">
+        <div class="stage-card reveal">
+            <div class="stage-header">
+                <div class="stage-number">06</div>
+                <div class="stage-header-text">
+                    <div class="stage-tag">Retain</div>
+                    <div class="stage-name">Post-purchase to lifetime</div>
+                    <div class="stage-subtitle">The twin as the retention engine</div>
+                </div>
+            </div>
+            <!-- Mock UI: Retention lifecycle -->
+            <div class="stage-mock">
+                <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="240" fill="#0a0a0a"/>
+
+                    <!-- Central orbit system -->
+                    <circle cx="300" cy="120" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <circle cx="300" cy="120" r="55" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <circle cx="300" cy="120" r="30" fill="none" stroke="rgba(255,69,0,0.15)" stroke-width="0.5"/>
+
+                    <!-- Central twin -->
+                    <circle cx="300" cy="120" r="12" fill="rgba(255,69,0,0.1)" stroke="var(--accent)" stroke-width="0.8"/>
+                    <circle cx="300" cy="120" r="5" fill="var(--accent)" opacity="0.5">
+                        <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.5;0.8;0.5" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="300" y="123" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 3.5px; fill: #fff; letter-spacing: 1px;">TWIN</text>
+
+                    <!-- Orbiting nodes -->
+                    <g style="animation: orbit-spin 15s linear infinite; transform-origin: 300px 120px;">
+                        <circle cx="300" cy="40" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <text x="300" y="42" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 3.5px; fill: rgba(255,255,255,0.5);">Wear</text>
+                        <circle cx="380" cy="120" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <text x="380" y="122" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 3.5px; fill: rgba(255,255,255,0.5);">Run</text>
+                        <circle cx="300" cy="200" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <text x="300" y="202" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 3.5px; fill: rgba(255,255,255,0.5);">Social</text>
+                        <circle cx="220" cy="120" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <text x="220" y="122" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 3.5px; fill: rgba(255,255,255,0.5);">Shop</text>
+                    </g>
+
+                    <!-- Data pulses -->
+                    <circle cx="300" cy="120" r="12" fill="none" stroke="var(--accent)" stroke-width="0.5" opacity="0">
+                        <animate attributeName="r" values="12;80;12" dur="4s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.4;0;0" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <!-- Left panel: Second Pair -->
+                    <rect x="30" y="30" width="140" height="85" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="42" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Second Pair Flow</text>
+                    <text x="42" y="64" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #fff;">340km logged</text>
+                    <rect x="42" y="70" width="100" height="4" rx="1" fill="rgba(255,255,255,0.08)"/>
+                    <rect x="42" y="70" width="68" height="4" rx="1" fill="var(--accent)" opacity="0.5">
+                        <animate attributeName="width" values="60;72;60" dur="8s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="42" y="88" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">Estimated replacement: 6 weeks</text>
+                    <text x="42" y="100" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: var(--accent);">AI will suggest next pair at 450km</text>
+
+                    <!-- Left panel: Continuous Pair -->
+                    <rect x="30" y="125" width="140" height="85" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,69,0,0.1)" stroke-width="0.5"/>
+                    <text x="42" y="143" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Continuous Pair</text>
+                    <text x="42" y="160" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #fff;">Subscription active</text>
+                    <text x="42" y="175" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">Next pair: auto-ships when ready</text>
+                    <text x="42" y="188" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">Model: adapts to evolving gait data</text>
+                    <text x="42" y="200" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: var(--accent);">LTV: 3x vs single purchase</text>
+
+                    <!-- Right panel: Community + Lifecycle -->
+                    <rect x="430" y="30" width="140" height="85" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="442" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Community</text>
+                    <text x="442" y="64" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #fff;">Local run clubs</text>
+                    <text x="442" y="78" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">OAC content + The Field Notebook</text>
+                    <text x="442" y="92" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">Matched by cohort + location</text>
+                    <text x="442" y="106" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: var(--accent);">Atelier invites for top runners</text>
+
+                    <rect x="430" y="125" width="140" height="85" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                    <text x="442" y="143" style="font-family: 'JetBrains Mono', monospace; font-size: 4px; fill: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;">Lifecycle Messaging</text>
+                    <text x="442" y="160" style="font-family: 'Inter', sans-serif; font-size: 5.5px; fill: #fff;">Monthly insight</text>
+                    <text x="442" y="175" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">"Here's what your shoe learned</text>
+                    <text x="442" y="188" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: rgba(255,255,255,0.4);">about you this month"</text>
+                    <text x="442" y="200" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: var(--accent);">Not "buy more" &mdash; "learn more"</text>
+
+                    <!-- Referral -->
+                    <rect x="200" y="218" width="200" height="16" rx="2" fill="rgba(255,69,0,0.06)" stroke="rgba(255,69,0,0.15)" stroke-width="0.5"/>
+                    <text x="300" y="228" text-anchor="middle" style="font-family: 'Inter', sans-serif; font-size: 4.5px; fill: var(--accent);">Referral: "Your friend runs like you &mdash; here's what we'd suggest"</text>
+                </svg>
+            </div>
+            <div class="stage-content">
+                <div class="lever-grid">
+                    <div class="lever">
+                        <div class="lever-title">The Second Pair flow</div>
+                        <div class="lever-desc">AI tracks usage via insole and watch data and proactively suggests the next pair at the right moment. Not after a fixed time &mdash; after the shoe's actual performance curve indicates replacement. Precision, not cadence.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Continuous Pair subscription</div>
+                        <div class="lever-desc">The subscription that adapts. Each new pair reflects the runner's evolving gait data, terrain preferences, and mileage patterns. The model improves with every pair. LTV target: 3x vs single purchase.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Community integration</div>
+                        <div class="lever-desc">Connect new buyers to local run clubs, OAC content, and The Field Notebook. Matched by cohort and location. The purchase is the beginning of a community relationship, not the end of a transaction.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Lifecycle messaging</div>
+                        <div class="lever-desc">Not "buy more" but "here's what your shoe has learned about you this month." Monthly insights that deepen the relationship and make the twin visible and valuable.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Atelier invitations</div>
+                        <div class="lever-desc">High-value customers get invited to the Living Atelier &mdash; the physical space where LightSpray creates custom pairs. Scarcity, craft, and exclusivity as the retention tier that money can't buy but loyalty earns.</div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-title">Cohort-matched referral</div>
+                        <div class="lever-desc">"Your friend runs like you &mdash; here's what we'd recommend for them." Referral program powered by cohort matching. The twin helps the runner recruit other runners who'll love On for the same reasons.</div>
+                    </div>
+                </div>
+                <div class="stage-principle">"Every interaction feeds the model. Every model output feels more personal. The twin is the retention engine &mdash; not a loyalty card."</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Section 3: The Metrics That Matter -->
+    <div class="container">
+        <div class="section reveal">
+            <div class="section-label">03 &mdash; The Metrics That Matter</div>
+            <div class="section-title">What we measure<span class="dot">,</span> <em>what we move</em></div>
+            <div class="section-body">
+                <p>Each metric maps to a specific AI lever. This isn't about dashboards for their own sake &mdash; it's about connecting every funnel stage to a business outcome, and every outcome to a design decision.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-wide">
+        <div class="metrics-grid reveal" id="metrics-grid">
+            <div class="metric-card" style="--fill: 65%;">
+                <div class="metric-label">CAC</div>
+                <div class="metric-value">-30%</div>
+                <div class="metric-target">Target Reduction</div>
+                <div class="metric-driver">via cohort targeting + lookalike modelling from twin data</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+            <div class="metric-card" style="--fill: 55%;">
+                <div class="metric-label">Conversion Rate</div>
+                <div class="metric-value">+40%</div>
+                <div class="metric-target">Target Uplift</div>
+                <div class="metric-driver">via personalised landing + Fit Predictor + smart bundling</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+            <div class="metric-card" style="--fill: 50%;">
+                <div class="metric-label">AOV</div>
+                <div class="metric-value">+25%</div>
+                <div class="metric-target">Target Uplift</div>
+                <div class="metric-driver">via smart bundling + contextual upsell + training plans</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+            <div class="metric-card" style="--fill: 70%;">
+                <div class="metric-label">Cart Abandonment</div>
+                <div class="metric-value">-35%</div>
+                <div class="metric-target">Target Reduction</div>
+                <div class="metric-driver">via intelligent recovery + content-first re-engagement</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+            <div class="metric-card" style="--fill: 85%;">
+                <div class="metric-label">LTV</div>
+                <div class="metric-value">3x</div>
+                <div class="metric-target">Target Multiplier</div>
+                <div class="metric-driver">via Continuous Pair + twin + community + Second Pair flow</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+            <div class="metric-card" style="--fill: 60%;">
+                <div class="metric-label">NPS</div>
+                <div class="metric-value">+20</div>
+                <div class="metric-target">Target Uplift</div>
+                <div class="metric-driver">via experience quality + personalisation + lifecycle messaging</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Section 4: The Design Principle -->
+    <div class="container">
+        <div class="section reveal">
+            <div class="section-label">04 &mdash; The Design Principle</div>
+            <div class="section-title">A funnel designed to <em>understand</em></div>
+        </div>
+
+        <div class="reframe-block reveal">
+            <div class="reframe-label">The organising principle</div>
+            <div class="reframe-quote">Most e-commerce funnels are designed to <em>extract</em>.<br>On's should be designed to <em>understand</em>.</div>
+            <p class="reframe-body">Every click, every browse, every abandoned cart is a signal &mdash; not a failure. The AI's job is to turn those signals into a relationship the runner actually wants. Not conversion optimisation. Relationship architecture. Not funnel metrics. Trust metrics. The difference is everything: one builds a quarter, the other builds a decade.</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Section 5: Footer -->
+    <div class="container">
+        <footer class="footer reveal">
+            <p class="footer-cta">This is a companion piece to the full AI Lab vision. The funnel is where strategy meets the runner.</p>
+            <div class="footer-links">
+                <a href="on.html" class="footer-link">Main On Presentation</a>
+                <a href="https://natestariam.github.io" class="footer-link" target="_blank">CV & Portfolio</a>
+                <a href="https://www.linkedin.com/in/natalia-kurakina-73b0912b" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="mailto:natestar.iam@gmail.com" class="footer-link">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Metric bar animation
+        const metricObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.metric-card').forEach(card => card.classList.add('visible'));
+                }
+            });
+        }, { threshold: 0.2 });
+        const metricsGrid = document.getElementById('metrics-grid');
+        if (metricsGrid) metricObserver.observe(metricsGrid);
+    </script>
+
+</body>
+</html>
