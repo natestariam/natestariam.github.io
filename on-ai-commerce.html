@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Funnel Is Dead — Commerce in the AI Era · On AI Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F8F7F4;
+            --text: #111111;
+            --muted: #777777;
+            --border: #E0DEDA;
+            --card: #FFFFFF;
+            --highlight: #F0EFEB;
+            --accent: #FF4500;
+            --accent-soft: rgba(255, 69, 0, 0.08);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* ─── Nav ─── */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); background-color: rgba(248, 247, 244, 0.9); }
+        .nav-name { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+        .nav-name a { color: var(--text); text-decoration: none; }
+        .nav-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+        /* ─── Container ─── */
+        .container { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+
+        /* ─── Hero ─── */
+        .hero { padding-top: 10rem; padding-bottom: 6rem; }
+        .hero-overline { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 2.5rem; color: var(--muted); }
+        .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 3.6rem; font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 2rem; }
+        .hero h1 em { font-style: italic; }
+        .hero-sub { font-size: 1.1rem; line-height: 1.7; color: var(--muted); max-width: 620px; font-weight: 300; }
+        .hero-meta { display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+        .meta-item-small { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+        .meta-item-small strong { color: var(--text); font-weight: 500; }
+
+        /* ─── Section ─── */
+        .section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500; margin-bottom: 3rem; color: var(--muted); }
+        .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.4rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .section-title em { font-style: italic; }
+        .section-body { font-size: 1rem; line-height: 1.8; color: #333; font-weight: 300; }
+        .section-body p { margin-bottom: 1.25rem; }
+
+        /* ─── Divider ─── */
+        .divider { height: 1px; background: var(--border); margin: 5rem 0; }
+
+        /* ─── Pull quote ─── */
+        .pull { font-family: 'Playfair Display', Georgia, serif; font-size: 1.8rem; line-height: 1.4; font-style: italic; font-weight: 400; padding: 2rem 0; max-width: 700px; color: var(--text); }
+
+        /* ─── Dark section ─── */
+        .dark-section { background: #0a0a0a; color: #f0f0f0; padding: 5rem 0; margin: 4rem 0; }
+        .dark-section .section-label { color: #666; }
+        .dark-section .section-title { color: #fff; }
+        .dark-section .section-body { color: #aaa; }
+        .dark-section .pull { color: #e0e0e0; }
+
+        /* ─── Funnel comparison ─── */
+        .funnel-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin: 2.5rem 0; }
+        .funnel-col { padding: 2rem; border-radius: 2px; }
+        .funnel-col.old { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
+        .funnel-col.new { background: rgba(255, 69, 0, 0.06); border: 1px solid rgba(255, 69, 0, 0.15); }
+        .funnel-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.5rem; }
+        .funnel-col.old .funnel-label { color: #555; }
+        .funnel-col.new .funnel-label { color: var(--accent); }
+
+        .funnel-step { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; font-size: 0.85rem; font-weight: 300; color: #999; }
+        .funnel-col.new .funnel-step { color: #ccc; }
+        .funnel-arrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #444; }
+        .funnel-col.new .funnel-arrow { color: var(--accent); }
+        .funnel-step-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; min-width: 1.2rem; }
+        .funnel-col.new .funnel-step-num { color: var(--accent); }
+
+        /* ─── Data points ─── */
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+        .data-card { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; background: rgba(255,255,255,0.03); }
+        .data-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .data-label { font-size: 0.78rem; line-height: 1.6; color: #888; font-weight: 300; }
+
+        /* ─── Loop diagram ─── */
+        .loop-diagram { margin: 3rem auto; max-width: 500px; }
+        .loop-diagram svg { width: 100%; height: auto; }
+
+        /* ─── Stage cards ─── */
+        .stage { margin-bottom: 3.5rem; }
+        .stage-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
+        .stage-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; }
+        .stage-name { font-size: 1.3rem; font-weight: 500; letter-spacing: -0.01em; }
+        .stage-old { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+        .stage-body { font-size: 0.95rem; line-height: 1.8; color: #444; font-weight: 300; }
+        .stage-body ul { list-style: none; padding: 0; }
+        .stage-body li { padding: 0.35rem 0; padding-left: 1.2rem; position: relative; }
+        .stage-body li::before { content: ''; position: absolute; left: 0; top: 0.85rem; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+        /* ─── Product cards ─── */
+        .products { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+        .product-card { padding: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 2px; transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-2px); box-shadow: 0 15px 35px -15px rgba(0,0,0,0.1); }
+        .product-num { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+        .product-name { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.6rem; }
+        .product-desc { font-size: 0.82rem; line-height: 1.65; color: var(--muted); font-weight: 300; }
+
+        /* ─── Metrics comparison ─── */
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 2rem 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+        .metrics-col { padding: 2rem; }
+        .metrics-col.old-m { background: var(--highlight); }
+        .metrics-col.new-m { background: var(--card); }
+        .metrics-heading { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.2rem; color: var(--muted); }
+        .metrics-col.new-m .metrics-heading { color: var(--accent); }
+        .metric-item { font-size: 0.82rem; padding: 0.4rem 0; color: #555; font-weight: 300; }
+        .metrics-col.old-m .metric-item { text-decoration: line-through; color: #aaa; }
+        .metrics-col.new-m .metric-item { color: var(--text); font-weight: 400; }
+
+        /* ─── Mock UI frames ─── */
+        .mock-frame { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 2rem 0; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+        .mock-toolbar { display: flex; align-items: center; gap: 0.4rem; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); background: #fafaf8; }
+        .mock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+        .mock-url { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-left: 0.75rem; }
+        .mock-content { padding: 1.5rem; }
+
+        /* AI chat mock */
+        .chat-mock { max-width: 520px; margin: 0 auto; }
+        .chat-msg { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; align-items: flex-start; }
+        .chat-avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 600; color: #fff; }
+        .chat-avatar.user { background: var(--text); }
+        .chat-avatar.ai { background: var(--accent); }
+        .chat-avatar.on { background: #000; }
+        .chat-bubble { font-size: 0.82rem; line-height: 1.6; color: #333; font-weight: 300; padding: 0.75rem 1rem; border-radius: 8px; max-width: 400px; }
+        .chat-bubble.user-b { background: var(--highlight); }
+        .chat-bubble.ai-b { background: #fff; border: 1px solid var(--border); }
+        .chat-bubble.on-b { background: #000; color: #eee; }
+        .chat-bubble strong { font-weight: 500; }
+        .chat-rec { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; margin-top: 0.5rem; background: var(--accent-soft); border-radius: 4px; }
+        .chat-rec-name { font-size: 0.78rem; font-weight: 500; }
+        .chat-rec-meta { font-size: 0.65rem; color: var(--muted); }
+        .chat-rec-btn { font-size: 0.6rem; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-left: auto; }
+
+        /* ─── Closing ─── */
+        .closing { padding: 6rem 0; text-align: center; }
+        .closing-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .closing-sub { font-size: 1rem; color: var(--muted); font-weight: 300; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+        /* ─── Footer ─── */
+        .footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
+        .footer-text { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+        .footer-text a { color: var(--text); text-decoration: none; }
+
+        /* ─── Scroll reveal ─── */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .section-title { font-size: 1.8rem; }
+            .pull { font-size: 1.4rem; }
+            .funnel-compare { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: 1fr; }
+            .products { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 1.5rem; }
+            .nav { padding: 1.2rem 1.5rem; }
+            .closing-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── Nav ─── -->
+<nav class="nav">
+    <div class="nav-name"><a href="on.html">Natalia Kurakina</a></div>
+    <div class="nav-meta">Commerce in the AI Era</div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<header class="hero container">
+    <div class="hero-overline">For On · AI Lab · Head of Experience Design</div>
+    <h1>The funnel is dead.<br>The <em>conversation</em><br>has started.</h1>
+    <p class="hero-sub">Search-driven e-commerce assumed people would type keywords, scan blue links, and browse pages. That era is ending. The next generation of customers will ask an AI what to buy — and the AI's answer will be the new shelf placement. On needs to be ready.</p>
+    <div class="hero-meta">
+        <div class="meta-item-small"><strong>Focus</strong> AI-era acquisition</div>
+        <div class="meta-item-small"><strong>Scope</strong> Discovery to retention</div>
+        <div class="meta-item-small"><strong>Horizon</strong> 12-24 months</div>
+    </div>
+</header>
+
+<div class="divider container reveal"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 1: THE SHIFT                    -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="dark-section">
+    <div class="container">
+        <div class="section reveal">
+            <div class="section-label">01 — The shift</div>
+            <h2 class="section-title" style="color:#fff;">The way people find products has <em>fundamentally</em> changed</h2>
+            <div class="section-body">
+                <p>For 20 years, the e-commerce playbook was simple: rank on Google, get the click, convert the visit. Every brand optimised for the same linear funnel. But that funnel assumed a world where people <em>search</em>. Increasingly, they <em>ask</em>.</p>
+            </div>
+        </div>
+
+        <div class="data-grid reveal">
+            <div class="data-card">
+                <div class="data-number">40%+</div>
+                <div class="data-label">of Gen Z use TikTok or AI tools instead of Google for product discovery. The search box is no longer the starting line.</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">Zero-click</div>
+                <div class="data-label">AI answers the question directly. The user never visits a website. On's landing page might never load.</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">AEO</div>
+                <div class="data-label">AI Engine Optimisation is replacing SEO. The question is no longer "do we rank?" but "does the AI recommend us?"</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">Agents</div>
+                <div class="data-label">ChatGPT with browsing, Perplexity Shopping, Google AI Overviews — purchase intermediaries are multiplying.</div>
+            </div>
+        </div>
+
+        <div class="divider" style="background: rgba(255,255,255,0.08); margin: 3rem 0;" ></div>
+
+        <!-- OLD vs NEW funnel -->
+        <div class="reveal">
+            <div class="funnel-compare">
+                <div class="funnel-col old">
+                    <div class="funnel-label">The old world</div>
+                    <div class="funnel-step"><span class="funnel-step-num">1</span> Google search</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">2</span> SEO-optimised landing page</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">3</span> Browse catalogue</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">4</span> Add to cart</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">5</span> Checkout</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">6</span> Email blast → maybe repeat</div>
+                </div>
+                <div class="funnel-col new">
+                    <div class="funnel-label">The new world</div>
+                    <div class="funnel-step"><span class="funnel-step-num">1</span> Ask the AI</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">2</span> AI recommends On</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">3</span> Conversational comparison</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">4</span> Direct link → purchase</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">5</span> AI-managed relationship</div>
+                    <div class="funnel-step"><span class="funnel-arrow">↓</span></div>
+                    <div class="funnel-step"><span class="funnel-step-num">6</span> Proactive re-engagement</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="pull reveal" style="color:#ccc;">The digital shelf used to be a Google results page. Now it's inside the AI's knowledge base — and On needs to stock it.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- MOCK: How On appears in ChatGPT        -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="container section reveal">
+    <div class="section-label">What the customer sees</div>
+    <h2 class="section-title">This is On's new <em>storefront</em></h2>
+    <div class="section-body">
+        <p>When someone asks ChatGPT "what's the best running shoe for a beginner marathon?", this is the moment that replaces the Google search result. The AI's answer is the new first impression.</p>
+    </div>
+
+    <div class="mock-frame" style="margin-top: 2rem;">
+        <div class="mock-toolbar">
+            <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+            <span class="mock-url">chatgpt.com</span>
+        </div>
+        <div class="mock-content chat-mock">
+            <div class="chat-msg">
+                <div class="chat-avatar user">U</div>
+                <div class="chat-bubble user-b">What's the best running shoe for a beginner training for their first marathon?</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar ai">AI</div>
+                <div class="chat-bubble ai-b">
+                    For a first marathon, you want a shoe that balances cushioning with energy return over long distances. Here are my top picks:<br><br>
+                    <strong>1. On Cloudmonster 2</strong> — exceptional cushioning via CloudTec Phase, very popular with new marathon runners. 280g, 6mm drop.<br><br>
+                    <strong>2. Nike Pegasus 41</strong> — reliable all-rounder...<br><br>
+                    <strong>3. Brooks Ghost 16</strong> — smooth ride, traditional feel...
+                    <div class="chat-rec">
+                        <div>
+                            <div class="chat-rec-name">On Cloudmonster 2</div>
+                            <div class="chat-rec-meta">$169.99 · 4.7 stars · 2,340 reviews</div>
+                        </div>
+                        <div class="chat-rec-btn">View on On →</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar user">U</div>
+                <div class="chat-bubble user-b">How does the Cloudmonster compare for someone with wide feet?</div>
+            </div>
+        </div>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--muted); font-weight: 300; margin-top: 0.75rem; font-style: italic;">Whether On is recommendation #1 or absent from this list depends on how well its product data, reviews, and content are structured for AI reasoning — not keywords.</p>
+</div>
+
+<div class="divider container reveal"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 2: THE NEW LOOP                 -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="container section reveal">
+    <div class="section-label">02 — The new model</div>
+    <h2 class="section-title">Not a funnel. A <em>conversation loop.</em></h2>
+    <div class="section-body">
+        <p>The linear funnel assumed drop-off at every stage. The new model is a continuous conversation — between the customer, the AI, and On — that loops through discovery, fit, purchase, and return.</p>
+    </div>
+
+    <!-- SVG Loop Diagram -->
+    <div class="loop-diagram reveal">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="200" cy="200" r="155" stroke="#E0DEDA" stroke-width="1" fill="none"/>
+            <!-- Animated orbit dot -->
+            <circle r="4" fill="#FF4500" opacity="0.8">
+                <animateMotion dur="12s" repeatCount="indefinite" path="M200,45 A155,155 0 1,1 199.9,45"/>
+            </circle>
+            <!-- Stage arcs -->
+            <path d="M200 45 A155 155 0 0 1 355 200" stroke="#FF4500" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <path d="M355 200 A155 155 0 0 1 200 355" stroke="#FF4500" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <path d="M200 355 A155 155 0 0 1 45 200" stroke="#FF4500" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <path d="M45 200 A155 155 0 0 1 200 45" stroke="#FF4500" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <!-- Center -->
+            <circle cx="200" cy="200" r="45" fill="#0a0a0a"/>
+            <text x="200" y="196" text-anchor="middle" fill="#fff" font-family="Inter" font-size="8" font-weight="500" letter-spacing="0.15em">THE</text>
+            <text x="200" y="210" text-anchor="middle" fill="#fff" font-family="Inter" font-size="8" font-weight="500" letter-spacing="0.15em">CUSTOMER</text>
+            <!-- Stage labels -->
+            <text x="290" y="85" text-anchor="middle" fill="#FF4500" font-family="JetBrains Mono" font-size="9" font-weight="500">01 BE FOUND</text>
+            <text x="365" y="215" text-anchor="start" fill="#FF4500" font-family="JetBrains Mono" font-size="9" font-weight="500">02 CONVERSE</text>
+            <text x="245" y="375" text-anchor="middle" fill="#FF4500" font-family="JetBrains Mono" font-size="9" font-weight="500">03 FIT</text>
+            <text x="80" y="320" text-anchor="middle" fill="#FF4500" font-family="JetBrains Mono" font-size="9" font-weight="500">04 MOMENT</text>
+            <text x="35" y="155" text-anchor="start" fill="#FF4500" font-family="JetBrains Mono" font-size="9" font-weight="500">05 RETURN</text>
+            <!-- Connection dots -->
+            <circle cx="200" cy="45" r="5" fill="#FF4500"/>
+            <circle cx="355" cy="200" r="5" fill="#FF4500"/>
+            <circle cx="200" cy="355" r="5" fill="#FF4500"/>
+            <circle cx="45" cy="200" r="5" fill="#FF4500"/>
+            <circle cx="88" cy="88" r="5" fill="#FF4500"/>
+        </svg>
+    </div>
+</div>
+
+<!-- ─── Stage details ─── -->
+<div class="container">
+
+    <div class="stage reveal">
+        <div class="stage-header">
+            <span class="stage-num">STAGE 01</span>
+            <span class="stage-name">Be Found</span>
+        </div>
+        <div class="stage-old">Replaces: SEO + paid search</div>
+        <div class="stage-body">
+            <p>The AI needs to know On exists AND recommend it. The "digital shelf" is now inside the AI's knowledge base.</p>
+            <ul>
+                <li>Rich, structured product data that AI can <em>reason about</em> — not just index. Specs, comparisons, use-case mappings.</li>
+                <li>Authoritative content that trains models to associate On with quality: expert reviews, biomechanics studies, athlete testimonials.</li>
+                <li>Partnerships with AI platforms — ChatGPT plugins, Perplexity Shopping integrations, Google AI Overviews.</li>
+                <li>Being present in AI training data through genuine editorial, not keyword-stuffed SEO copy.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage reveal">
+        <div class="stage-header">
+            <span class="stage-num">STAGE 02</span>
+            <span class="stage-name">The Conversation</span>
+        </div>
+        <div class="stage-old">Replaces: the landing page</div>
+        <div class="stage-body">
+            <p>When someone arrives via AI recommendation, the experience should continue the conversation — not reset it with a generic homepage.</p>
+            <ul>
+                <li>An On AI assistant that picks up where ChatGPT left off: "You were looking for a marathon shoe — here's what we'd recommend."</li>
+                <li>Seamless handoff from AI discovery to On's own conversational commerce experience.</li>
+                <li>No more homepage → category → product → cart. The landing "page" becomes a landing "conversation."</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mock: On AI Assistant -->
+    <div class="mock-frame reveal" style="margin-bottom: 3.5rem;">
+        <div class="mock-toolbar">
+            <div class="mock-dot" style="background:#111;"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+            <span class="mock-url">on.com/for-you</span>
+        </div>
+        <div class="mock-content chat-mock">
+            <div class="chat-msg">
+                <div class="chat-avatar on">On</div>
+                <div class="chat-bubble on-b">Hey — looks like you came from a ChatGPT recommendation for marathon shoes. Great choice looking at the Cloudmonster 2. A few quick questions to make sure it's the right fit for you.</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar on">On</div>
+                <div class="chat-bubble on-b">How many km/week are you running right now? And do you know if you overpronate?</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar user">U</div>
+                <div class="chat-bubble user-b">About 30km a week, and honestly no idea about pronation</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar on">On</div>
+                <div class="chat-bubble on-b">No problem. The Cloudmonster 2 is a solid choice for your mileage — it's neutral, so it works well if you're not sure. If you want, you can do a quick phone scan of your feet and I'll confirm the fit. Takes 15 seconds.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage reveal">
+        <div class="stage-header">
+            <span class="stage-num">STAGE 03</span>
+            <span class="stage-name">The Fit</span>
+        </div>
+        <div class="stage-old">Replaces: browsing the catalogue</div>
+        <div class="stage-body">
+            <p>AI-powered product matching replaces aimless browsing. The product finds the person.</p>
+            <ul>
+                <li>Phone camera foot scan → instant size and width recommendation.</li>
+                <li>"Tell me how you run" conversational quiz → AI matches the right model.</li>
+                <li>Visual search: photo of current worn shoes → AI recommends the On replacement.</li>
+                <li>Returning customers: the digital twin already knows their gait, mileage, preferences.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage reveal">
+        <div class="stage-header">
+            <span class="stage-num">STAGE 04</span>
+            <span class="stage-name">The Moment</span>
+        </div>
+        <div class="stage-old">Replaces: checkout</div>
+        <div class="stage-body">
+            <p>Frictionless, context-aware conversion. The checkout should feel like a confirmation, not a commitment.</p>
+            <ul>
+                <li>One-tap purchase from the AI recommendation — no cart page, no upsell gauntlet.</li>
+                <li>"Your AI recommended these — here's why they're right for you" — a personalised confirmation, not a generic receipt.</li>
+                <li>Smart bundling: shoe + insole + training plan, suggested contextually based on what the conversation revealed.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage reveal">
+        <div class="stage-header">
+            <span class="stage-num">STAGE 05</span>
+            <span class="stage-name">The Return</span>
+        </div>
+        <div class="stage-old">Replaces: abandoned cart emails + promo codes</div>
+        <div class="stage-body">
+            <p>The relationship IS the retention mechanism. Not a discount. Not a drip campaign.</p>
+            <ul>
+                <li>Didn't buy? The On assistant remembers the conversation and follows up intelligently — not with spam.</li>
+                <li>Post-purchase: the digital twin starts learning from their runs (insole data, watch integration).</li>
+                <li>Proactive outreach when the shoe is nearing end-of-life, based on real usage data.</li>
+                <li>AI-generated personalised content: weekly running summary, next-pair recommendation, training insights.</li>
+                <li>The twin becomes the reason they return — not a promo code.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="divider container reveal"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 3: WHAT ON SHOULD BUILD         -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="container section reveal">
+    <div class="section-label">03 — What to build</div>
+    <h2 class="section-title">Four products for the <em>AI-native</em> era</h2>
+    <div class="section-body">
+        <p>Not roadmap items. Not features. Four distinct products that together form a new commerce architecture — one designed for conversations, not clicks.</p>
+    </div>
+
+    <div class="products reveal">
+        <div class="product-card">
+            <div class="product-num">PRODUCT 01</div>
+            <div class="product-name">On AI Assistant</div>
+            <div class="product-desc">A conversational shopping companion on on.com. Not a chatbot reading FAQs — a knowledgeable advisor that understands the full product range, can discuss fit, terrain, running style, and picks up where ChatGPT or Perplexity left off. The new front door.</div>
+        </div>
+        <div class="product-card">
+            <div class="product-num">PRODUCT 02</div>
+            <div class="product-name">AEO Programme</div>
+            <div class="product-desc">A dedicated AI Engine Optimisation effort. Structured product data, expert content strategy, review corpus management, and direct partnerships with AI platforms. The goal: when any AI recommends running shoes, On is in the answer.</div>
+        </div>
+        <div class="product-card">
+            <div class="product-num">PRODUCT 03</div>
+            <div class="product-name">The Proactive Twin</div>
+            <div class="product-desc">Post-purchase AI that doesn't wait for the customer to return. Using insole and watch data, it predicts when the next pair is needed, suggests the right model based on evolving running patterns, and initiates the conversation at the right moment.</div>
+        </div>
+        <div class="product-card">
+            <div class="product-num">PRODUCT 04</div>
+            <div class="product-name">AI-Native Storefront</div>
+            <div class="product-desc">A version of on.com designed not for human browsers but for AI agents. Structured, semantic, API-first. When someone's AI shopping agent queries "best trail shoe under $200", this storefront serves the answer directly.</div>
+        </div>
+    </div>
+</div>
+
+<div class="divider container reveal"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 4: METRICS                      -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="container section reveal">
+    <div class="section-label">04 — The metrics that change</div>
+    <h2 class="section-title">Old scoreboard, <em>new game</em></h2>
+    <div class="section-body">
+        <p>If the acquisition model changes, so does what we measure. Half of today's KPIs were designed for a world of page views and click-throughs. That world is shrinking.</p>
+    </div>
+
+    <div class="metrics-grid reveal">
+        <div class="metrics-col old-m">
+            <div class="metrics-heading">Retiring</div>
+            <div class="metric-item">Impressions</div>
+            <div class="metric-item">Click-through rate</div>
+            <div class="metric-item">Bounce rate</div>
+            <div class="metric-item">Cart abandonment rate</div>
+            <div class="metric-item">Email open rate</div>
+            <div class="metric-item">SEO ranking position</div>
+        </div>
+        <div class="metrics-col new-m">
+            <div class="metrics-heading">Emerging</div>
+            <div class="metric-item">AI recommendation rate</div>
+            <div class="metric-item">Conversation completion %</div>
+            <div class="metric-item">Fit accuracy score</div>
+            <div class="metric-item">Twin engagement frequency</div>
+            <div class="metric-item">Predicted LTV at first interaction</div>
+            <div class="metric-item">AI-attributed revenue</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLOSING                                 -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="dark-section" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="closing reveal">
+            <h2 class="closing-title" style="color:#fff;">The last generation of e-commerce was designed for people who <em>search</em>.<br>The next should be designed for people who <em>ask</em>.</h2>
+            <p class="closing-sub" style="color:#777;">On has the product quality to be recommended. The question is whether the infrastructure exists for AIs to find it, understand it, and hand it off. That's the design challenge.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ─── Footer ─── -->
+<footer class="footer container">
+    <div class="footer-text"><a href="on.html">← Back to full vision</a> · Natalia Kurakina · 2026</div>
+</footer>
+
+<!-- ─── Scroll reveal script ─── -->
+<script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
